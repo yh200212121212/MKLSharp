@@ -165,4 +165,29 @@ namespace MKLSharp {
     ptr_y = nullptr;
     ptr_p = nullptr;
   }
+
+  void Blas1::srotmg(float% d1, float% d2, float% x1, float y1, [Out]array<float>^% param) {
+    pin_ptr<float> ptr_d1 = &d1;
+    pin_ptr<float> ptr_d2 = &d2;
+    pin_ptr<float> ptr_x1 = &x1;
+    param = gcnew array<float>(5);
+    pin_ptr<float> ptr_p = &param[0];
+    cblas_srotmg(ptr_d1, ptr_d2, ptr_x1, y1, ptr_p);
+    ptr_d1 = nullptr;
+    ptr_d2 = nullptr;
+    ptr_x1 = nullptr;
+    ptr_p = nullptr;
+  }
+  void Blas1::drotmg(double% d1, double% d2, double% x1, double y1, [Out]array<double>^% param) {
+    pin_ptr<double> ptr_d1 = &d1;
+    pin_ptr<double> ptr_d2 = &d2;
+    pin_ptr<double> ptr_x1 = &x1;
+    param = gcnew array<double>(5);
+    pin_ptr<double> ptr_p = &param[0];
+    cblas_drotmg(ptr_d1, ptr_d2, ptr_x1, y1, ptr_p);
+    ptr_d1 = nullptr;
+    ptr_d2 = nullptr;
+    ptr_x1 = nullptr;
+    ptr_p = nullptr;
+  }
 }
