@@ -45,5 +45,8 @@ namespace MKLSharp {
 
     static unsigned long isamax(long n, array<float>^ x, long incX);
     static unsigned long idamax(long n, array<double>^ x, long incX);
+
+    static unsigned long isamin(long n, array<float>^ x, long incX);
+    static unsigned long idamin(long n, array<double>^ x, long incX);
   };
 }

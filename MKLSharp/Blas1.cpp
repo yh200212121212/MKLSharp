@@ -217,15 +217,28 @@ namespace MKLSharp {
     ptr_y = nullptr;
   }
 
-  unsigned long isamax(long n, array<float>^ x, long incX) {
+  unsigned long Blas1::isamax(long n, array<float>^ x, long incX) {
     pin_ptr<float> ptr_x = &x[0];
-    auto res = cblas_isamax(n, ptr_x, incX);
+    auto res = (unsigned long)cblas_isamax(n, ptr_x, incX);
     ptr_x = nullptr;
     return res;
   }
-  unsigned long idamax(long n, array<double>^ x, long incX) {
+  unsigned long Blas1::idamax(long n, array<double>^ x, long incX) {
     pin_ptr<double> ptr_x = &x[0];
-    auto res = cblas_idamax(n, ptr_x, incX);
+    auto res = (unsigned long)cblas_idamax(n, ptr_x, incX);
+    ptr_x = nullptr;
+    return res;
+  }
+
+  unsigned long Blas1::isamin(long n, array<float>^ x, long incX) {
+    pin_ptr<float> ptr_x = &x[0];
+    auto res = (unsigned long)cblas_isamin(n, ptr_x, incX);
+    ptr_x = nullptr;
+    return res;
+  }
+  unsigned long Blas1::idamin(long n, array<double>^ x, long incX) {
+    pin_ptr<double> ptr_x = &x[0];
+    auto res = (unsigned long)cblas_idamin(n, ptr_x, incX);
     ptr_x = nullptr;
     return res;
   }
