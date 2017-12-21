@@ -39,5 +39,8 @@ namespace MKLSharp {
 
     static void sscal(long n, float a, array<float>^ x, long incX);
     static void dscal(long n, double a, array<double>^ x, long incX);
+
+    static void sswap(long n, array<float>^ x, long incX, array<float>^ y, long incY);
+    static void dswap(long n, array<double>^ x, long incX, array<double>^ y, long incY);
   };
 }

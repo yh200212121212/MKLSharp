@@ -201,4 +201,19 @@ namespace MKLSharp {
     cblas_dscal(n, a, ptr_x, incX);
     ptr_x = nullptr;
   }
+
+  void Blas1::sswap(long n, array<float>^ x, long incX, array<float>^ y, long incY) {
+    pin_ptr<float> ptr_x = &x[0];
+    pin_ptr<float> ptr_y = &y[0];
+    cblas_sswap(n, ptr_x, incX, ptr_y, incY);
+    ptr_x = nullptr;
+    ptr_y = nullptr;
+  }
+  void Blas1::dswap(long n, array<double>^ x, long incX, array<double>^ y, long incY) {
+    pin_ptr<double> ptr_x = &x[0];
+    pin_ptr<double> ptr_y = &y[0];
+    cblas_dswap(n, ptr_x, incX, ptr_y, incY);
+    ptr_x = nullptr;
+    ptr_y = nullptr;
+  }
 }
