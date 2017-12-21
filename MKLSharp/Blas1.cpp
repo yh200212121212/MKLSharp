@@ -216,4 +216,17 @@ namespace MKLSharp {
     ptr_x = nullptr;
     ptr_y = nullptr;
   }
+
+  unsigned long isamax(long n, array<float>^ x, long incX) {
+    pin_ptr<float> ptr_x = &x[0];
+    auto res = cblas_isamax(n, ptr_x, incX);
+    ptr_x = nullptr;
+    return res;
+  }
+  unsigned long idamax(long n, array<double>^ x, long incX) {
+    pin_ptr<double> ptr_x = &x[0];
+    auto res = cblas_idamax(n, ptr_x, incX);
+    ptr_x = nullptr;
+    return res;
+  }
 }

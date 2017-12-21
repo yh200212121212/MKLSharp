@@ -42,5 +42,8 @@ namespace MKLSharp {
 
     static void sswap(long n, array<float>^ x, long incX, array<float>^ y, long incY);
     static void dswap(long n, array<double>^ x, long incX, array<double>^ y, long incY);
+
+    static unsigned long isamax(long n, array<float>^ x, long incX);
+    static unsigned long idamax(long n, array<double>^ x, long incX);
   };
 }
