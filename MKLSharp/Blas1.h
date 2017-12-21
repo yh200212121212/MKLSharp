@@ -36,5 +36,8 @@ namespace MKLSharp {
 
     static void srotmg(float% d1, float% d2, float% x1, float y1, [Out]array<float>^% param);
     static void drotmg(double% d1, double% d2, double% x1, double y1, [Out]array<double>^% param);
+
+    static void sscal(long n, float a, array<float>^ x, long incX);
+    static void dscal(long n, double a, array<double>^ x, long incX);
   };
 }

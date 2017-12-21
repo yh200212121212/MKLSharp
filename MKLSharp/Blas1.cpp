@@ -190,4 +190,15 @@ namespace MKLSharp {
     ptr_x1 = nullptr;
     ptr_p = nullptr;
   }
+
+  void Blas1::sscal(long n, float a, array<float>^ x, long incX) {
+    pin_ptr<float> ptr_x = &x[0];
+    cblas_sscal(n, a, ptr_x, incX);
+    ptr_x = nullptr;
+  }
+  void Blas1::dscal(long n, double a, array<double>^ x, long incX) {
+    pin_ptr<double> ptr_x = &x[0];
+    cblas_dscal(n, a, ptr_x, incX);
+    ptr_x = nullptr;
+  }
 }
