@@ -146,4 +146,23 @@ namespace MKLSharp {
     ptr_c = nullptr;
     ptr_s = nullptr;
   }
+
+  void Blas1::srotm(long n, array<float>^ x, long incX, array<float>^ y, long incY, array<float>^ param) {
+    pin_ptr<float> ptr_x = &x[0];
+    pin_ptr<float> ptr_y = &y[0];
+    pin_ptr<float> ptr_p = &param[0];
+    cblas_srotm(n, ptr_x, incX, ptr_y, incY, ptr_p);
+    ptr_x = nullptr;
+    ptr_y = nullptr;
+    ptr_p = nullptr;
+  }
+  void Blas1::drotm(long n, array<double>^ x, long incX, array<double>^ y, long incY, array<double>^ param) {
+    pin_ptr<double> ptr_x = &x[0];
+    pin_ptr<double> ptr_y = &y[0];
+    pin_ptr<double> ptr_p = &param[0];
+    cblas_drotm(n, ptr_x, incX, ptr_y, incY, ptr_p);
+    ptr_x = nullptr;
+    ptr_y = nullptr;
+    ptr_p = nullptr;
+  }
 }

@@ -30,5 +30,8 @@ namespace MKLSharp {
 
     static void srotg(float% a, float% b, [Out]float% c, [Out]float% s);
     static void drotg(double% a, double% b, [Out]double% c, [Out]double% s);
+
+    static void srotm(long n, array<float>^ x, long incX, array<float>^ y, long incY, array<float>^ param);
+    static void drotm(long n, array<double>^ x, long incX, array<double>^ y, long incY, array<double>^ param);
   };
 }
