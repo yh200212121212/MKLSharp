@@ -78,4 +78,21 @@ namespace MKLSharp {
     ptr_y = nullptr;
     return res;
   }
+
+  float Blas1::sdsdot(int n, float sb, array<float>^ sx, int incX, array<float>^ sy, int incY) {
+    pin_ptr<float> ptr_sx = &sx[0];
+    pin_ptr<float> ptr_sy = &sy[0];
+    auto res = cblas_sdsdot(n, sb, ptr_sx, incX, ptr_sy, incY);
+    ptr_sx = nullptr;
+    ptr_sy = nullptr;
+    return res;
+  }
+  double Blas1::dsdot(int n, array<float>^ sx, int incX, array<float>^ sy, int incY) {
+    pin_ptr<float> ptr_sx = &sx[0];
+    pin_ptr<float> ptr_sy = &sy[0];
+    auto res = cblas_dsdot(n, ptr_sx, incX, ptr_sy, incY);
+    ptr_sx = nullptr;
+    ptr_sy = nullptr;
+    return res;
+  }
 }

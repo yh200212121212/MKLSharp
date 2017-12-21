@@ -18,5 +18,8 @@ namespace MKLSharp {
 
     static float sdot(int n, array<float>^ x, int incX, array<float>^ y, int incY);
     static double ddot(int n, array<double>^ x, int incX, array<double>^ y, int incY);
+
+    static float sdsdot(int n, float sb, array<float>^ sx, int incX, array<float>^ sy, int incY);
+    static double dsdot(int n, array<float>^ sx, int incX, array<float>^ sy, int incY);
   };
 }
