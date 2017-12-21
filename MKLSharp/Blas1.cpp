@@ -3,27 +3,27 @@
 #include "Blas1.h"
 
 namespace MKLSharp {
-  float Blas1::sasum(int n, array<float>^ x, int incX) {
+  float Blas1::sasum(long n, array<float>^ x, long incX) {
     pin_ptr<float> ptr_x = &x[0];
     auto res = cblas_sasum(n, ptr_x, incX);
     ptr_x = nullptr;
     return res;
   }
-  double Blas1::dasum(int n, array<double>^ x, int incX) {
+  double Blas1::dasum(long n, array<double>^ x, long incX) {
     pin_ptr<double> ptr_x = &x[0];
     auto res = cblas_dasum(n, ptr_x, incX);
     ptr_x = nullptr;
     return res;
   }
 
-  void Blas1::saxpy(int n, float a, array<float>^ x, int incX, array<float>^ y, int incY) {
+  void Blas1::saxpy(long n, float a, array<float>^ x, long incX, array<float>^ y, long incY) {
     pin_ptr<float> ptr_x = &x[0];
     pin_ptr<float> ptr_y = &y[0];
     cblas_saxpy(n, a, ptr_x, incX, ptr_y, incY);
     ptr_x = nullptr;
     ptr_y = nullptr;
   }
-  void Blas1::daxpy(int n, double a, array<double>^ x, int incX, array<double>^ y, int incY) {
+  void Blas1::daxpy(long n, double a, array<double>^ x, long incX, array<double>^ y, long incY) {
     pin_ptr<double> ptr_x = &x[0];
     pin_ptr<double> ptr_y = &y[0];
     cblas_daxpy(n, a, ptr_x, incX, ptr_y, incY);
@@ -31,14 +31,14 @@ namespace MKLSharp {
     ptr_y = nullptr;
   }
 
-  void Blas1::scopy(int n, array<float>^ x, int incX, array<float>^ y, int incY) {
+  void Blas1::scopy(long n, array<float>^ x, long incX, array<float>^ y, long incY) {
     pin_ptr<float> ptr_x = &x[0];
     pin_ptr<float> ptr_y = &y[0];
     cblas_scopy(n, ptr_x, incX, ptr_y, incY);
     ptr_x = nullptr;
     ptr_y = nullptr;
   }
-  void Blas1::scopy(int n, array<float>^ x, int incX, [Out]array<float>^% y, int incY) {
+  void Blas1::scopy(long n, array<float>^ x, long incX, [Out]array<float>^% y, long incY) {
     pin_ptr<float> ptr_x = &x[0];
     y = gcnew array<float>(n);
     pin_ptr<float> ptr_y = &y[0];
@@ -46,14 +46,14 @@ namespace MKLSharp {
     ptr_x = nullptr;
     ptr_y = nullptr;
   }
-  void Blas1::dcopy(int n, array<double>^ x, int incX, array<double>^ y, int incY) {
+  void Blas1::dcopy(long n, array<double>^ x, long incX, array<double>^ y, long incY) {
     pin_ptr<double> ptr_x = &x[0];
     pin_ptr<double> ptr_y = &y[0];
     cblas_dcopy(n, ptr_x, incX, ptr_y, incY);
     ptr_x = nullptr;
     ptr_y = nullptr;
   }
-  void Blas1::dcopy(int n, array<double>^ x, int incX, array<double>^% y, int incY) {
+  void Blas1::dcopy(long n, array<double>^ x, long incX, [Out]array<double>^% y, long incY) {
     pin_ptr<double> ptr_x = &x[0];
     y = gcnew array<double>(n);
     pin_ptr<double> ptr_y = &y[0];
@@ -62,7 +62,7 @@ namespace MKLSharp {
     ptr_y = nullptr;
   }
 
-  float Blas1::sdot(int n, array<float>^ x, int incX, array<float>^ y, int incY) {
+  float Blas1::sdot(long n, array<float>^ x, long incX, array<float>^ y, long incY) {
     pin_ptr<float> ptr_x = &x[0];
     pin_ptr<float> ptr_y = &y[0];
     auto res = cblas_sdot(n, ptr_x, incX, ptr_y, incY);
@@ -70,7 +70,7 @@ namespace MKLSharp {
     ptr_y = nullptr;
     return res;
   }
-  double Blas1::ddot(int n, array<double>^ x, int incX, array<double>^ y, int incY) {
+  double Blas1::ddot(long n, array<double>^ x, long incX, array<double>^ y, long incY) {
     pin_ptr<double> ptr_x = &x[0];
     pin_ptr<double> ptr_y = &y[0];
     auto res = cblas_ddot(n, ptr_x, incX, ptr_y, incY);
@@ -79,7 +79,7 @@ namespace MKLSharp {
     return res;
   }
 
-  float Blas1::sdsdot(int n, float sb, array<float>^ sx, int incX, array<float>^ sy, int incY) {
+  float Blas1::sdsdot(long n, float sb, array<float>^ sx, long incX, array<float>^ sy, long incY) {
     pin_ptr<float> ptr_sx = &sx[0];
     pin_ptr<float> ptr_sy = &sy[0];
     auto res = cblas_sdsdot(n, sb, ptr_sx, incX, ptr_sy, incY);
@@ -87,12 +87,25 @@ namespace MKLSharp {
     ptr_sy = nullptr;
     return res;
   }
-  double Blas1::dsdot(int n, array<float>^ sx, int incX, array<float>^ sy, int incY) {
+  double Blas1::dsdot(long n, array<float>^ sx, long incX, array<float>^ sy, long incY) {
     pin_ptr<float> ptr_sx = &sx[0];
     pin_ptr<float> ptr_sy = &sy[0];
     auto res = cblas_dsdot(n, ptr_sx, incX, ptr_sy, incY);
     ptr_sx = nullptr;
     ptr_sy = nullptr;
+    return res;
+  }
+
+  float Blas1::snrm2(long n, array<float>^ x, long incX) {
+    pin_ptr<float> ptr_x = &x[0];
+    auto res = cblas_snrm2(n, ptr_x, incX);
+    ptr_x = nullptr;
+    return res;
+  }
+  double Blas1::dnrm2(long n, array<double>^ x, long incX) {
+    pin_ptr<double> ptr_x = &x[0];
+    auto res = cblas_dnrm2(n, ptr_x, incX);
+    ptr_x = nullptr;
     return res;
   }
 }

@@ -5,21 +5,24 @@ using namespace System::Runtime::InteropServices;
 namespace MKLSharp {
   public ref class Blas1 {
   public:
-    static float sasum(int n, array<float>^ x, int incX);
-    static double dasum(int n, array<double>^ x, int incX);
+    static float sasum(long n, array<float>^ x, long incX);
+    static double dasum(long n, array<double>^ x, long incX);
 
-    static void saxpy(int n, float a, array<float>^ x, int incX, array<float>^ y, int incY);
-    static void daxpy(int n, double a, array<double>^ x, int incX, array<double>^ y, int incY);
+    static void saxpy(long n, float a, array<float>^ x, long incX, array<float>^ y, long incY);
+    static void daxpy(long n, double a, array<double>^ x, long incX, array<double>^ y, long incY);
 
-    static void scopy(int n, array<float>^ x, int incX, array<float>^ y, int incY);
-    static void scopy(int n, array<float>^ x, int incX, [Out]array<float>^% y, int incY);
-    static void dcopy(int n, array<double>^ x, int incX, array<double>^ y, int incY);
-    static void dcopy(int n, array<double>^ x, int incX, [Out]array<double>^% y, int incY);
+    static void scopy(long n, array<float>^ x, long incX, array<float>^ y, long incY);
+    static void scopy(long n, array<float>^ x, long incX, [Out]array<float>^% y, long incY);
+    static void dcopy(long n, array<double>^ x, long incX, array<double>^ y, long incY);
+    static void dcopy(long n, array<double>^ x, long incX, [Out]array<double>^% y, long incY);
 
-    static float sdot(int n, array<float>^ x, int incX, array<float>^ y, int incY);
-    static double ddot(int n, array<double>^ x, int incX, array<double>^ y, int incY);
+    static float sdot(long n, array<float>^ x, long incX, array<float>^ y, long incY);
+    static double ddot(long n, array<double>^ x, long incX, array<double>^ y, long incY);
 
-    static float sdsdot(int n, float sb, array<float>^ sx, int incX, array<float>^ sy, int incY);
-    static double dsdot(int n, array<float>^ sx, int incX, array<float>^ sy, int incY);
+    static float sdsdot(long n, float sb, array<float>^ sx, long incX, array<float>^ sy, long incY);
+    static double dsdot(long n, array<float>^ sx, long incX, array<float>^ sy, long incY);
+
+    static float snrm2(long n, array<float>^ x, long incX);
+    static double dnrm2(long n, array<double>^ x, long incX);
   };
 }
