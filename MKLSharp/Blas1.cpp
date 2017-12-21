@@ -123,4 +123,27 @@ namespace MKLSharp {
     ptr_x = nullptr;
     ptr_y = nullptr;
   }
+
+  void Blas1::srotg(float% a, float% b, [Out]float% c, [Out]float% s) {
+    pin_ptr<float> ptr_a = &a;
+    pin_ptr<float> ptr_b = &b;
+    pin_ptr<float> ptr_c = &c;
+    pin_ptr<float> ptr_s = &s;
+    cblas_srotg(ptr_a, ptr_b, ptr_c, ptr_s);
+    ptr_a = nullptr;
+    ptr_b = nullptr;
+    ptr_c = nullptr;
+    ptr_s = nullptr;
+  }
+  void Blas1::drotg(double% a, double% b, [Out]double% c, [Out]double% s) {
+    pin_ptr<double> ptr_a = &a;
+    pin_ptr<double> ptr_b = &b;
+    pin_ptr<double> ptr_c = &c;
+    pin_ptr<double> ptr_s = &s;
+    cblas_drotg(ptr_a, ptr_b, ptr_c, ptr_s);
+    ptr_a = nullptr;
+    ptr_b = nullptr;
+    ptr_c = nullptr;
+    ptr_s = nullptr;
+  }
 }
