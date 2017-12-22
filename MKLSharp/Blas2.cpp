@@ -54,4 +54,29 @@ namespace MKLSharp {
     ptr_x = nullptr;
     ptr_y = nullptr;
   }
+
+  void Blas2::sger(CBlasLayout Layout, long m, long n,
+                   float alpha, array<float>^ x, long incX,
+                   array<float>^ y, long incY,
+                   array<float>^ a, long lda) {
+    pin_ptr<float> ptr_x = &x[0];
+    pin_ptr<float> ptr_y = &y[0];
+    pin_ptr<float> ptr_a = &a[0];
+    cblas_sger((CBLAS_LAYOUT)Layout, m, n, alpha, ptr_x, incX, ptr_y, incY, ptr_a, lda);
+    ptr_x = nullptr;
+    ptr_y = nullptr;
+    ptr_a = nullptr;
+  }
+  void Blas2::dger(CBlasLayout Layout, long m, long n,
+                   double alpha, array<double>^ x, long incX,
+                   array<double>^ y, long incY,
+                   array<double>^ a, long lda) {
+    pin_ptr<double> ptr_x = &x[0];
+    pin_ptr<double> ptr_y = &y[0];
+    pin_ptr<double> ptr_a = &a[0];
+    cblas_dger((CBLAS_LAYOUT)Layout, m, n, alpha, ptr_x, incX, ptr_y, incY, ptr_a, lda);
+    ptr_x = nullptr;
+    ptr_y = nullptr;
+    ptr_a = nullptr;
+  }
 }
