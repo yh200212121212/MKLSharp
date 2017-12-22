@@ -23,6 +23,15 @@ namespace Samples {
         Write(yd[i] + " ");
       WriteLine("\n");
 
+      WriteLine("LAPACK General Matrix call test.");
+      var ag = new double[] { 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0 };
+      var bg = new double[] { 6.0, 7.0, 12.0, 15.0 };
+      Lapack.dgetrf(LapackLayout.RowMajor, 4, 4, ag, 4, out var ipiv);
+      Lapack.dgetrs(LapackLayout.RowMajor, (sbyte)'N', 4, 1, ag, 4, ipiv, bg, 1);
+      for (var i = 0; i < bg.Length; i++)
+        Write(bg[i] + " ");
+      WriteLine();
+
       WriteLine("Please press Enter key...");
       ReadLine();
     }

@@ -24,4 +24,8 @@ namespace MKLSharp {
     Left = CblasLeft,
     Right = CblasRight
   };
+  public enum class LapackLayout {
+    RowMajor = LAPACK_ROW_MAJOR,
+    ColMajor = LAPACK_COL_MAJOR
+  };
 }
