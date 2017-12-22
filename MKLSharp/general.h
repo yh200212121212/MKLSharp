@@ -35,5 +35,12 @@ namespace MKLSharp {
                            array<double>^ a, int lda,
                            [Out]array<double>^% r, [Out]array<double>^% c,
                            [Out]double% rowCnd, [Out]double% colCnd, [Out]double% aMax);
+
+    static __int64 sgecon(LapackLayout Layout, char norm,
+                          int n, array<float>^ a, int lda,
+                          float aNorm, [Out]float% rCond);
+    static __int64 dgecon(LapackLayout Layout, char norm,
+                          int n, array<double>^ a, int lda,
+                          double aNorm, [Out]double% rCond);
   };
 }

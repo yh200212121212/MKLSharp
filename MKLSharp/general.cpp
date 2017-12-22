@@ -138,4 +138,25 @@ namespace MKLSharp {
     ptr_am = nullptr;
     return res;
   }
+
+  __int64 Lapack::sgecon(LapackLayout Layout, char norm,
+                         int n, array<float>^ a, int lda,
+                         float aNorm, [Out]float% rCond) {
+    pin_ptr<float> ptr_a = &a[0];
+    pin_ptr<float> ptr_rc = &rCond;
+    auto res = LAPACKE_sgecon((int)Layout, norm, n, ptr_a, lda, aNorm, ptr_rc);
+    ptr_a = nullptr;
+    ptr_rc = nullptr;
+    return res;
+  }
+  __int64 Lapack::dgecon(LapackLayout Layout, char norm,
+                         int n, array<double>^ a, int lda,
+                         double aNorm, [Out]double% rCond) {
+    pin_ptr<double> ptr_a = &a[0];
+    pin_ptr<double> ptr_rc = &rCond;
+    auto res = LAPACKE_dgecon((int)Layout, norm, n, ptr_a, lda, aNorm, ptr_rc);
+    ptr_a = nullptr;
+    ptr_rc = nullptr;
+    return res;
+  }
 }
