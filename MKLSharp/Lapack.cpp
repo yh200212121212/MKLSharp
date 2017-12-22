@@ -497,5 +497,60 @@ namespace MKLSharp {
     ptr_rc = nullptr;
     return res;
   }
+
+  __int64 Lapack::sgbrfs(LapackLayout Layout, char trans,
+                         int n, int kl, int ku, int nrhs, array<float>^ ab, int ldab,
+                         array<float>^ afb, int ldafb, array<__int64>^ ipiv,
+                         array<float>^ b, int ldb, 
+                         array<float>^ x, int ldx, 
+                         [Out]array<float>^% fErr, [Out]array<float>^% bErr) {
+    pin_ptr<float> ptr_a = &ab[0];
+    pin_ptr<float> ptr_af = &afb[0];
+    pin_ptr<float> ptr_b = &b[0];
+    pin_ptr<float> ptr_x = &x[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    fErr = gcnew array<float>(Math::Max(1, nrhs));
+    pin_ptr<float> ptr_fe = &fErr[0];
+    bErr = gcnew array<float>(Math::Max(1, nrhs));
+    pin_ptr<float> ptr_be = &bErr[0];
+    auto res = LAPACKE_sgbrfs((int)Layout, trans, n, kl, ku, nrhs, ptr_a, ldab,
+                              ptr_af, ldafb, ptr_i, ptr_b, ldb, ptr_x, ldx,
+                              ptr_fe, ptr_be);
+    ptr_a = nullptr;
+    ptr_af = nullptr;
+    ptr_b = nullptr;
+    ptr_x = nullptr;
+    ptr_i = nullptr;
+    ptr_fe = nullptr;
+    ptr_be = nullptr;
+    return res;
+  }
+  __int64 Lapack::dgbrfs(LapackLayout Layout, char trans,
+                         int n, int kl, int ku, int nrhs, array<double>^ ab, int ldab,
+                         array<double>^ afb, int ldafb, array<__int64>^ ipiv,
+                         array<double>^ b, int ldb, 
+                         array<double>^ x, int ldx, 
+                         [Out]array<double>^% fErr, [Out]array<double>^% bErr) {
+    pin_ptr<double> ptr_a = &ab[0];
+    pin_ptr<double> ptr_af = &afb[0];
+    pin_ptr<double> ptr_b = &b[0];
+    pin_ptr<double> ptr_x = &x[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    fErr = gcnew array<double>(Math::Max(1, nrhs));
+    pin_ptr<double> ptr_fe = &fErr[0];
+    bErr = gcnew array<double>(Math::Max(1, nrhs));
+    pin_ptr<double> ptr_be = &bErr[0];
+    auto res = LAPACKE_dgbrfs((int)Layout, trans, n, kl, ku, nrhs, ptr_a, ldab,
+                              ptr_af, ldafb, ptr_i, ptr_b, ldb, ptr_x, ldx,
+                              ptr_fe, ptr_be);
+    ptr_a = nullptr;
+    ptr_af = nullptr;
+    ptr_b = nullptr;
+    ptr_x = nullptr;
+    ptr_i = nullptr;
+    ptr_fe = nullptr;
+    ptr_be = nullptr;
+    return res;
+  }
   #pragma endregion
 }

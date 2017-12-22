@@ -120,6 +120,19 @@ namespace MKLSharp {
     static __int64 dgbcon(LapackLayout Layout, char norm, int n, int kl, int ku,
                           array<double>^ ab, int ldab, array<__int64>^ ipiv,
                           double aNorm, [Out]double% rCond);
+
+    static __int64 sgbrfs(LapackLayout Layout, char trans,
+                          int n, int kl, int ku, int nrhs, array<float>^ ab, int ldab,
+                          array<float>^ afb, int ldafb, array<__int64>^ ipiv,
+                          array<float>^ b, int ldb, 
+                          array<float>^ x, int ldx, 
+                          [Out]array<float>^% fErr, [Out]array<float>^% bErr);
+    static __int64 dgbrfs(LapackLayout Layout, char trans,
+                          int n, int kl, int ku, int nrhs, array<double>^ ab, int ldab,
+                          array<double>^ afb, int ldafb, array<__int64>^ ipiv,
+                          array<double>^ b, int ldb, 
+                          array<double>^ x, int ldx, 
+                          [Out]array<double>^% fErr, [Out]array<double>^% bErr);
   #pragma endregion
   };
 }
