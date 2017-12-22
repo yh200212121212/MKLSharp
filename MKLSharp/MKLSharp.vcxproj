@@ -143,6 +143,7 @@
     <ClInclude Include="Blas1.h" />
     <ClInclude Include="Blas2.h" />
     <ClInclude Include="Blas3.h" />
+    <ClInclude Include="general.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stdafx.h" />
   </ItemGroup>
@@ -151,6 +152,7 @@
     <ClCompile Include="Blas1.cpp" />
     <ClCompile Include="Blas2.cpp" />
     <ClCompile Include="Blas3.cpp" />
+    <ClCompile Include="general.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

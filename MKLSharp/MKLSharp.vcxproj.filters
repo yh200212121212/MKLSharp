@@ -19,6 +19,12 @@
     <Filter Include="ソース ファイル\BLAS">
       <UniqueIdentifier>{98d03cb7-ee2b-43f7-bf13-7cc996714ef9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\LAPACK">
+      <UniqueIdentifier>{ec73f051-910b-4044-b1fd-756893e9a516}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\LAPACK">
+      <UniqueIdentifier>{ec30df31-0737-475b-9f83-647ceb05c615}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -36,6 +42,9 @@
     <ClInclude Include="Blas3.h">
       <Filter>ヘッダー ファイル\BLAS</Filter>
     </ClInclude>
+    <ClInclude Include="general.h">
+      <Filter>ヘッダー ファイル\LAPACK</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -52,6 +61,9 @@
     </ClCompile>
     <ClCompile Include="Blas3.cpp">
       <Filter>ソース ファイル\BLAS</Filter>
+    </ClCompile>
+    <ClCompile Include="general.cpp">
+      <Filter>ソース ファイル\LAPACK</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
