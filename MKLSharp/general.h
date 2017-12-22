@@ -74,5 +74,10 @@ namespace MKLSharp {
                            int nErrBnds, [Out]array<double>^% errBndsNorm,
                            [Out]array<double>^% errBndsComp,
                            int nParams, array<double>^ params);
+
+    static __int64 sgetri(LapackLayout Layout,
+                          int n, array<float>^ a, int lda, array<__int64>^ ipiv);
+    static __int64 dgetri(LapackLayout Layout,
+                          int n, array<double>^ a, int lda, array<__int64>^ ipiv);
   };
 }
