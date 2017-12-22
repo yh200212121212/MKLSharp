@@ -16,4 +16,8 @@ namespace MKLSharp {
     Upper = CblasUpper,
     Lower = CblasLower
   };
+  public enum class CBlasDiag {
+    Unit = CblasUnit,
+    NonUnit = CblasNonUnit
+  };
 }
