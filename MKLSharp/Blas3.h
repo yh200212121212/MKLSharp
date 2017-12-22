@@ -31,5 +31,14 @@ namespace MKLSharp {
     static void dsyrk(CBlasLayout Layout, CBlasUpLo UpLo, CBlasTranspose Trans,
                       long n, long k, double alpha, array<double>^ a, long lda,
                       double beta, array<double>^ c, long ldc);
+
+    static void ssyr2k(CBlasLayout Layout, CBlasUpLo UpLo, CBlasTranspose Trans,
+                       long n, long k, float alpha, array<float>^ a, long lda,
+                       array<float>^ b, long ldb,
+                       float beta, array<float>^ c, long ldc);
+    static void dsyr2k(CBlasLayout Layout, CBlasUpLo UpLo, CBlasTranspose Trans,
+                       long n, long k, double alpha, array<double>^ a, long lda,
+                       array<double>^ b, long ldb,
+                       double beta, array<double>^ c, long ldc);
   };
 }
