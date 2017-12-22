@@ -131,4 +131,29 @@ namespace MKLSharp {
     ptr_a = nullptr;
     ptr_b = nullptr;
   }
+
+  void Blas3::strsm(CBlasLayout Layout, CBlasSide Side, CBlasUpLo UpLo,
+                    CBlasTranspose TransA, CBlasDiag Diag, long m, long n,
+                    float alpha, array<float>^ a, long lda,
+                    array<float>^ b, long ldb) {
+    pin_ptr<float> ptr_a = &a[0];
+    pin_ptr<float> ptr_b = &b[0];
+    cblas_strsm((CBLAS_LAYOUT)Layout, (CBLAS_SIDE)Side, (CBLAS_UPLO)UpLo,
+                (CBLAS_TRANSPOSE)TransA, (CBLAS_DIAG)Diag, m, n,
+                alpha, ptr_a, lda, ptr_b, ldb);
+    ptr_a = nullptr;
+    ptr_b = nullptr;
+  }
+  void Blas3::dtrsm(CBlasLayout Layout, CBlasSide Side, CBlasUpLo UpLo,
+                    CBlasTranspose TransA, CBlasDiag Diag, long m, long n,
+                    double alpha, array<double>^ a, long lda,
+                    array<double>^ b, long ldb) {
+    pin_ptr<double> ptr_a = &a[0];
+    pin_ptr<double> ptr_b = &b[0];
+    cblas_dtrsm((CBLAS_LAYOUT)Layout, (CBLAS_SIDE)Side, (CBLAS_UPLO)UpLo,
+                (CBLAS_TRANSPOSE)TransA, (CBLAS_DIAG)Diag, m, n,
+                alpha, ptr_a, lda, ptr_b, ldb);
+    ptr_a = nullptr;
+    ptr_b = nullptr;
+  }
 }
