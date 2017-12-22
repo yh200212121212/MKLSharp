@@ -42,7 +42,7 @@
     <ClInclude Include="Blas3.h">
       <Filter>ヘッダー ファイル\BLAS</Filter>
     </ClInclude>
-    <ClInclude Include="general.h">
+    <ClInclude Include="Lapack.h">
       <Filter>ヘッダー ファイル\LAPACK</Filter>
     </ClInclude>
   </ItemGroup>
@@ -62,7 +62,7 @@
     <ClCompile Include="Blas3.cpp">
       <Filter>ソース ファイル\BLAS</Filter>
     </ClCompile>
-    <ClCompile Include="general.cpp">
+    <ClCompile Include="Lapack.cpp">
       <Filter>ソース ファイル\LAPACK</Filter>
     </ClCompile>
   </ItemGroup>
