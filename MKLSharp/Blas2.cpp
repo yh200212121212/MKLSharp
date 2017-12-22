@@ -133,4 +133,21 @@ namespace MKLSharp {
     ptr_x = nullptr;
     ptr_y = nullptr;
   }
+
+  void Blas2::sspr(CBlasLayout Layout, CBlasUpLo UpLo,
+                   long n, float alpha, array<float>^ x, long incX, array<float>^ ap) {
+    pin_ptr<float> ptr_x = &x[0];
+    pin_ptr<float> ptr_a = &ap[0];
+    cblas_sspr((CBLAS_LAYOUT)Layout, (CBLAS_UPLO)UpLo, n, alpha, ptr_x, incX, ptr_a);
+    ptr_x = nullptr;
+    ptr_a = nullptr;
+  }
+  void Blas2::dspr(CBlasLayout Layout, CBlasUpLo UpLo,
+                   long n, double alpha, array<double>^ x, long incX, array<double>^ ap) {
+    pin_ptr<double> ptr_x = &x[0];
+    pin_ptr<double> ptr_a = &ap[0];
+    cblas_dspr((CBLAS_LAYOUT)Layout, (CBLAS_UPLO)UpLo, n, alpha, ptr_x, incX, ptr_a);
+    ptr_x = nullptr;
+    ptr_a = nullptr;
+  }
 }

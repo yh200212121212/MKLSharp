@@ -47,5 +47,10 @@ namespace MKLSharp {
                       long n, double alpha, array<double>^ ap,
                       array<double>^ x, long incX,
                       double beta, array<double>^ y, long incY);
+
+    static void sspr(CBlasLayout Layout, CBlasUpLo UpLo,
+                     long n, float alpha, array<float>^ x, long incX, array<float>^ ap);
+    static void dspr(CBlasLayout Layout, CBlasUpLo UpLo,
+                     long n, double alpha, array<double>^ x, long incX, array<double>^ ap);
   };
 }
