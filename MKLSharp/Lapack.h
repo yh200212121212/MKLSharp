@@ -104,6 +104,15 @@ namespace MKLSharp {
                           array<double>^ ab, int ldab,
                           [Out]array<double>^% r, [Out]array<double>^% c,
                           [Out]double% rowCnd, [Out]double% colCnd, [Out]double% aMax);
+
+    static __int64 sgbequb(LapackLayout Layout, int m, int n, int kl, int ku,
+                           array<float>^ ab, int ldab,
+                           [Out]array<float>^% r, [Out]array<float>^% c,
+                           [Out]float% rowCnd, [Out]float% colCnd, [Out]float% aMax);
+    static __int64 dgbequb(LapackLayout Layout, int m, int n, int kl, int ku,
+                           array<double>^ ab, int ldab,
+                           [Out]array<double>^% r, [Out]array<double>^% c,
+                           [Out]double% rowCnd, [Out]double% colCnd, [Out]double% aMax);
   #pragma endregion
   };
 }

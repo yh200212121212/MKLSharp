@@ -427,5 +427,50 @@ namespace MKLSharp {
     ptr_am = nullptr;
     return res;
   }
+
+  __int64 Lapack::sgbequb(LapackLayout Layout, int m, int n, int kl, int ku,
+                          array<float>^ ab, int ldab,
+                          [Out]array<float>^% r, [Out]array<float>^% c,
+                          [Out]float% rowCnd, [Out]float% colCnd, [Out]float% aMax) {
+    pin_ptr<float> ptr_a = &ab[0];
+    r = gcnew array<float>(m);
+    pin_ptr<float> ptr_r = &r[0];
+    c = gcnew array<float>(n);
+    pin_ptr<float> ptr_c = &c[0];
+    pin_ptr<float> ptr_rc = &rowCnd;
+    pin_ptr<float> ptr_cc = &colCnd;
+    pin_ptr<float> ptr_am = &aMax;
+    auto res = LAPACKE_sgbequb((int)Layout, m, n, kl, ku,
+                               ptr_a, ldab, ptr_r, ptr_c, ptr_rc, ptr_cc, ptr_am);
+    ptr_a = nullptr;
+    ptr_r = nullptr;
+    ptr_c = nullptr;
+    ptr_rc = nullptr;
+    ptr_cc = nullptr;
+    ptr_am = nullptr;
+    return res;
+  }
+  __int64 Lapack::dgbequb(LapackLayout Layout, int m, int n, int kl, int ku,
+                          array<double>^ ab, int ldab,
+                          [Out]array<double>^% r, [Out]array<double>^% c,
+                          [Out]double% rowCnd, [Out]double% colCnd, [Out]double% aMax) {
+    pin_ptr<double> ptr_a = &ab[0];
+    r = gcnew array<double>(m);
+    pin_ptr<double> ptr_r = &r[0];
+    c = gcnew array<double>(n);
+    pin_ptr<double> ptr_c = &c[0];
+    pin_ptr<double> ptr_rc = &rowCnd;
+    pin_ptr<double> ptr_cc = &colCnd;
+    pin_ptr<double> ptr_am = &aMax;
+    auto res = LAPACKE_dgbequb((int)Layout, m, n, kl, ku,
+                               ptr_a, ldab, ptr_r, ptr_c, ptr_rc, ptr_cc, ptr_am);
+    ptr_a = nullptr;
+    ptr_r = nullptr;
+    ptr_c = nullptr;
+    ptr_rc = nullptr;
+    ptr_cc = nullptr;
+    ptr_am = nullptr;
+    return res;
+  }
   #pragma endregion
 }
