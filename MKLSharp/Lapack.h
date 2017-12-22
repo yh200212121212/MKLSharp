@@ -86,6 +86,15 @@ namespace MKLSharp {
                           array<float>^ ab, int ldab, [Out]array<__int64>^% ipiv);
     static __int64 dgbtrf(LapackLayout Layout, int m, int n, int kl, int ku,
                           array<double>^ ab, int ldab, [Out]array<__int64>^% ipiv);
+
+    static __int64 sgbtrs(LapackLayout Layout, char trans,
+                          int n, int kl, int ku, int nrhs,
+                          array<float>^ ab, int ldab, array<__int64>^ ipiv,
+                          array<float>^ b, int ldb);
+    static __int64 dgbtrs(LapackLayout Layout, char trans,
+                          int n, int kl, int ku, int nrhs,
+                          array<double>^ ab, int ldab, array<__int64>^ ipiv,
+                          array<double>^ b, int ldb);
   #pragma endregion
   };
 }
