@@ -275,4 +275,29 @@ namespace MKLSharp {
     ptr_a = nullptr;
     ptr_x = nullptr;
   }
+
+  void Blas2::stbsv(CBlasLayout Layout, CBlasUpLo UpLo,
+                    CBlasTranspose Trans, CBlasDiag Diag,
+                    long n, long k, array<float>^ a, long lda,
+                    array<float>^ x, long incX) {
+    pin_ptr<float> ptr_a = &a[0];
+    pin_ptr<float> ptr_x = &x[0];
+    cblas_stbsv((CBLAS_LAYOUT)Layout, (CBLAS_UPLO)UpLo,
+                (CBLAS_TRANSPOSE)Trans, (CBLAS_DIAG)Diag,
+                n, k, ptr_a, lda, ptr_x, incX);
+    ptr_a = nullptr;
+    ptr_x = nullptr;
+  }
+  void Blas2::dtbsv(CBlasLayout Layout, CBlasUpLo UpLo,
+                    CBlasTranspose Trans, CBlasDiag Diag,
+                    long n, long k, array<double>^ a, long lda,
+                    array<double>^ x, long incX) {
+    pin_ptr<double> ptr_a = &a[0];
+    pin_ptr<double> ptr_x = &x[0];
+    cblas_dtbsv((CBLAS_LAYOUT)Layout, (CBLAS_UPLO)UpLo,
+                (CBLAS_TRANSPOSE)Trans, (CBLAS_DIAG)Diag,
+                n, k, ptr_a, lda, ptr_x, incX);
+    ptr_a = nullptr;
+    ptr_x = nullptr;
+  }
 }
