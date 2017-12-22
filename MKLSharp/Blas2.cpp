@@ -106,4 +106,31 @@ namespace MKLSharp {
     ptr_x = nullptr;
     ptr_y = nullptr;
   }
+
+  void Blas2::sspmv(CBlasLayout Layout, CBlasUpLo UpLo,
+                    long n, float alpha, array<float>^ ap,
+                    array<float>^ x, long incX,
+                    float beta, array<float>^ y, long incY) {
+    pin_ptr<float> ptr_a = &ap[0];
+    pin_ptr<float> ptr_x = &x[0];
+    pin_ptr<float> ptr_y = &y[0];
+    cblas_sspmv((CBLAS_LAYOUT)Layout, (CBLAS_UPLO)UpLo,
+                n, alpha, ptr_a, ptr_x, incX, beta, ptr_y, incY);
+    ptr_a = nullptr;
+    ptr_x = nullptr;
+    ptr_y = nullptr;
+  }
+  void Blas2::dspmv(CBlasLayout Layout, CBlasUpLo UpLo,
+                    long n, double alpha, array<double>^ ap,
+                    array<double>^ x, long incX,
+                    double beta, array<double>^ y, long incY) {
+    pin_ptr<double> ptr_a = &ap[0];
+    pin_ptr<double> ptr_x = &x[0];
+    pin_ptr<double> ptr_y = &y[0];
+    cblas_dspmv((CBLAS_LAYOUT)Layout, (CBLAS_UPLO)UpLo,
+                n, alpha, ptr_a, ptr_x, incX, beta, ptr_y, incY);
+    ptr_a = nullptr;
+    ptr_x = nullptr;
+    ptr_y = nullptr;
+  }
 }
