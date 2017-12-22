@@ -58,4 +58,25 @@ namespace MKLSharp {
     ptr_b = nullptr;
     ptr_c = nullptr;
   }
+
+  void Blas3::ssyrk(CBlasLayout Layout, CBlasUpLo UpLo, CBlasTranspose Trans,
+                    long n, long k, float alpha, array<float>^ a, long lda,
+                    float beta, array<float>^ c, long ldc) {
+    pin_ptr<float> ptr_a = &a[0];
+    pin_ptr<float> ptr_c = &c[0];
+    cblas_ssyrk((CBLAS_LAYOUT)Layout, (CBLAS_UPLO)UpLo, (CBLAS_TRANSPOSE)Trans,
+                n, k, alpha, ptr_a, lda, beta, ptr_c, ldc);
+    ptr_a = nullptr;
+    ptr_c = nullptr;
+  }
+  void Blas3::dsyrk(CBlasLayout Layout, CBlasUpLo UpLo, CBlasTranspose Trans,
+                    long n, long k, double alpha, array<double>^ a, long lda,
+                    double beta, array<double>^ c, long ldc) {
+    pin_ptr<double> ptr_a = &a[0];
+    pin_ptr<double> ptr_c = &c[0];
+    cblas_dsyrk((CBLAS_LAYOUT)Layout, (CBLAS_UPLO)UpLo, (CBLAS_TRANSPOSE)Trans,
+                n, k, alpha, ptr_a, lda, beta, ptr_c, ldc);
+    ptr_a = nullptr;
+    ptr_c = nullptr;
+  }
 }
