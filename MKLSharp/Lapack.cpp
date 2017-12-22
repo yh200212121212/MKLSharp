@@ -552,5 +552,100 @@ namespace MKLSharp {
     ptr_be = nullptr;
     return res;
   }
+
+  __int64 Lapack::sgbrfsx(LapackLayout Layout, char trans, char equed,
+                          int n, int kl, int ku, int nrhs, array<float>^ ab, int ldab,
+                          array<float>^ afb, int ldafb, array<__int64>^ ipiv,
+                          array<float>^ r, array<float>^ c,
+                          array<float>^ b, int ldb, 
+                          array<float>^ x, int ldx, 
+                          [Out]float% rCond, [Out]array<float>^% bErr,
+                          int nErrBnds, [Out]array<float>^% errBndsNorm,
+                          [Out]array<float>^% errBndsComp, int nParams, array<float>^ params) {
+    pin_ptr<float> ptr_a = &ab[0];
+    pin_ptr<float> ptr_af = &afb[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<float> ptr_r = &r[0];
+    pin_ptr<float> ptr_c = &c[0];
+    pin_ptr<float> ptr_b = &b[0];
+    pin_ptr<float> ptr_x = &x[0];
+    pin_ptr<float> ptr_rc = &rCond;
+    bErr = gcnew array<float>(Math::Max(1, nrhs));
+    pin_ptr<float> ptr_be = &bErr[0];
+    errBndsNorm = gcnew array<float>(nrhs * nErrBnds);
+    pin_ptr<float> ptr_ebn = &errBndsNorm[0];
+    errBndsComp = gcnew array<float>(nrhs * nErrBnds);
+    pin_ptr<float> ptr_ebc = &errBndsComp[0];
+    pin_ptr<float> ptr_p = &params[0];
+    auto res = LAPACKE_sgbrfsx((int)Layout, trans, equed, 
+                               n, kl, ku, nrhs, ptr_a, ldab,
+                               ptr_af, ldafb, ptr_i,
+                               ptr_r, ptr_c,
+                               ptr_b, ldb,
+                               ptr_x, ldx,
+                               ptr_rc, ptr_be,
+                               nErrBnds, ptr_ebn, ptr_ebc,
+                               nParams, ptr_p);
+    ptr_a = nullptr;
+    ptr_af = nullptr;
+    ptr_i = nullptr;
+    ptr_r = nullptr;
+    ptr_c = nullptr;
+    ptr_b = nullptr;
+    ptr_x = nullptr;
+    ptr_rc = nullptr;
+    ptr_be = nullptr;
+    ptr_ebn = nullptr;
+    ptr_ebc = nullptr;
+    ptr_p = nullptr;
+    return res;
+  }
+  __int64 Lapack::dgbrfsx(LapackLayout Layout, char trans, char equed,
+                          int n, int kl, int ku, int nrhs, array<double>^ ab, int ldab,
+                          array<double>^ afb, int ldafb, array<__int64>^ ipiv,
+                          array<double>^ r, array<double>^ c,
+                          array<double>^ b, int ldb, 
+                          array<double>^ x, int ldx, 
+                          [Out]double% rCond, [Out]array<double>^% bErr,
+                          int nErrBnds, [Out]array<double>^% errBndsNorm,
+                          [Out]array<double>^% errBndsComp, int nParams, array<double>^ params) {
+    pin_ptr<double> ptr_a = &ab[0];
+    pin_ptr<double> ptr_af = &afb[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<double> ptr_r = &r[0];
+    pin_ptr<double> ptr_c = &c[0];
+    pin_ptr<double> ptr_b = &b[0];
+    pin_ptr<double> ptr_x = &x[0];
+    pin_ptr<double> ptr_rc = &rCond;
+    bErr = gcnew array<double>(Math::Max(1, nrhs));
+    pin_ptr<double> ptr_be = &bErr[0];
+    errBndsNorm = gcnew array<double>(nrhs * nErrBnds);
+    pin_ptr<double> ptr_ebn = &errBndsNorm[0];
+    errBndsComp = gcnew array<double>(nrhs * nErrBnds);
+    pin_ptr<double> ptr_ebc = &errBndsComp[0];
+    pin_ptr<double> ptr_p = &params[0];
+    auto res = LAPACKE_dgbrfsx((int)Layout, trans, equed, 
+                               n, kl, ku, nrhs, ptr_a, ldab,
+                               ptr_af, ldafb, ptr_i,
+                               ptr_r, ptr_c,
+                               ptr_b, ldb,
+                               ptr_x, ldx,
+                               ptr_rc, ptr_be,
+                               nErrBnds, ptr_ebn, ptr_ebc,
+                               nParams, ptr_p);
+    ptr_a = nullptr;
+    ptr_af = nullptr;
+    ptr_i = nullptr;
+    ptr_r = nullptr;
+    ptr_c = nullptr;
+    ptr_b = nullptr;
+    ptr_x = nullptr;
+    ptr_rc = nullptr;
+    ptr_be = nullptr;
+    ptr_ebn = nullptr;
+    ptr_ebc = nullptr;
+    ptr_p = nullptr;
+    return res;
+  }
   #pragma endregion
 }

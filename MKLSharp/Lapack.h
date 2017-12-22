@@ -133,6 +133,25 @@ namespace MKLSharp {
                           array<double>^ b, int ldb, 
                           array<double>^ x, int ldx, 
                           [Out]array<double>^% fErr, [Out]array<double>^% bErr);
+
+    static __int64 sgbrfsx(LapackLayout Layout, char trans, char equed,
+                           int n, int kl, int ku, int nrhs, array<float>^ ab, int ldab,
+                           array<float>^ afb, int ldafb, array<__int64>^ ipiv,
+                           array<float>^ r, array<float>^ c,
+                           array<float>^ b, int ldb, 
+                           array<float>^ x, int ldx, 
+                           [Out]float% rCond, [Out]array<float>^% bErr,
+                           int nErrBnds, [Out]array<float>^% errBndsNorm,
+                           [Out]array<float>^% errBndsComp, int nParams, array<float>^ params);
+    static __int64 dgbrfsx(LapackLayout Layout, char trans, char equed,
+                           int n, int kl, int ku, int nrhs, array<double>^ ab, int ldab,
+                           array<double>^ afb, int ldafb, array<__int64>^ ipiv,
+                           array<double>^ r, array<double>^ c,
+                           array<double>^ b, int ldb, 
+                           array<double>^ x, int ldx, 
+                           [Out]double% rCond, [Out]array<double>^% bErr,
+                           int nErrBnds, [Out]array<double>^% errBndsNorm,
+                           [Out]array<double>^% errBndsComp, int nParams, array<double>^ params);
   #pragma endregion
   };
 }
