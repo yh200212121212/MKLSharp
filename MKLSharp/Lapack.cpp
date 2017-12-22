@@ -1,8 +1,9 @@
 #include "stdafx.h"
 
-#include "general.h"
+#include "Lapack.h"
 
 namespace MKLSharp {
+  #pragma region general
   __int64 Lapack::sgetrf(LapackLayout Layout, int m, int n,
                          array<float>^ a, int lda, [Out]array<__int64>^% ipiv) {
     pin_ptr<float> ptr_a = &a[0];
@@ -328,4 +329,27 @@ namespace MKLSharp {
     ptr_i = nullptr;
     return res;
   }
+  #pragma endregion
+  #pragma region general band
+  __int64 Lapack::sgbtrf(LapackLayout Layout, int m, int n, int kl, int ku,
+                         array<float>^ ab, int ldab, [Out]array<__int64>^% ipiv) {
+    pin_ptr<float> ptr_a = &ab[0];
+    ipiv = gcnew array<__int64>(Math::Max(1, Math::Min(m, n)));
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    auto res = LAPACKE_sgbtrf((int)Layout, m, n, kl, ku, ptr_a, ldab, ptr_i);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    return res;
+  }
+  __int64 Lapack::dgbtrf(LapackLayout Layout, int m, int n, int kl, int ku,
+                         array<double>^ ab, int ldab, [Out]array<__int64>^% ipiv) {
+    pin_ptr<double> ptr_a = &ab[0];
+    ipiv = gcnew array<__int64>(Math::Max(1, Math::Min(m, n)));
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    auto res = LAPACKE_dgbtrf((int)Layout, m, n, kl, ku, ptr_a, ldab, ptr_i);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    return res;
+  }
+  #pragma endregion
 }

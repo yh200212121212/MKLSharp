@@ -6,6 +6,7 @@ using namespace System::Runtime::InteropServices;
 namespace MKLSharp {
   public ref class Lapack {
   public:
+  #pragma region general
     static __int64 sgetrf(LapackLayout Layout, int m, int n,
                           array<float>^ a, int lda, [Out]array<__int64>^% ipiv);
     static __int64 dgetrf(LapackLayout Layout, int m, int n,
@@ -79,5 +80,12 @@ namespace MKLSharp {
                           int n, array<float>^ a, int lda, array<__int64>^ ipiv);
     static __int64 dgetri(LapackLayout Layout,
                           int n, array<double>^ a, int lda, array<__int64>^ ipiv);
+  #pragma endregion
+  #pragma region general band
+    static __int64 sgbtrf(LapackLayout Layout, int m, int n, int kl, int ku,
+                          array<float>^ ab, int ldab, [Out]array<__int64>^% ipiv);
+    static __int64 dgbtrf(LapackLayout Layout, int m, int n, int kl, int ku,
+                          array<double>^ ab, int ldab, [Out]array<__int64>^% ipiv);
+  #pragma endregion
   };
 }
