@@ -61,7 +61,8 @@ namespace MKLSharp {
     pin_ptr<float> ptr_rc = &rowCnd;
     pin_ptr<float> ptr_cc = &colCnd;
     pin_ptr<float> ptr_am = &aMax;
-    auto res = LAPACKE_sgeequ((int)Layout, m, n, ptr_a, lda, ptr_r, ptr_c, ptr_rc, ptr_cc, ptr_am);
+    auto res = LAPACKE_sgeequ((int)Layout, m, n, ptr_a, lda,
+                              ptr_r, ptr_c, ptr_rc, ptr_cc, ptr_am);
     ptr_a = nullptr;
     ptr_r = nullptr;
     ptr_c = nullptr;
@@ -82,7 +83,53 @@ namespace MKLSharp {
     pin_ptr<double> ptr_rc = &rowCnd;
     pin_ptr<double> ptr_cc = &colCnd;
     pin_ptr<double> ptr_am = &aMax;
-    auto res = LAPACKE_dgeequ((int)Layout, m, n, ptr_a, lda, ptr_r, ptr_c, ptr_rc, ptr_cc, ptr_am);
+    auto res = LAPACKE_dgeequ((int)Layout, m, n, ptr_a, lda,
+                              ptr_r, ptr_c, ptr_rc, ptr_cc, ptr_am);
+    ptr_a = nullptr;
+    ptr_r = nullptr;
+    ptr_c = nullptr;
+    ptr_rc = nullptr;
+    ptr_cc = nullptr;
+    ptr_am = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::sgeequb(LapackLayout Layout, int m, int n,
+                          array<float>^ a, int lda,
+                          [Out]array<float>^% r, [Out]array<float>^% c,
+                          [Out]float% rowCnd, [Out]float% colCnd, [Out]float% aMax) {
+    pin_ptr<float> ptr_a = &a[0];
+    r = gcnew array<float>(m);
+    pin_ptr<float> ptr_r = &r[0];
+    c = gcnew array<float>(n);
+    pin_ptr<float> ptr_c = &c[0];
+    pin_ptr<float> ptr_rc = &rowCnd;
+    pin_ptr<float> ptr_cc = &colCnd;
+    pin_ptr<float> ptr_am = &aMax;
+    auto res = LAPACKE_sgeequb((int)Layout, m, n, ptr_a, lda,
+                               ptr_r, ptr_c, ptr_rc, ptr_cc, ptr_am);
+    ptr_a = nullptr;
+    ptr_r = nullptr;
+    ptr_c = nullptr;
+    ptr_rc = nullptr;
+    ptr_cc = nullptr;
+    ptr_am = nullptr;
+    return res;
+  }
+  __int64 Lapack::dgeequb(LapackLayout Layout, int m, int n,
+                          array<double>^ a, int lda,
+                          [Out]array<double>^% r, [Out]array<double>^% c,
+                          [Out]double% rowCnd, [Out]double% colCnd, [Out]double% aMax) {
+    pin_ptr<double> ptr_a = &a[0];
+    r = gcnew array<double>(m);
+    pin_ptr<double> ptr_r = &r[0];
+    c = gcnew array<double>(n);
+    pin_ptr<double> ptr_c = &c[0];
+    pin_ptr<double> ptr_rc = &rowCnd;
+    pin_ptr<double> ptr_cc = &colCnd;
+    pin_ptr<double> ptr_am = &aMax;
+    auto res = LAPACKE_dgeequb((int)Layout, m, n, ptr_a, lda,
+                               ptr_r, ptr_c, ptr_rc, ptr_cc, ptr_am);
     ptr_a = nullptr;
     ptr_r = nullptr;
     ptr_c = nullptr;

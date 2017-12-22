@@ -26,5 +26,14 @@ namespace MKLSharp {
                           array<double>^ a, int lda,
                           [Out]array<double>^% r, [Out]array<double>^% c,
                           [Out]double% rowCnd, [Out]double% colCnd, [Out]double% aMax);
+
+    static __int64 sgeequb(LapackLayout Layout, int m, int n,
+                           array<float>^ a, int lda,
+                           [Out]array<float>^% r, [Out]array<float>^% c,
+                           [Out]float% rowCnd, [Out]float% colCnd, [Out]float% aMax);
+    static __int64 dgeequb(LapackLayout Layout, int m, int n,
+                           array<double>^ a, int lda,
+                           [Out]array<double>^% r, [Out]array<double>^% c,
+                           [Out]double% rowCnd, [Out]double% colCnd, [Out]double% aMax);
   };
 }
