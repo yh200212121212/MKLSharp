@@ -45,6 +45,9 @@
     <ClInclude Include="general.h">
       <Filter>ヘッダー ファイル\LAPACK</Filter>
     </ClInclude>
+    <ClInclude Include="gb.h">
+      <Filter>ヘッダー ファイル\LAPACK</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -63,6 +66,9 @@
       <Filter>ソース ファイル\BLAS</Filter>
     </ClCompile>
     <ClCompile Include="general.cpp">
+      <Filter>ソース ファイル\LAPACK</Filter>
+    </ClCompile>
+    <ClCompile Include="gb.cpp">
       <Filter>ソース ファイル\LAPACK</Filter>
     </ClCompile>
   </ItemGroup>
