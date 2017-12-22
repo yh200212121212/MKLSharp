@@ -113,6 +113,13 @@ namespace MKLSharp {
                            array<double>^ ab, int ldab,
                            [Out]array<double>^% r, [Out]array<double>^% c,
                            [Out]double% rowCnd, [Out]double% colCnd, [Out]double% aMax);
+
+    static __int64 sgbcon(LapackLayout Layout, char norm, int n, int kl, int ku,
+                          array<float>^ ab, int ldab, array<__int64>^ ipiv,
+                          float aNorm, [Out]float% rCond);
+    static __int64 dgbcon(LapackLayout Layout, char norm, int n, int kl, int ku,
+                          array<double>^ ab, int ldab, array<__int64>^ ipiv,
+                          double aNorm, [Out]double% rCond);
   #pragma endregion
   };
 }

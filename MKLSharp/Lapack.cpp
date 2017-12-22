@@ -472,5 +472,30 @@ namespace MKLSharp {
     ptr_am = nullptr;
     return res;
   }
+
+  __int64 Lapack::sgbcon(LapackLayout Layout, char norm, int n, int kl, int ku,
+                         array<float>^ ab, int ldab, array<__int64>^ ipiv,
+                         float aNorm, [Out]float% rCond) {
+    pin_ptr<float> ptr_a = &ab[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<float> ptr_rc = &rCond;
+    auto res = LAPACKE_sgbcon((int)Layout, norm, n, kl, ku, ptr_a, ldab, ptr_i, aNorm, ptr_rc);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    ptr_rc = nullptr;
+    return res;
+  }
+  __int64 Lapack::dgbcon(LapackLayout Layout, char norm, int n, int kl, int ku,
+                         array<double>^ ab, int ldab, array<__int64>^ ipiv,
+                         double aNorm, [Out]double% rCond) {
+    pin_ptr<double> ptr_a = &ab[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<double> ptr_rc = &rCond;
+    auto res = LAPACKE_dgbcon((int)Layout, norm, n, kl, ku, ptr_a, ldab, ptr_i, aNorm, ptr_rc);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    ptr_rc = nullptr;
+    return res;
+  }
   #pragma endregion
 }
