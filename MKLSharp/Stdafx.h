@@ -20,4 +20,8 @@ namespace MKLSharp {
     Unit = CblasUnit,
     NonUnit = CblasNonUnit
   };
+  public enum class CBlasSide {
+    Left = CblasLeft,
+    Right = CblasRight
+  };
 }
