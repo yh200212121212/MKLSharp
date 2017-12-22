@@ -212,4 +212,101 @@ namespace MKLSharp {
     ptr_be = nullptr;
     return res;
   }
+
+  __int64 Lapack::sgerfsx(LapackLayout Layout, char trans, char equed,
+                          int n, int nrhs, array<float>^ a, int lda,
+                          array<float>^ af, int ldaf, array<__int64>^ ipiv,
+                          array<float>^ r, array<float>^ c,
+                          array<float>^ b, int ldb,
+                          array<float>^ x, int ldx,
+                          [Out]float% rCond, [Out]array<float>^% bErr,
+                          int nErrBnds, [Out]array<float>^% errBndsNorm,
+                          [Out]array<float>^% errBndsComp,
+                          int nParams, array<float>^ params) {
+    pin_ptr<float> ptr_a = &a[0];
+    pin_ptr<float> ptr_af = &af[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<float> ptr_r = &r[0];
+    pin_ptr<float> ptr_c = &c[0];
+    pin_ptr<float> ptr_b = &b[0];
+    pin_ptr<float> ptr_x = &x[0];
+    pin_ptr<float> ptr_rc = &rCond;
+    bErr = gcnew array<float>(Math::Max(1, nrhs));
+    pin_ptr<float> ptr_be = &bErr[0];
+    errBndsNorm = gcnew array<float>(nrhs * nErrBnds);
+    pin_ptr<float> ptr_ebn = &errBndsNorm[0];
+    errBndsComp = gcnew array<float>(nrhs * nErrBnds);
+    pin_ptr<float> ptr_ebc = &errBndsComp[0];
+    pin_ptr<float> ptr_p = &params[0];
+    auto res = LAPACKE_sgerfsx((int)Layout, trans, equed,
+                               n, nrhs, ptr_a, lda,
+                               ptr_af, ldaf, ptr_i,
+                               ptr_r, ptr_c,
+                               ptr_b, ldb,
+                               ptr_x, ldx,
+                               ptr_rc, ptr_be,
+                               nErrBnds, ptr_ebn, ptr_ebc,
+                               nParams, ptr_p);
+    ptr_a = nullptr;
+    ptr_af = nullptr;
+    ptr_i = nullptr;
+    ptr_r = nullptr;
+    ptr_c = nullptr;
+    ptr_b = nullptr;
+    ptr_x = nullptr;
+    ptr_rc = nullptr;
+    ptr_be = nullptr;
+    ptr_ebn = nullptr;
+    ptr_ebc = nullptr;
+    ptr_p = nullptr;
+    return res;
+  }
+  __int64 Lapack::dgerfsx(LapackLayout Layout, char trans, char equed,
+                          int n, int nrhs, array<double>^ a, int lda,
+                          array<double>^ af, int ldaf, array<__int64>^ ipiv,
+                          array<double>^ r, array<double>^ c,
+                          array<double>^ b, int ldb,
+                          array<double>^ x, int ldx,
+                          [Out]double% rCond, [Out]array<double>^% bErr,
+                          int nErrBnds, [Out]array<double>^% errBndsNorm,
+                          [Out]array<double>^% errBndsComp,
+                          int nParams, array<double>^ params) {
+    pin_ptr<double> ptr_a = &a[0];
+    pin_ptr<double> ptr_af = &af[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<double> ptr_r = &r[0];
+    pin_ptr<double> ptr_c = &c[0];
+    pin_ptr<double> ptr_b = &b[0];
+    pin_ptr<double> ptr_x = &x[0];
+    pin_ptr<double> ptr_rc = &rCond;
+    bErr = gcnew array<double>(Math::Max(1, nrhs));
+    pin_ptr<double> ptr_be = &bErr[0];
+    errBndsNorm = gcnew array<double>(nrhs * nErrBnds);
+    pin_ptr<double> ptr_ebn = &errBndsNorm[0];
+    errBndsComp = gcnew array<double>(nrhs * nErrBnds);
+    pin_ptr<double> ptr_ebc = &errBndsComp[0];
+    pin_ptr<double> ptr_p = &params[0];
+    auto res = LAPACKE_dgerfsx((int)Layout, trans, equed,
+                               n, nrhs, ptr_a, lda,
+                               ptr_af, ldaf, ptr_i,
+                               ptr_r, ptr_c,
+                               ptr_b, ldb,
+                               ptr_x, ldx,
+                               ptr_rc, ptr_be,
+                               nErrBnds, ptr_ebn, ptr_ebc,
+                               nParams, ptr_p);
+    ptr_a = nullptr;
+    ptr_af = nullptr;
+    ptr_i = nullptr;
+    ptr_r = nullptr;
+    ptr_c = nullptr;
+    ptr_b = nullptr;
+    ptr_x = nullptr;
+    ptr_rc = nullptr;
+    ptr_be = nullptr;
+    ptr_ebn = nullptr;
+    ptr_ebc = nullptr;
+    ptr_p = nullptr;
+    return res;
+  }
 }
