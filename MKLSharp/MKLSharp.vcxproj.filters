@@ -33,6 +33,9 @@
     <ClInclude Include="Blas2.h">
       <Filter>ヘッダー ファイル\BLAS</Filter>
     </ClInclude>
+    <ClInclude Include="Blas3.h">
+      <Filter>ヘッダー ファイル\BLAS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -45,6 +48,9 @@
       <Filter>ソース ファイル\BLAS</Filter>
     </ClCompile>
     <ClCompile Include="Blas2.cpp">
+      <Filter>ソース ファイル\BLAS</Filter>
+    </ClCompile>
+    <ClCompile Include="Blas3.cpp">
       <Filter>ソース ファイル\BLAS</Filter>
     </ClCompile>
   </ItemGroup>
