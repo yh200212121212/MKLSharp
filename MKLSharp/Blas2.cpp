@@ -300,4 +300,29 @@ namespace MKLSharp {
     ptr_a = nullptr;
     ptr_x = nullptr;
   }
+
+  void Blas2::stpmv(CBlasLayout Layout, CBlasUpLo UpLo,
+                    CBlasTranspose Trans, CBlasDiag Diag,
+                    long n, array<float>^ ap,
+                    array<float>^ x, long incX) {
+    pin_ptr<float> ptr_a = &ap[0];
+    pin_ptr<float> ptr_x = &x[0];
+    cblas_stpmv((CBLAS_LAYOUT)Layout, (CBLAS_UPLO)UpLo,
+                (CBLAS_TRANSPOSE)Trans, (CBLAS_DIAG)Diag,
+                n, ptr_a, ptr_x, incX);
+    ptr_a = nullptr;
+    ptr_x = nullptr;
+  }
+  void Blas2::dtpmv(CBlasLayout Layout, CBlasUpLo UpLo,
+                    CBlasTranspose Trans, CBlasDiag Diag,
+                    long n, array<double>^ ap,
+                    array<double>^ x, long incX) {
+    pin_ptr<double> ptr_a = &ap[0];
+    pin_ptr<double> ptr_x = &x[0];
+    cblas_dtpmv((CBLAS_LAYOUT)Layout, (CBLAS_UPLO)UpLo,
+                (CBLAS_TRANSPOSE)Trans, (CBLAS_DIAG)Diag,
+                n, ptr_a, ptr_x, incX);
+    ptr_a = nullptr;
+    ptr_x = nullptr;
+  }
 }
