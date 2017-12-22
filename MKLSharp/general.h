@@ -42,5 +42,16 @@ namespace MKLSharp {
     static __int64 dgecon(LapackLayout Layout, char norm,
                           int n, array<double>^ a, int lda,
                           double aNorm, [Out]double% rCond);
+
+    static __int64 sgerfs(LapackLayout Layout, char Trans,
+                          int n, int nrhs, array<float>^ a, int lda,
+                          array<float>^ af, int ldaf, array<__int64>^ ipiv,
+                          array<float>^ b, int ldb, array<float>^ x, int ldx,
+                          [Out]array<float>^% fErr, [Out]array<float>^% bErr);
+    static __int64 dgerfs(LapackLayout Layout, char Trans,
+                          int n, int nrhs, array<double>^ a, int lda,
+                          array<double>^ af, int ldaf, array<__int64>^ ipiv,
+                          array<double>^ b, int ldb, array<double>^ x, int ldx,
+                          [Out]array<double>^% fErr, [Out]array<double>^% bErr);
   };
 }
