@@ -40,5 +40,14 @@ namespace MKLSharp {
                        long n, long k, double alpha, array<double>^ a, long lda,
                        array<double>^ b, long ldb,
                        double beta, array<double>^ c, long ldc);
+
+    static void strmm(CBlasLayout Layout, CBlasSide Side, CBlasUpLo UpLo,
+                      CBlasTranspose TransA, CBlasDiag Diag, long m, long n,
+                      float alpha, array<float>^ a, long lda,
+                      array<float>^ b, long ldb);
+    static void dtrmm(CBlasLayout Layout, CBlasSide Side, CBlasUpLo UpLo,
+                      CBlasTranspose TransA, CBlasDiag Diag, long m, long n,
+                      double alpha, array<double>^ a, long lda,
+                      array<double>^ b, long ldb);
   };
 }
