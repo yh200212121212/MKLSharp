@@ -111,5 +111,14 @@ namespace MKLSharp {
                       CBlasTranspose Trans, CBlasDiag Diag,
                       long n, array<double>^ ap,
                       array<double>^ x, long incX);
+
+    static void stpsv(CBlasLayout Layout, CBlasUpLo UpLo,
+                      CBlasTranspose Trans, CBlasDiag Diag,
+                      long n, array<float>^ ap,
+                      array<float>^ x, long incX);
+    static void dtpsv(CBlasLayout Layout, CBlasUpLo UpLo,
+                      CBlasTranspose Trans, CBlasDiag Diag,
+                      long n, array<double>^ ap,
+                      array<double>^ x, long incX);
   };
 }
