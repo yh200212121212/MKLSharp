@@ -29,5 +29,14 @@ namespace MKLSharp {
                      double alpha, array<double>^ x, long incX,
                      array<double>^ y, long incY,
                      array<double>^ a, long lda);
+
+    static void ssbmv(CBlasLayout Layout, CBlasUpLo UpLo,
+                      long n, long k, float alpha, array<float>^ a, long lda,
+                      array<float>^ x, long incX,
+                      float beta, array<float>^ y, long incY);
+    static void dsbmv(CBlasLayout Layout, CBlasUpLo UpLo,
+                      long n, long k, double alpha, array<double>^ a, long lda,
+                      array<double>^ x, long incX,
+                      double beta, array<double>^ y, long incY);
   };
 }

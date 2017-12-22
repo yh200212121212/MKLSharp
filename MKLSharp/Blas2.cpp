@@ -79,4 +79,31 @@ namespace MKLSharp {
     ptr_y = nullptr;
     ptr_a = nullptr;
   }
+
+  void Blas2::ssbmv(CBlasLayout Layout, CBlasUpLo UpLo,
+                    long n, long k, float alpha, array<float>^ a, long lda,
+                    array<float>^ x, long incX,
+                    float beta, array<float>^ y, long incY) {
+    pin_ptr<float> ptr_a = &a[0];
+    pin_ptr<float> ptr_x = &x[0];
+    pin_ptr<float> ptr_y = &y[0];
+    cblas_ssbmv((CBLAS_LAYOUT)Layout, (CBLAS_UPLO)UpLo,
+                n, k, alpha, ptr_a, lda, ptr_x, incX, beta, ptr_y, incY);
+    ptr_a = nullptr;
+    ptr_x = nullptr;
+    ptr_y = nullptr;
+  }
+  void Blas2::dsbmv(CBlasLayout Layout, CBlasUpLo UpLo,
+                    long n, long k, double alpha, array<double>^ a, long lda,
+                    array<double>^ x, long incX,
+                    double beta, array<double>^ y, long incY) {
+    pin_ptr<double> ptr_a = &a[0];
+    pin_ptr<double> ptr_x = &x[0];
+    pin_ptr<double> ptr_y = &y[0];
+    cblas_dsbmv((CBLAS_LAYOUT)Layout, (CBLAS_UPLO)UpLo,
+                n, k, alpha, ptr_a, lda, ptr_x, incX, beta, ptr_y, incY);
+    ptr_a = nullptr;
+    ptr_x = nullptr;
+    ptr_y = nullptr;
+  }
 }
