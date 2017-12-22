@@ -75,5 +75,14 @@ namespace MKLSharp {
     static void dsyr(CBlasLayout Layout, CBlasUpLo UpLo,
                      long n, double alpha, array<double>^ x, long incX,
                      array<double>^ a, long lda);
+
+    static void ssyr2(CBlasLayout Layout, CBlasUpLo UpLo,
+                     long n, float alpha, array<float>^ x, long incX,
+                     array<float>^ y, long incY,
+                     array<float>^ a, long lda);
+    static void dsyr2(CBlasLayout Layout, CBlasUpLo UpLo,
+                     long n, double alpha, array<double>^ x, long incX,
+                     array<double>^ y, long incY,
+                     array<double>^ a, long lda);
   };
 }
