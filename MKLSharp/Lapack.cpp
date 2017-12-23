@@ -908,4 +908,20 @@ namespace MKLSharp {
     return info;
   }
   #pragma endregion
+  #pragma region symmetric positive-definite
+  __int64 Lapack::spotrf(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, array<float>^ a, int lda) {
+    pin_ptr<float> ptr_a = &a[0];
+    auto res = LAPACKE_spotrf((int)Layout, (char)UpLo, n, ptr_a, lda);
+    ptr_a = nullptr;
+    return res;
+  }
+  __int64 Lapack::dpotrf(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, array<double>^ a, int lda) {
+    pin_ptr<double> ptr_a = &a[0];
+    auto res = LAPACKE_dpotrf((int)Layout, (char)UpLo, n, ptr_a, lda);
+    ptr_a = nullptr;
+    return res;
+  }
+  #pragma endregion
 }
