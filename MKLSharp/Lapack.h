@@ -294,6 +294,17 @@ namespace MKLSharp {
                           int n, array<float>^ ap, float aNorm, [Out]float% rCond);
     static __int64 dppcon(LapackLayout Layout, LapackUpLo UpLo,
                           int n, array<double>^ ap, double aNorm, [Out]double% rCond);
+
+    static __int64 spprfs(LapackLayout Layout, LapackUpLo UpLo, 
+                          int n, int nrhs, array<float>^ ap, array<float>^ afp,
+                          array<float>^ b, int ldb,
+                          array<float>^ x, int ldx,
+                          [Out]array<float>^% fErr, [Out]array<float>^% bErr);
+    static __int64 dpprfs(LapackLayout Layout, LapackUpLo UpLo, 
+                          int n, int nrhs, array<double>^ ap, array<double>^ afp,
+                          array<double>^ b, int ldb,
+                          array<double>^ x, int ldx,
+                          [Out]array<double>^% fErr, [Out]array<double>^% bErr);
   #pragma endregion
   };
 }
