@@ -153,5 +153,11 @@ namespace MKLSharp {
                            int nErrBnds, [Out]array<double>^% errBndsNorm,
                            [Out]array<double>^% errBndsComp, int nParams, array<double>^ params);
   #pragma endregion
+  #pragma region general tridiagonal
+    static __int64 sgttrf(int n, array<float>^ dl, array<float>^ d, array<float>^ du,
+                          [Out]array<float>^% du2, [Out]array<__int64>^% ipiv);
+    static __int64 dgttrf(int n, array<double>^ dl, array<double>^ d, array<double>^ du,
+                          [Out]array<double>^% du2, [Out]array<__int64>^% ipiv);
+  #pragma endregion
   };
 }

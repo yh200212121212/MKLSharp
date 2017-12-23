@@ -648,4 +648,40 @@ namespace MKLSharp {
     return res;
   }
   #pragma endregion
+  #pragma region general tridiagonal
+  __int64 Lapack::sgttrf(int n, array<float>^ dl, array<float>^ d, array<float>^ du,
+                         [Out]array<float>^% du2, [Out]array<__int64>^% ipiv) {
+    pin_ptr<float> ptr_l = &dl[0];
+    pin_ptr<float> ptr_d = &d[0];
+    pin_ptr<float> ptr_u = &du[0];
+    du2 = gcnew array<float>(n - 2);
+    pin_ptr<float> ptr_u2 = &du2[0];
+    ipiv = gcnew array<__int64>(n);
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    auto res = LAPACKE_sgttrf(n, ptr_l, ptr_d, ptr_u, ptr_u2, ptr_i);
+    ptr_l = nullptr;
+    ptr_d = nullptr;
+    ptr_u = nullptr;
+    ptr_u2 = nullptr;
+    ptr_i = nullptr;
+    return res;
+  }
+  __int64 Lapack::dgttrf(int n, array<double>^ dl, array<double>^ d, array<double>^ du,
+                         [Out]array<double>^% du2, [Out]array<__int64>^% ipiv) {
+    pin_ptr<double> ptr_l = &dl[0];
+    pin_ptr<double> ptr_d = &d[0];
+    pin_ptr<double> ptr_u = &du[0];
+    du2 = gcnew array<double>(n - 2);
+    pin_ptr<double> ptr_u2 = &du2[0];
+    ipiv = gcnew array<__int64>(n);
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    auto res = LAPACKE_dgttrf(n, ptr_l, ptr_d, ptr_u, ptr_u2, ptr_i);
+    ptr_l = nullptr;
+    ptr_d = nullptr;
+    ptr_u = nullptr;
+    ptr_u2 = nullptr;
+    ptr_i = nullptr;
+    return res;
+  }
+  #pragma endregion
 }
