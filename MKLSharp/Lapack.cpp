@@ -1368,4 +1368,20 @@ namespace MKLSharp {
     return res;
   }
   #pragma endregion
+  #pragma region symmetric positive-definite, band
+  __int64 Lapack::spbtrf(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, int kd, array<float>^ ab, int ldab) {
+    pin_ptr<float> ptr_a = &ab[0];
+    auto res = LAPACKE_spbtrf((int)Layout, (char)UpLo, n, kd, ptr_a, ldab);
+    ptr_a = nullptr;
+    return res;
+  }
+  __int64 Lapack::dpbtrf(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, int kd, array<double>^ ab, int ldab) {
+    pin_ptr<double> ptr_a = &ab[0];
+    auto res = LAPACKE_dpbtrf((int)Layout, (char)UpLo, n, kd, ptr_a, ldab);
+    ptr_a = nullptr;
+    return res;
+  }
+  #pragma endregion
 }
