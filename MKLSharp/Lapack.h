@@ -325,5 +325,45 @@ namespace MKLSharp {
     static __int64 dpftri(LapackLayout Layout, LapackTranspose Trans, LapackUpLo UpLo,
                           int n, array<double>^ a);
   #pragma endregion
+  #pragma region symmetric positive-definite, band
+    static __int64 spbtrf(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int kd, array<float>^ ab, int ldab);
+    static __int64 dpbtrf(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int kd, array<double>^ ab, int ldab);
+
+    static __int64 spbtrs(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int kd, int nrhs, array<float>^ ab, int ldab,
+                          array<float>^ b, int ldb);
+    static __int64 dpbtrs(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int kd, int nrhs, array<double>^ ab, int ldab,
+                          array<double>^ b, int ldb);
+
+    static __int64 spbequ(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int kd, array<float>^ ab, int ldab,
+                          [Out]array<float>^% s, [Out]float% sCond, [Out]float% aMax);
+    static __int64 dpbequ(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int kd, array<double>^ ab, int ldab,
+                          [Out]array<double>^% s, [Out]double% sCond, [Out]double% aMax);
+
+    static __int64 spbcon(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int kd, array<float>^ ab, int ldab,
+                          float aNorm, [Out]float% rCond);
+    static __int64 dpbcon(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int kd, array<double>^ ab, int ldab,
+                          double aNorm, [Out]double% rCond);
+
+    static __int64 spbrfs(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int kd, int nrhs, array<float>^ ab, int ldab,
+                          array<float>^ afb, int ldafb, 
+                          array<float>^ b, int ldb,
+                          array<float>^ x, int ldx,
+                          [Out]array<float>^% fErr, [Out]array<float>^% bErr);
+    static __int64 dpbrfs(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int kd, int nrhs, array<double>^ ab, int ldab,
+                          array<double>^ afb, int ldafb, 
+                          array<double>^ b, int ldb,
+                          array<double>^ x, int ldx,
+                          [Out]array<double>^% fErr, [Out]array<double>^% bErr);
+  #pragma endregion
   };
 }
