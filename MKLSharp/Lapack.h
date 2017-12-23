@@ -208,6 +208,13 @@ namespace MKLSharp {
                           int n, array<float>^ a, int lda);
     static __int64 dpotrf(LapackLayout Layout, LapackUpLo UpLo,
                           int n, array<double>^ a, int lda);
+
+    static __int64 spotrs(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int nrhs, array<float>^ a, int lda,
+                          array<float>^ b, int ldb);
+    static __int64 dpotrs(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int nrhs, array<double>^ a, int lda,
+                          array<double>^ b, int ldb);
   #pragma endregion
   };
 }
