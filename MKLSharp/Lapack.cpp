@@ -1173,4 +1173,18 @@ namespace MKLSharp {
     return res;
   }
   #pragma endregion
+  #pragma region symmetric positive-definite, packed storage
+  __int64 Lapack::spptrf(LapackLayout Layout, LapackUpLo UpLo, int n, array<float>^ ap) {
+    pin_ptr<float> ptr_a = &ap[0];
+    auto res = LAPACKE_spptrf((int)Layout, (char)UpLo, n, ptr_a);
+    ptr_a = nullptr;
+    return res;
+  }
+  __int64 Lapack::dpptrf(LapackLayout Layout, LapackUpLo UpLo, int n, array<double>^ ap) {
+    pin_ptr<double> ptr_a = &ap[0];
+    auto res = LAPACKE_dpptrf((int)Layout, (char)UpLo, n, ptr_a);
+    ptr_a = nullptr;
+    return res;
+  }
+  #pragma endregion
 }

@@ -274,5 +274,9 @@ namespace MKLSharp {
     static __int64 dpotri(LapackLayout Layout, LapackUpLo UpLo,
                           int n, array<double>^ a, int lda);
   #pragma endregion
+  #pragma region symmetric positive-definite, packed storage
+    static __int64 spptrf(LapackLayout Layout, LapackUpLo UpLo, int n, array<float>^ ap);
+    static __int64 dpptrf(LapackLayout Layout, LapackUpLo UpLo, int n, array<double>^ ap);
+  #pragma endregion
   };
 }
