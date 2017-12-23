@@ -268,6 +268,11 @@ namespace MKLSharp {
                            int nErrBnds, [Out]array<double>^% errBndsNorm,
                            [Out]array<double>^% errBndsComp,
                            int nParams, array<double>^ params);
+
+    static __int64 spotri(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<float>^ a, int lda);
+    static __int64 dpotri(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<double>^ a, int lda);
   #pragma endregion
   };
 }

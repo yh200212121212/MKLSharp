@@ -1157,5 +1157,20 @@ namespace MKLSharp {
     ptr_p = nullptr;
     return res;
   }
+
+  __int64 Lapack::spotri(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, array<float>^ a, int lda) {
+    pin_ptr<float> ptr_a = &a[0];
+    auto res = LAPACKE_spotri((int)Layout, (char)UpLo, n, ptr_a, lda);
+    ptr_a = nullptr;
+    return res;
+  }
+  __int64 Lapack::dpotri(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, array<double>^ a, int lda) {
+    pin_ptr<double> ptr_a = &a[0];
+    auto res = LAPACKE_dpotri((int)Layout, (char)UpLo, n, ptr_a, lda);
+    ptr_a = nullptr;
+    return res;
+  }
   #pragma endregion
 }
