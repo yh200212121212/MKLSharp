@@ -684,7 +684,7 @@ namespace MKLSharp {
     return res;
   }
 
-  __int64 Lapack::sgttrs(LapackLayout Layout, char trans, int n, int nrhs,
+  __int64 Lapack::sgttrs(LapackLayout Layout, LapackTranspose Trans, int n, int nrhs,
                          array<float>^ dl, array<float>^ d, array<float>^ du,
                          array<float>^ du2, array<__int64>^ ipiv,
                          array<float>^ b, int ldb) {
@@ -694,7 +694,7 @@ namespace MKLSharp {
     pin_ptr<float> ptr_u2 = &du2[0];
     pin_ptr<__int64> ptr_i = &ipiv[0];
     pin_ptr<float> ptr_b = &b[0];
-    auto res = LAPACKE_sgttrs((int)Layout, trans, n, nrhs,
+    auto res = LAPACKE_sgttrs((int)Layout, (char)Trans, n, nrhs,
                               ptr_l, ptr_d, ptr_u, ptr_u2, ptr_i, ptr_b, ldb);
     ptr_l = nullptr;
     ptr_d = nullptr;
@@ -704,7 +704,7 @@ namespace MKLSharp {
     ptr_b = nullptr;
     return res;
   }
-  __int64 Lapack::dgttrs(LapackLayout Layout, char trans, int n, int nrhs,
+  __int64 Lapack::dgttrs(LapackLayout Layout, LapackTranspose Trans, int n, int nrhs,
                          array<double>^ dl, array<double>^ d, array<double>^ du,
                          array<double>^ du2, array<__int64>^ ipiv,
                          array<double>^ b, int ldb) {
@@ -714,7 +714,7 @@ namespace MKLSharp {
     pin_ptr<double> ptr_u2 = &du2[0];
     pin_ptr<__int64> ptr_i = &ipiv[0];
     pin_ptr<double> ptr_b = &b[0];
-    auto res = LAPACKE_dgttrs((int)Layout, trans, n, nrhs,
+    auto res = LAPACKE_dgttrs((int)Layout, (char)Trans, n, nrhs,
                               ptr_l, ptr_d, ptr_u, ptr_u2, ptr_i, ptr_b, ldb);
     ptr_l = nullptr;
     ptr_d = nullptr;
@@ -722,6 +722,45 @@ namespace MKLSharp {
     ptr_u2 = nullptr;
     ptr_i = nullptr;
     ptr_b = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::sgtcon(LapackNorm Norm, int n,
+                         array<float>^ dl, array<float>^ d, array<float>^ du,
+                         array<float>^ du2, array<__int64>^ ipiv,
+                         float aNorm, [Out]float% rCond) {
+    pin_ptr<float> ptr_l = &dl[0];
+    pin_ptr<float> ptr_d = &d[0];
+    pin_ptr<float> ptr_u = &du[0];
+    pin_ptr<float> ptr_u2 = &du2[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<float> ptr_rc = &rCond;
+    auto res = LAPACKE_sgtcon((char)Norm, n, ptr_l, ptr_d, ptr_u, ptr_u2, ptr_i, aNorm, ptr_rc);
+    ptr_l = nullptr;
+    ptr_d = nullptr;
+    ptr_u = nullptr;
+    ptr_u2 = nullptr;
+    ptr_i = nullptr;
+    ptr_rc = nullptr;
+    return res;
+  }
+  __int64 Lapack::dgtcon(LapackNorm Norm, int n,
+                         array<double>^ dl, array<double>^ d, array<double>^ du,
+                         array<double>^ du2, array<__int64>^ ipiv,
+                         double aNorm, [Out]double% rCond) {
+    pin_ptr<double> ptr_l = &dl[0];
+    pin_ptr<double> ptr_d = &d[0];
+    pin_ptr<double> ptr_u = &du[0];
+    pin_ptr<double> ptr_u2 = &du2[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<double> ptr_rc = &rCond;
+    auto res = LAPACKE_dgtcon((char)Norm, n, ptr_l, ptr_d, ptr_u, ptr_u2, ptr_i, aNorm, ptr_rc);
+    ptr_l = nullptr;
+    ptr_d = nullptr;
+    ptr_u = nullptr;
+    ptr_u2 = nullptr;
+    ptr_i = nullptr;
+    ptr_rc = nullptr;
     return res;
   }
   #pragma endregion
