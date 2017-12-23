@@ -25,25 +25,25 @@ namespace MKLSharp {
     return res;
   }
 
-  __int64 Lapack::sgetrs(LapackLayout Layout, char trans,
+  __int64 Lapack::sgetrs(LapackLayout Layout, LapackTranspose Trans,
                          int n, int nrhs, array<float>^ a, int lda,
                          array<__int64>^ ipiv, array<float>^ b, int ldb) {
     pin_ptr<float> ptr_a = &a[0];
     pin_ptr<__int64> ptr_i = &ipiv[0];
     pin_ptr<float> ptr_b = &b[0];
-    auto res = LAPACKE_sgetrs((int)Layout, trans, n, nrhs, ptr_a, lda, ptr_i, ptr_b, ldb);
+    auto res = LAPACKE_sgetrs((int)Layout, (char)Trans, n, nrhs, ptr_a, lda, ptr_i, ptr_b, ldb);
     ptr_a = nullptr;
     ptr_i = nullptr;
     ptr_b = nullptr;
     return res;
   }
-  __int64 Lapack::dgetrs(LapackLayout Layout, char trans,
+  __int64 Lapack::dgetrs(LapackLayout Layout, LapackTranspose Trans,
                          int n, int nrhs, array<double>^ a, int lda,
                          array<__int64>^ ipiv, array<double>^ b, int ldb) {
     pin_ptr<double> ptr_a = &a[0];
     pin_ptr<__int64> ptr_i = &ipiv[0];
     pin_ptr<double> ptr_b = &b[0];
-    auto res = LAPACKE_dgetrs((int)Layout, trans, n, nrhs, ptr_a, lda, ptr_i, ptr_b, ldb);
+    auto res = LAPACKE_dgetrs((int)Layout, (char)Trans, n, nrhs, ptr_a, lda, ptr_i, ptr_b, ldb);
     ptr_a = nullptr;
     ptr_i = nullptr;
     ptr_b = nullptr;
@@ -140,28 +140,28 @@ namespace MKLSharp {
     return res;
   }
 
-  __int64 Lapack::sgecon(LapackLayout Layout, char norm,
+  __int64 Lapack::sgecon(LapackLayout Layout, LapackNorm Norm,
                          int n, array<float>^ a, int lda,
                          float aNorm, [Out]float% rCond) {
     pin_ptr<float> ptr_a = &a[0];
     pin_ptr<float> ptr_rc = &rCond;
-    auto res = LAPACKE_sgecon((int)Layout, norm, n, ptr_a, lda, aNorm, ptr_rc);
+    auto res = LAPACKE_sgecon((int)Layout, (char)Norm, n, ptr_a, lda, aNorm, ptr_rc);
     ptr_a = nullptr;
     ptr_rc = nullptr;
     return res;
   }
-  __int64 Lapack::dgecon(LapackLayout Layout, char norm,
+  __int64 Lapack::dgecon(LapackLayout Layout, LapackNorm Norm,
                          int n, array<double>^ a, int lda,
                          double aNorm, [Out]double% rCond) {
     pin_ptr<double> ptr_a = &a[0];
     pin_ptr<double> ptr_rc = &rCond;
-    auto res = LAPACKE_dgecon((int)Layout, norm, n, ptr_a, lda, aNorm, ptr_rc);
+    auto res = LAPACKE_dgecon((int)Layout, (char)Norm, n, ptr_a, lda, aNorm, ptr_rc);
     ptr_a = nullptr;
     ptr_rc = nullptr;
     return res;
   }
 
-  __int64 Lapack::sgerfs(LapackLayout Layout, char Trans,
+  __int64 Lapack::sgerfs(LapackLayout Layout, LapackTranspose Trans,
                          int n, int nrhs, array<float>^ a, int lda,
                          array<float>^ af, int ldaf, array<__int64>^ ipiv,
                          array<float>^ b, int ldb, array<float>^ x, int ldx,
@@ -175,7 +175,7 @@ namespace MKLSharp {
     pin_ptr<float> ptr_fe = &fErr[0];
     bErr = gcnew array<float>(Math::Max(1, nrhs));
     pin_ptr<float> ptr_be = &bErr[0];
-    auto res = LAPACKE_sgerfs((int)Layout, Trans, n, nrhs, ptr_a, lda,
+    auto res = LAPACKE_sgerfs((int)Layout, (char)Trans, n, nrhs, ptr_a, lda,
                               ptr_af, ldaf, ptr_i, ptr_b, ldb, ptr_x, ldx,
                               ptr_fe, ptr_be);
     ptr_a = nullptr;
@@ -187,7 +187,7 @@ namespace MKLSharp {
     ptr_be = nullptr;
     return res;
   }
-  __int64 Lapack::dgerfs(LapackLayout Layout, char Trans,
+  __int64 Lapack::dgerfs(LapackLayout Layout, LapackTranspose Trans,
                          int n, int nrhs, array<double>^ a, int lda,
                          array<double>^ af, int ldaf, array<__int64>^ ipiv,
                          array<double>^ b, int ldb, array<double>^ x, int ldx,
@@ -201,7 +201,7 @@ namespace MKLSharp {
     pin_ptr<double> ptr_fe = &fErr[0];
     bErr = gcnew array<double>(Math::Max(1, nrhs));
     pin_ptr<double> ptr_be = &bErr[0];
-    auto res = LAPACKE_dgerfs((int)Layout, Trans, n, nrhs, ptr_a, lda,
+    auto res = LAPACKE_dgerfs((int)Layout, (char)Trans, n, nrhs, ptr_a, lda,
                               ptr_af, ldaf, ptr_i, ptr_b, ldb, ptr_x, ldx,
                               ptr_fe, ptr_be);
     ptr_a = nullptr;
@@ -214,7 +214,7 @@ namespace MKLSharp {
     return res;
   }
 
-  __int64 Lapack::sgerfsx(LapackLayout Layout, char trans, char equed,
+  __int64 Lapack::sgerfsx(LapackLayout Layout, LapackTranspose Trans, LapackEquil Equed,
                           int n, int nrhs, array<float>^ a, int lda,
                           array<float>^ af, int ldaf, array<__int64>^ ipiv,
                           array<float>^ r, array<float>^ c,
@@ -239,7 +239,7 @@ namespace MKLSharp {
     errBndsComp = gcnew array<float>(nrhs * nErrBnds);
     pin_ptr<float> ptr_ebc = &errBndsComp[0];
     pin_ptr<float> ptr_p = &params[0];
-    auto res = LAPACKE_sgerfsx((int)Layout, trans, equed,
+    auto res = LAPACKE_sgerfsx((int)Layout, (char)Trans, (char)Equed,
                                n, nrhs, ptr_a, lda,
                                ptr_af, ldaf, ptr_i,
                                ptr_r, ptr_c,
@@ -262,7 +262,7 @@ namespace MKLSharp {
     ptr_p = nullptr;
     return res;
   }
-  __int64 Lapack::dgerfsx(LapackLayout Layout, char trans, char equed,
+  __int64 Lapack::dgerfsx(LapackLayout Layout, LapackTranspose Trans, LapackEquil Equed,
                           int n, int nrhs, array<double>^ a, int lda,
                           array<double>^ af, int ldaf, array<__int64>^ ipiv,
                           array<double>^ r, array<double>^ c,
@@ -287,7 +287,7 @@ namespace MKLSharp {
     errBndsComp = gcnew array<double>(nrhs * nErrBnds);
     pin_ptr<double> ptr_ebc = &errBndsComp[0];
     pin_ptr<double> ptr_p = &params[0];
-    auto res = LAPACKE_dgerfsx((int)Layout, trans, equed,
+    auto res = LAPACKE_dgerfsx((int)Layout, (char)Trans, (char)Equed,
                                n, nrhs, ptr_a, lda,
                                ptr_af, ldaf, ptr_i,
                                ptr_r, ptr_c,
@@ -352,14 +352,14 @@ namespace MKLSharp {
     return res;
   }
 
-  __int64 Lapack::sgbtrs(LapackLayout Layout, char trans,
+  __int64 Lapack::sgbtrs(LapackLayout Layout, LapackTranspose Trans,
                          int n, int kl, int ku, int nrhs,
                          array<float>^ ab, int ldab, array<__int64>^ ipiv,
                          array<float>^ b, int ldb) {
     pin_ptr<float> ptr_a = &ab[0];
     pin_ptr<__int64> ptr_i = &ipiv[0];
     pin_ptr<float> ptr_b = &b[0];
-    auto res = LAPACKE_sgbtrs((int)Layout, trans,
+    auto res = LAPACKE_sgbtrs((int)Layout, (char)Trans,
                               n, kl, ku, nrhs,
                               ptr_a, ldab, ptr_i, ptr_b, ldb);
     ptr_a = nullptr;
@@ -367,14 +367,14 @@ namespace MKLSharp {
     ptr_b = nullptr;
     return res;
   }
-  __int64 Lapack::dgbtrs(LapackLayout Layout, char trans,
+  __int64 Lapack::dgbtrs(LapackLayout Layout, LapackTranspose Trans,
                          int n, int kl, int ku, int nrhs,
                          array<double>^ ab, int ldab, array<__int64>^ ipiv,
                          array<double>^ b, int ldb) {
     pin_ptr<double> ptr_a = &ab[0];
     pin_ptr<__int64> ptr_i = &ipiv[0];
     pin_ptr<double> ptr_b = &b[0];
-    auto res = LAPACKE_dgbtrs((int)Layout, trans,
+    auto res = LAPACKE_dgbtrs((int)Layout, (char)Trans,
                               n, kl, ku, nrhs,
                               ptr_a, ldab, ptr_i, ptr_b, ldb);
     ptr_a = nullptr;
@@ -473,32 +473,34 @@ namespace MKLSharp {
     return res;
   }
 
-  __int64 Lapack::sgbcon(LapackLayout Layout, char norm, int n, int kl, int ku,
+  __int64 Lapack::sgbcon(LapackLayout Layout, LapackNorm Norm, int n, int kl, int ku,
                          array<float>^ ab, int ldab, array<__int64>^ ipiv,
                          float aNorm, [Out]float% rCond) {
     pin_ptr<float> ptr_a = &ab[0];
     pin_ptr<__int64> ptr_i = &ipiv[0];
     pin_ptr<float> ptr_rc = &rCond;
-    auto res = LAPACKE_sgbcon((int)Layout, norm, n, kl, ku, ptr_a, ldab, ptr_i, aNorm, ptr_rc);
+    auto res = LAPACKE_sgbcon((int)Layout, (char)Norm, n, kl, ku,
+                              ptr_a, ldab, ptr_i, aNorm, ptr_rc);
     ptr_a = nullptr;
     ptr_i = nullptr;
     ptr_rc = nullptr;
     return res;
   }
-  __int64 Lapack::dgbcon(LapackLayout Layout, char norm, int n, int kl, int ku,
+  __int64 Lapack::dgbcon(LapackLayout Layout, LapackNorm Norm, int n, int kl, int ku,
                          array<double>^ ab, int ldab, array<__int64>^ ipiv,
                          double aNorm, [Out]double% rCond) {
     pin_ptr<double> ptr_a = &ab[0];
     pin_ptr<__int64> ptr_i = &ipiv[0];
     pin_ptr<double> ptr_rc = &rCond;
-    auto res = LAPACKE_dgbcon((int)Layout, norm, n, kl, ku, ptr_a, ldab, ptr_i, aNorm, ptr_rc);
+    auto res = LAPACKE_dgbcon((int)Layout, (char)Norm, n, kl, ku,
+                              ptr_a, ldab, ptr_i, aNorm, ptr_rc);
     ptr_a = nullptr;
     ptr_i = nullptr;
     ptr_rc = nullptr;
     return res;
   }
 
-  __int64 Lapack::sgbrfs(LapackLayout Layout, char trans,
+  __int64 Lapack::sgbrfs(LapackLayout Layout, LapackTranspose Trans,
                          int n, int kl, int ku, int nrhs, array<float>^ ab, int ldab,
                          array<float>^ afb, int ldafb, array<__int64>^ ipiv,
                          array<float>^ b, int ldb, 
@@ -513,7 +515,7 @@ namespace MKLSharp {
     pin_ptr<float> ptr_fe = &fErr[0];
     bErr = gcnew array<float>(Math::Max(1, nrhs));
     pin_ptr<float> ptr_be = &bErr[0];
-    auto res = LAPACKE_sgbrfs((int)Layout, trans, n, kl, ku, nrhs, ptr_a, ldab,
+    auto res = LAPACKE_sgbrfs((int)Layout, (char)Trans, n, kl, ku, nrhs, ptr_a, ldab,
                               ptr_af, ldafb, ptr_i, ptr_b, ldb, ptr_x, ldx,
                               ptr_fe, ptr_be);
     ptr_a = nullptr;
@@ -525,7 +527,7 @@ namespace MKLSharp {
     ptr_be = nullptr;
     return res;
   }
-  __int64 Lapack::dgbrfs(LapackLayout Layout, char trans,
+  __int64 Lapack::dgbrfs(LapackLayout Layout, LapackTranspose Trans,
                          int n, int kl, int ku, int nrhs, array<double>^ ab, int ldab,
                          array<double>^ afb, int ldafb, array<__int64>^ ipiv,
                          array<double>^ b, int ldb, 
@@ -540,7 +542,7 @@ namespace MKLSharp {
     pin_ptr<double> ptr_fe = &fErr[0];
     bErr = gcnew array<double>(Math::Max(1, nrhs));
     pin_ptr<double> ptr_be = &bErr[0];
-    auto res = LAPACKE_dgbrfs((int)Layout, trans, n, kl, ku, nrhs, ptr_a, ldab,
+    auto res = LAPACKE_dgbrfs((int)Layout, (char)Trans, n, kl, ku, nrhs, ptr_a, ldab,
                               ptr_af, ldafb, ptr_i, ptr_b, ldb, ptr_x, ldx,
                               ptr_fe, ptr_be);
     ptr_a = nullptr;
@@ -553,7 +555,7 @@ namespace MKLSharp {
     return res;
   }
 
-  __int64 Lapack::sgbrfsx(LapackLayout Layout, char trans, char equed,
+  __int64 Lapack::sgbrfsx(LapackLayout Layout, LapackTranspose Trans, LapackEquil Equed,
                           int n, int kl, int ku, int nrhs, array<float>^ ab, int ldab,
                           array<float>^ afb, int ldafb, array<__int64>^ ipiv,
                           array<float>^ r, array<float>^ c,
@@ -577,7 +579,7 @@ namespace MKLSharp {
     errBndsComp = gcnew array<float>(nrhs * nErrBnds);
     pin_ptr<float> ptr_ebc = &errBndsComp[0];
     pin_ptr<float> ptr_p = &params[0];
-    auto res = LAPACKE_sgbrfsx((int)Layout, trans, equed, 
+    auto res = LAPACKE_sgbrfsx((int)Layout, (char)Trans, (char)Equed, 
                                n, kl, ku, nrhs, ptr_a, ldab,
                                ptr_af, ldafb, ptr_i,
                                ptr_r, ptr_c,
@@ -600,7 +602,7 @@ namespace MKLSharp {
     ptr_p = nullptr;
     return res;
   }
-  __int64 Lapack::dgbrfsx(LapackLayout Layout, char trans, char equed,
+  __int64 Lapack::dgbrfsx(LapackLayout Layout, LapackTranspose Trans, LapackEquil Equed,
                           int n, int kl, int ku, int nrhs, array<double>^ ab, int ldab,
                           array<double>^ afb, int ldafb, array<__int64>^ ipiv,
                           array<double>^ r, array<double>^ c,
@@ -624,7 +626,7 @@ namespace MKLSharp {
     errBndsComp = gcnew array<double>(nrhs * nErrBnds);
     pin_ptr<double> ptr_ebc = &errBndsComp[0];
     pin_ptr<double> ptr_p = &params[0];
-    auto res = LAPACKE_dgbrfsx((int)Layout, trans, equed, 
+    auto res = LAPACKE_dgbrfsx((int)Layout, (char)Trans, (char)Equed, 
                                n, kl, ku, nrhs, ptr_a, ldab,
                                ptr_af, ldafb, ptr_i,
                                ptr_r, ptr_c,

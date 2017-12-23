@@ -38,4 +38,10 @@ namespace MKLSharp {
     O = 'O',
     I = 'I'
   };
+  public enum class LapackEquil {
+    N = 'N',
+    R = 'R',
+    C = 'C',
+    B = 'B'
+  };
 }
