@@ -229,6 +229,13 @@ namespace MKLSharp {
     static __int64 dpoequb(LapackLayout Layout, int n,
                            array<double>^ a, int lda,
                            [Out]array<double>^% s, [Out]double% sCond, [Out]double% aMax);
+
+    static __int64 spocon(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<float>^ a, int lda,
+                          float aNorm, [Out]float% rCond);
+    static __int64 dpocon(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<double>^ a, int lda,
+                          double aNorm, [Out]double% rCond);
   #pragma endregion
   };
 }

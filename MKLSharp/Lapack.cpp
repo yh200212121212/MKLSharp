@@ -1006,5 +1006,27 @@ namespace MKLSharp {
     ptr_am = nullptr;
     return res;
   }
+
+  __int64 Lapack::spocon(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, array<float>^ a, int lda,
+                         float aNorm, [Out]float% rCond) {
+    pin_ptr<float> ptr_a = &a[0];
+    pin_ptr<float> ptr_rc = &rCond;
+    auto res = LAPACKE_spocon((int)Layout, (char)UpLo, n, ptr_a, lda, aNorm, ptr_rc);
+    ptr_a = nullptr;
+    ptr_rc = nullptr;
+    return res;
+  }
+  __int64 Lapack::dpocon(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, array<double>^ a, int lda,
+                         double aNorm, [Out]double% rCond) {
+    pin_ptr<double> ptr_a = &a[0];
+    pin_ptr<double> ptr_rc = &rCond;
+    auto res = LAPACKE_dpocon((int)Layout, (char)UpLo, n, ptr_a, lda, aNorm, ptr_rc);
+    ptr_a = nullptr;
+    ptr_rc = nullptr;
+    return res;
+  }
+
   #pragma endregion
 }
