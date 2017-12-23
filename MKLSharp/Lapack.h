@@ -337,6 +337,13 @@ namespace MKLSharp {
     static __int64 dpbtrs(LapackLayout Layout, LapackUpLo UpLo,
                           int n, int kd, int nrhs, array<double>^ ab, int ldab,
                           array<double>^ b, int ldb);
+
+    static __int64 spbequ(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int kd, array<float>^ ab, int ldab,
+                          [Out]array<float>^% s, [Out]float% sCond, [Out]float% aMax);
+    static __int64 dpbequ(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int kd, array<double>^ ab, int ldab,
+                          [Out]array<double>^% s, [Out]double% sCond, [Out]double% aMax);
   #pragma endregion
   };
 }

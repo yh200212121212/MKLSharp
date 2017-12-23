@@ -1404,5 +1404,38 @@ namespace MKLSharp {
     ptr_b = nullptr;
     return res;
   }
+
+  __int64 Lapack::spbequ(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, int kd, array<float>^ ab, int ldab,
+                         [Out]array<float>^% s, [Out]float% sCond, [Out]float% aMax) {
+    pin_ptr<float> ptr_a = &ab[0];
+    s = gcnew array<float>(n);
+    pin_ptr<float> ptr_s = &s[0];
+    pin_ptr<float> ptr_sc = &sCond;
+    pin_ptr<float> ptr_am = &aMax;
+    auto res = LAPACKE_spbequ((int)Layout, (char)UpLo, n, kd, ptr_a, ldab,
+                              ptr_s, ptr_sc, ptr_am);
+    ptr_a = nullptr;
+    ptr_s = nullptr;
+    ptr_sc = nullptr;
+    ptr_am = nullptr;
+    return res;
+  }
+  __int64 Lapack::dpbequ(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, int kd, array<double>^ ab, int ldab,
+                         [Out]array<double>^% s, [Out]double% sCond, [Out]double% aMax) {
+    pin_ptr<double> ptr_a = &ab[0];
+    s = gcnew array<double>(n);
+    pin_ptr<double> ptr_s = &s[0];
+    pin_ptr<double> ptr_sc = &sCond;
+    pin_ptr<double> ptr_am = &aMax;
+    auto res = LAPACKE_dpbequ((int)Layout, (char)UpLo, n, kd, ptr_a, ldab,
+                              ptr_s, ptr_sc, ptr_am);
+    ptr_a = nullptr;
+    ptr_s = nullptr;
+    ptr_sc = nullptr;
+    ptr_am = nullptr;
+    return res;
+  }
   #pragma endregion
 }
