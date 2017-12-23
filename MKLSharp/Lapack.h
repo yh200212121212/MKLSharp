@@ -309,5 +309,21 @@ namespace MKLSharp {
     static __int64 spptri(LapackLayout Layout, LapackUpLo UpLo, int n, array<float>^ ap);
     static __int64 dpptri(LapackLayout Layout, LapackUpLo UpLo, int n, array<double>^ ap);
   #pragma endregion
+  #pragma region symmetric positive-definite, RFP storage
+    static __int64 spftrf(LapackLayout Layout, LapackTranspose Trans, LapackUpLo UpLo,
+                          int n, array<float>^ a);
+    static __int64 dpftrf(LapackLayout Layout, LapackTranspose Trans, LapackUpLo UpLo,
+                          int n, array<double>^ a);
+
+    static __int64 spftrs(LapackLayout Layout, LapackTranspose Trans, LapackUpLo UpLo,
+                          int n, int nrhs, array<float>^ a, array<float>^ b, int ldb);
+    static __int64 dpftrs(LapackLayout Layout, LapackTranspose Trans, LapackUpLo UpLo,
+                          int n, int nrhs, array<double>^ a, array<double>^ b, int ldb);
+
+    static __int64 spftri(LapackLayout Layout, LapackTranspose Trans, LapackUpLo UpLo,
+                          int n, array<float>^ a);
+    static __int64 dpftri(LapackLayout Layout, LapackTranspose Trans, LapackUpLo UpLo,
+                          int n, array<double>^ a);
+  #pragma endregion
   };
 }

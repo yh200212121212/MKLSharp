@@ -1318,4 +1318,54 @@ namespace MKLSharp {
     return res;
   }
   #pragma endregion
+  #pragma region symmetric positive-definite, RFP storage
+  __int64 Lapack::spftrf(LapackLayout Layout, LapackTranspose Trans, LapackUpLo UpLo,
+                         int n, array<float>^ a) {
+    pin_ptr<float> ptr_a = &a[0];
+    auto res = LAPACKE_spftrf((int)Layout, (char)Trans, (char)UpLo, n, ptr_a);
+    ptr_a = nullptr;
+    return res;
+  }
+  __int64 Lapack::dpftrf(LapackLayout Layout, LapackTranspose Trans, LapackUpLo UpLo,
+                         int n, array<double>^ a) {
+    pin_ptr<double> ptr_a = &a[0];
+    auto res = LAPACKE_dpftrf((int)Layout, (char)Trans, (char)UpLo, n, ptr_a);
+    ptr_a = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::spftrs(LapackLayout Layout, LapackTranspose Trans, LapackUpLo UpLo,
+                         int n, int nrhs, array<float>^ a, array<float>^ b, int ldb) {
+    pin_ptr<float> ptr_a = &a[0];
+    pin_ptr<float> ptr_b = &b[0];
+    auto res = LAPACKE_spftrs((int)Layout, (char)Trans, (char)UpLo, n, nrhs, ptr_a, ptr_b, ldb);
+    ptr_a = nullptr;
+    ptr_b = nullptr;
+    return res;
+  }
+  __int64 Lapack::dpftrs(LapackLayout Layout, LapackTranspose Trans, LapackUpLo UpLo,
+                         int n, int nrhs, array<double>^ a, array<double>^ b, int ldb) {
+    pin_ptr<double> ptr_a = &a[0];
+    pin_ptr<double> ptr_b = &b[0];
+    auto res = LAPACKE_dpftrs((int)Layout, (char)Trans, (char)UpLo, n, nrhs, ptr_a, ptr_b, ldb);
+    ptr_a = nullptr;
+    ptr_b = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::spftri(LapackLayout Layout, LapackTranspose Trans, LapackUpLo UpLo,
+                         int n, array<float>^ a) {
+    pin_ptr<float> ptr_a = &a[0];
+    auto res = LAPACKE_spftri((int)Layout, (char)Trans, (char)UpLo, n, ptr_a);
+    ptr_a = nullptr;
+    return res;
+  }
+  __int64 Lapack::dpftri(LapackLayout Layout, LapackTranspose Trans, LapackUpLo UpLo,
+                         int n, array<double>^ a) {
+    pin_ptr<double> ptr_a = &a[0];
+    auto res = LAPACKE_dpftri((int)Layout, (char)Trans, (char)UpLo, n, ptr_a);
+    ptr_a = nullptr;
+    return res;
+  }
+  #pragma endregion
 }
