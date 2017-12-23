@@ -192,5 +192,16 @@ namespace MKLSharp {
                           array<double>^ x, int ldx,
                           [Out]array<double>^% fErr, [Out]array<double>^% bErr);
   #pragma endregion
+  #pragma region diagonally dominant tridiagonal
+    static __int64 sdttrfb(int n, array<float>^ dl, array<float>^ d, array<float>^ du);
+    static __int64 ddttrfb(int n, array<double>^ dl, array<double>^ d, array<double>^ du);
+
+    static __int64 sdttrsb(LapackTranspose Trans, int n, int nrhs,
+                           array<float>^ dl, array<float>^ d, array<float>^ du,
+                           array<float>^ b, int ldb);
+    static __int64 ddttrsb(LapackTranspose Trans, int n, int nrhs,
+                           array<double>^ dl, array<double>^ d, array<double>^ du,
+                           array<double>^ b, int ldb);
+  #pragma endregion
   };
 }
