@@ -153,5 +153,44 @@ namespace MKLSharp {
                            int nErrBnds, [Out]array<double>^% errBndsNorm,
                            [Out]array<double>^% errBndsComp, int nParams, array<double>^ params);
   #pragma endregion
+  #pragma region general tridiagonal
+    static __int64 sgttrf(int n, array<float>^ dl, array<float>^ d, array<float>^ du,
+                          [Out]array<float>^% du2, [Out]array<__int64>^% ipiv);
+    static __int64 dgttrf(int n, array<double>^ dl, array<double>^ d, array<double>^ du,
+                          [Out]array<double>^% du2, [Out]array<__int64>^% ipiv);
+
+    static __int64 sgttrs(LapackLayout Layout, LapackTranspose Trans, int n, int nrhs,
+                          array<float>^ dl, array<float>^ d, array<float>^ du,
+                          array<float>^ du2, array<__int64>^ ipiv,
+                          array<float>^ b, int ldb);
+    static __int64 dgttrs(LapackLayout Layout, LapackTranspose Trans, int n, int nrhs,
+                          array<double>^ dl, array<double>^ d, array<double>^ du,
+                          array<double>^ du2, array<__int64>^ ipiv,
+                          array<double>^ b, int ldb);
+
+    static __int64 sgtcon(LapackNorm Norm, int n,
+                          array<float>^ dl, array<float>^ d, array<float>^ du,
+                          array<float>^ du2, array<__int64>^ ipiv,
+                          float aNorm, [Out]float% rCond);
+    static __int64 dgtcon(LapackNorm Norm, int n,
+                          array<double>^ dl, array<double>^ d, array<double>^ du,
+                          array<double>^ du2, array<__int64>^ ipiv,
+                          double aNorm, [Out]double% rCond);
+
+    static __int64 sgtrfs(LapackLayout Layout, LapackTranspose Trans, int n, int nrhs,
+                          array<float>^ dl, array<float>^ d, array<float>^ du,
+                          array<float>^ dlf, array<float>^ df, array<float>^ duf,
+                          array<float>^ du2, array<__int64>^ ipiv,
+                          array<float>^ b, int ldb,
+                          array<float>^ x, int ldx,
+                          [Out]array<float>^% fErr, [Out]array<float>^% bErr);
+    static __int64 dgtrfs(LapackLayout Layout, LapackTranspose Trans, int n, int nrhs,
+                          array<double>^ dl, array<double>^ d, array<double>^ du,
+                          array<double>^ dlf, array<double>^ df, array<double>^ duf,
+                          array<double>^ du2, array<__int64>^ ipiv,
+                          array<double>^ b, int ldb,
+                          array<double>^ x, int ldx,
+                          [Out]array<double>^% fErr, [Out]array<double>^% bErr);
+  #pragma endregion
   };
 }

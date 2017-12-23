@@ -28,4 +28,14 @@ namespace MKLSharp {
     RowMajor = LAPACK_ROW_MAJOR,
     ColMajor = LAPACK_COL_MAJOR
   };
+  public enum class LapackTranspose {
+    N = 'N',
+    T = 'T',
+    C = 'C'
+  };
+  public enum class LapackNorm {
+    One = '1',
+    O = 'O',
+    I = 'I'
+  };
 }
