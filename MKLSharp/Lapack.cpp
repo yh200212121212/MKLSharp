@@ -1173,4 +1173,149 @@ namespace MKLSharp {
     return res;
   }
   #pragma endregion
+  #pragma region symmetric positive-definite, packed storage
+  __int64 Lapack::spptrf(LapackLayout Layout, LapackUpLo UpLo, int n, array<float>^ ap) {
+    pin_ptr<float> ptr_a = &ap[0];
+    auto res = LAPACKE_spptrf((int)Layout, (char)UpLo, n, ptr_a);
+    ptr_a = nullptr;
+    return res;
+  }
+  __int64 Lapack::dpptrf(LapackLayout Layout, LapackUpLo UpLo, int n, array<double>^ ap) {
+    pin_ptr<double> ptr_a = &ap[0];
+    auto res = LAPACKE_dpptrf((int)Layout, (char)UpLo, n, ptr_a);
+    ptr_a = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::spptrs(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, int nrhs, array<float>^ ap, array<float>^ b, int ldb) {
+    pin_ptr<float> ptr_a = &ap[0];
+    pin_ptr<float> ptr_b = &b[0];
+    auto res = LAPACKE_spptrs((int)Layout, (char)UpLo, n, nrhs, ptr_a, ptr_b, ldb);
+    ptr_a = nullptr;
+    ptr_b = nullptr;
+    return res;
+  }
+  __int64 Lapack::dpptrs(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, int nrhs, array<double>^ ap, array<double>^ b, int ldb) {
+    pin_ptr<double> ptr_a = &ap[0];
+    pin_ptr<double> ptr_b = &b[0];
+    auto res = LAPACKE_dpptrs((int)Layout, (char)UpLo, n, nrhs, ptr_a, ptr_b, ldb);
+    ptr_a = nullptr;
+    ptr_b = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::sppequ(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, array<float>^ ap,
+                         [Out]array<float>^% s, [Out]float% sCond, [Out]float% aMax) {
+    pin_ptr<float> ptr_a = &ap[0];
+    s = gcnew array<float>(n);
+    pin_ptr<float> ptr_s = &s[0];
+    pin_ptr<float> ptr_sc = &sCond;
+    pin_ptr<float> ptr_am = &aMax;
+    auto res = LAPACKE_sppequ((int)Layout, (char)UpLo, n, ptr_a, ptr_s, ptr_sc, ptr_am);
+    ptr_a = nullptr;
+    ptr_s = nullptr;
+    ptr_sc = nullptr;
+    ptr_am = nullptr;
+    return res;
+  }
+  __int64 Lapack::dppequ(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, array<double>^ ap,
+                         [Out]array<double>^% s, [Out]double% sCond, [Out]double% aMax) {
+    pin_ptr<double> ptr_a = &ap[0];
+    s = gcnew array<double>(n);
+    pin_ptr<double> ptr_s = &s[0];
+    pin_ptr<double> ptr_sc = &sCond;
+    pin_ptr<double> ptr_am = &aMax;
+    auto res = LAPACKE_dppequ((int)Layout, (char)UpLo, n, ptr_a, ptr_s, ptr_sc, ptr_am);
+    ptr_a = nullptr;
+    ptr_s = nullptr;
+    ptr_sc = nullptr;
+    ptr_am = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::sppcon(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, array<float>^ ap, float aNorm, [Out]float% rCond) {
+    pin_ptr<float> ptr_a = &ap[0];
+    pin_ptr<float> ptr_rc = &rCond;
+    auto res = LAPACKE_sppcon((int)Layout, (char)UpLo, n, ptr_a, aNorm, ptr_rc);
+    ptr_a = nullptr;
+    ptr_rc = nullptr;
+    return res;
+  }
+  __int64 Lapack::dppcon(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, array<double>^ ap, double aNorm, [Out]double% rCond) {
+    pin_ptr<double> ptr_a = &ap[0];
+    pin_ptr<double> ptr_rc = &rCond;
+    auto res = LAPACKE_dppcon((int)Layout, (char)UpLo, n, ptr_a, aNorm, ptr_rc);
+    ptr_a = nullptr;
+    ptr_rc = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::spprfs(LapackLayout Layout, LapackUpLo UpLo, 
+                         int n, int nrhs, array<float>^ ap, array<float>^ afp,
+                         array<float>^ b, int ldb,
+                         array<float>^ x, int ldx,
+                         [Out]array<float>^% fErr, [Out]array<float>^% bErr) {
+    pin_ptr<float> ptr_a = &ap[0];
+    pin_ptr<float> ptr_af = &afp[0];
+    pin_ptr<float> ptr_b = &b[0];
+    pin_ptr<float> ptr_x = &x[0];
+    fErr = gcnew array<float>(Math::Max(1, nrhs));
+    pin_ptr<float> ptr_fe = &fErr[0];
+    bErr = gcnew array<float>(Math::Max(1, nrhs));
+    pin_ptr<float> ptr_be = &bErr[0];
+    auto res = LAPACKE_spprfs((int)Layout, (char)UpLo,
+                              n, nrhs, ptr_a, ptr_af, ptr_b, ldb, ptr_x, ldx,
+                              ptr_fe, ptr_be);
+    ptr_a = nullptr;
+    ptr_af = nullptr;
+    ptr_b = nullptr;
+    ptr_x = nullptr;
+    ptr_fe = nullptr;
+    ptr_be = nullptr;
+    return res;
+  }
+  __int64 Lapack::dpprfs(LapackLayout Layout, LapackUpLo UpLo, 
+                         int n, int nrhs, array<double>^ ap, array<double>^ afp,
+                         array<double>^ b, int ldb,
+                         array<double>^ x, int ldx,
+                         [Out]array<double>^% fErr, [Out]array<double>^% bErr) {
+    pin_ptr<double> ptr_a = &ap[0];
+    pin_ptr<double> ptr_af = &afp[0];
+    pin_ptr<double> ptr_b = &b[0];
+    pin_ptr<double> ptr_x = &x[0];
+    fErr = gcnew array<double>(Math::Max(1, nrhs));
+    pin_ptr<double> ptr_fe = &fErr[0];
+    bErr = gcnew array<double>(Math::Max(1, nrhs));
+    pin_ptr<double> ptr_be = &bErr[0];
+    auto res = LAPACKE_dpprfs((int)Layout, (char)UpLo,
+                              n, nrhs, ptr_a, ptr_af, ptr_b, ldb, ptr_x, ldx,
+                              ptr_fe, ptr_be);
+    ptr_a = nullptr;
+    ptr_af = nullptr;
+    ptr_b = nullptr;
+    ptr_x = nullptr;
+    ptr_fe = nullptr;
+    ptr_be = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::spptri(LapackLayout Layout, LapackUpLo UpLo, int n, array<float>^ ap) {
+    pin_ptr<float> ptr_a = &ap[0];
+    auto res = LAPACKE_spptri((int)Layout, (char)UpLo, n, ptr_a);
+    ptr_a = nullptr;
+    return res;
+  }
+  __int64 Lapack::dpptri(LapackLayout Layout, LapackUpLo UpLo, int n, array<double>^ ap) {
+    pin_ptr<double> ptr_a = &ap[0];
+    auto res = LAPACKE_dpptri((int)Layout, (char)UpLo, n, ptr_a);
+    ptr_a = nullptr;
+    return res;
+  }
+  #pragma endregion
 }
