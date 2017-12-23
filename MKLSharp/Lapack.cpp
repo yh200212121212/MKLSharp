@@ -845,4 +845,67 @@ namespace MKLSharp {
     return res;
   }
   #pragma endregion
+  #pragma region diagonally dominant tridiagonal
+  __int64 Lapack::sdttrfb(int n, array<float>^ dl, array<float>^ d, array<float>^ du) {
+    pin_ptr<float> ptr_l = &dl[0];
+    pin_ptr<float> ptr_d = &d[0];
+    pin_ptr<float> ptr_u = &du[0];
+    __int64 info, ln = n;
+    SDTTRFB(&ln, ptr_l, ptr_d, ptr_u, &info);
+    ptr_l = nullptr;
+    ptr_d = nullptr;
+    ptr_u = nullptr;
+    return info;
+  }
+  __int64 Lapack::ddttrfb(int n, array<double>^ dl, array<double>^ d, array<double>^ du) {
+    pin_ptr<double> ptr_l = &dl[0];
+    pin_ptr<double> ptr_d = &d[0];
+    pin_ptr<double> ptr_u = &du[0];
+    __int64 info, ln = n;
+    DDTTRFB(&ln, ptr_l, ptr_d, ptr_u, &info);
+    ptr_l = nullptr;
+    ptr_d = nullptr;
+    ptr_u = nullptr;
+    return info;
+  }
+
+  __int64 Lapack::sdttrsb(LapackTranspose Trans, int n, int nrhs,
+                          array<float>^ dl, array<float>^ d, array<float>^ du,
+                          array<float>^ b, int ldb) {
+    char trans = (char)Trans;
+    __int64 ln = n;
+    __int64 lnrhs = nrhs;
+    pin_ptr<float> ptr_l = &dl[0];
+    pin_ptr<float> ptr_d = &d[0];
+    pin_ptr<float> ptr_u = &du[0];
+    pin_ptr<float> ptr_b = &b[0];
+    __int64 lldb = ldb;
+    __int64 info;
+    SDTTRSB(&trans, &ln, &lnrhs, ptr_l, ptr_d, ptr_u, ptr_b, &lldb, &info);
+    ptr_l = nullptr;
+    ptr_d = nullptr;
+    ptr_u = nullptr;
+    ptr_b = nullptr;
+    return info;
+  }
+  __int64 Lapack::ddttrsb(LapackTranspose Trans, int n, int nrhs,
+                          array<double>^ dl, array<double>^ d, array<double>^ du,
+                          array<double>^ b, int ldb) {
+    char trans = (char)Trans;
+    __int64 ln = n;
+    __int64 lnrhs = nrhs;
+    pin_ptr<double> ptr_l = &dl[0];
+    pin_ptr<double> ptr_d = &d[0];
+    pin_ptr<double> ptr_u = &du[0];
+    pin_ptr<double> ptr_b = &b[0];
+    __int64 lldb = ldb;
+    __int64 info;
+    DDTTRSB(&trans, &ln, &lnrhs, ptr_l, ptr_d, ptr_u, ptr_b, &lldb, &info);
+    ptr_l = nullptr;
+    ptr_d = nullptr;
+    ptr_u = nullptr;
+    ptr_b = nullptr;
+    return info;
+  }
+  #pragma endregion
 }
