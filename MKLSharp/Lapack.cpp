@@ -975,5 +975,36 @@ namespace MKLSharp {
     ptr_am = nullptr;
     return res;
   }
+
+  __int64 Lapack::spoequb(LapackLayout Layout, int n,
+                          array<float>^ a, int lda,
+                          [Out]array<float>^% s, [Out]float% sCond, [Out]float% aMax) {
+    pin_ptr<float> ptr_a = &a[0];
+    s = gcnew array<float>(n);
+    pin_ptr<float> ptr_s = &s[0];
+    pin_ptr<float> ptr_sc = &sCond;
+    pin_ptr<float> ptr_am = &aMax;
+    auto res = LAPACKE_spoequb((int)Layout, n, ptr_a, lda, ptr_s, ptr_sc, ptr_am);
+    ptr_a = nullptr;
+    ptr_s = nullptr;
+    ptr_sc = nullptr;
+    ptr_am = nullptr;
+    return res;
+  }
+  __int64 Lapack::dpoequb(LapackLayout Layout, int n,
+                          array<double>^ a, int lda,
+                          [Out]array<double>^% s, [Out]double% sCond, [Out]double% aMax) {
+    pin_ptr<double> ptr_a = &a[0];
+    s = gcnew array<double>(n);
+    pin_ptr<double> ptr_s = &s[0];
+    pin_ptr<double> ptr_sc = &sCond;
+    pin_ptr<double> ptr_am = &aMax;
+    auto res = LAPACKE_dpoequb((int)Layout, n, ptr_a, lda, ptr_s, ptr_sc, ptr_am);
+    ptr_a = nullptr;
+    ptr_s = nullptr;
+    ptr_sc = nullptr;
+    ptr_am = nullptr;
+    return res;
+  }
   #pragma endregion
 }
