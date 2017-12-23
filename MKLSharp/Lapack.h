@@ -319,6 +319,11 @@ namespace MKLSharp {
                           int n, int nrhs, array<float>^ a, array<float>^ b, int ldb);
     static __int64 dpftrs(LapackLayout Layout, LapackTranspose Trans, LapackUpLo UpLo,
                           int n, int nrhs, array<double>^ a, array<double>^ b, int ldb);
+
+    static __int64 spftri(LapackLayout Layout, LapackTranspose Trans, LapackUpLo UpLo,
+                          int n, array<float>^ a);
+    static __int64 dpftri(LapackLayout Layout, LapackTranspose Trans, LapackUpLo UpLo,
+                          int n, array<double>^ a);
   #pragma endregion
   };
 }
