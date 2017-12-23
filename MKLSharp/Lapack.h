@@ -277,6 +277,11 @@ namespace MKLSharp {
   #pragma region symmetric positive-definite, packed storage
     static __int64 spptrf(LapackLayout Layout, LapackUpLo UpLo, int n, array<float>^ ap);
     static __int64 dpptrf(LapackLayout Layout, LapackUpLo UpLo, int n, array<double>^ ap);
+
+    static __int64 spptrs(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int nrhs, array<float>^ ap, array<float>^ b, int ldb);
+    static __int64 dpptrs(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int nrhs, array<double>^ ap, array<double>^ b, int ldb);
   #pragma endregion
   };
 }
