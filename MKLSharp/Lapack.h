@@ -203,5 +203,76 @@ namespace MKLSharp {
                            array<double>^ dl, array<double>^ d, array<double>^ du,
                            array<double>^ b, int ldb);
   #pragma endregion
+  #pragma region symmetric positive-definite
+    static __int64 spotrf(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<float>^ a, int lda);
+    static __int64 dpotrf(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<double>^ a, int lda);
+
+    static __int64 spotrs(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int nrhs, array<float>^ a, int lda,
+                          array<float>^ b, int ldb);
+    static __int64 dpotrs(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int nrhs, array<double>^ a, int lda,
+                          array<double>^ b, int ldb);
+
+    static __int64 spoequ(LapackLayout Layout, int n,
+                          array<float>^ a, int lda,
+                          [Out]array<float>^% s, [Out]float% sCond, [Out]float% aMax);
+    static __int64 dpoequ(LapackLayout Layout, int n,
+                          array<double>^ a, int lda,
+                          [Out]array<double>^% s, [Out]double% sCond, [Out]double% aMax);
+
+    static __int64 spoequb(LapackLayout Layout, int n,
+                           array<float>^ a, int lda,
+                           [Out]array<float>^% s, [Out]float% sCond, [Out]float% aMax);
+    static __int64 dpoequb(LapackLayout Layout, int n,
+                           array<double>^ a, int lda,
+                           [Out]array<double>^% s, [Out]double% sCond, [Out]double% aMax);
+
+    static __int64 spocon(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<float>^ a, int lda,
+                          float aNorm, [Out]float% rCond);
+    static __int64 dpocon(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<double>^ a, int lda,
+                          double aNorm, [Out]double% rCond);
+
+    static __int64 sporfs(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int nrhs, array<float>^ a, int lda,
+                          array<float>^ af, int ldaf,
+                          array<float>^ b, int ldb,
+                          array<float>^ x, int ldx,
+                          [Out]array<float>^% fErr, [Out]array<float>^% bErr);
+    static __int64 dporfs(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int nrhs, array<double>^ a, int lda,
+                          array<double>^ af, int ldaf,
+                          array<double>^ b, int ldb,
+                          array<double>^ x, int ldx,
+                          [Out]array<double>^% fErr, [Out]array<double>^% bErr);
+
+    static __int64 sporfsx(LapackLayout Layout, LapackUpLo UpLo, LapackEquil Equed,
+                           int n, int nrhs, array<float>^ a, int lda,
+                           array<float>^ af, int ldaf, array<float>^ s,
+                           array<float>^ b, int ldb,
+                           array<float>^ x, int ldx,
+                           [Out]float% rCond, [Out]array<float>^% bErr,
+                           int nErrBnds, [Out]array<float>^% errBndsNorm,
+                           [Out]array<float>^% errBndsComp,
+                           int nParams, array<float>^ params);
+    static __int64 dporfsx(LapackLayout Layout, LapackUpLo UpLo, LapackEquil Equed,
+                           int n, int nrhs, array<double>^ a, int lda,
+                           array<double>^ af, int ldaf, array<double>^ s,
+                           array<double>^ b, int ldb,
+                           array<double>^ x, int ldx,
+                           [Out]double% rCond, [Out]array<double>^% bErr,
+                           int nErrBnds, [Out]array<double>^% errBndsNorm,
+                           [Out]array<double>^% errBndsComp,
+                           int nParams, array<double>^ params);
+
+    static __int64 spotri(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<float>^ a, int lda);
+    static __int64 dpotri(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<double>^ a, int lda);
+  #pragma endregion
   };
 }

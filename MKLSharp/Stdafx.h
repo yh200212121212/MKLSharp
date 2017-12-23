@@ -44,4 +44,8 @@ namespace MKLSharp {
     C = 'C',
     B = 'B'
   };
+  public enum class LapackUpLo {
+    U = 'U',
+    L = 'L'
+  };
 }
