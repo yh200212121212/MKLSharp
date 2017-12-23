@@ -305,6 +305,9 @@ namespace MKLSharp {
                           array<double>^ b, int ldb,
                           array<double>^ x, int ldx,
                           [Out]array<double>^% fErr, [Out]array<double>^% bErr);
+
+    static __int64 spptri(LapackLayout Layout, LapackUpLo UpLo, int n, array<float>^ ap);
+    static __int64 dpptri(LapackLayout Layout, LapackUpLo UpLo, int n, array<double>^ ap);
   #pragma endregion
   };
 }
