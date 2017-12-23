@@ -365,5 +365,9 @@ namespace MKLSharp {
                           array<double>^ x, int ldx,
                           [Out]array<double>^% fErr, [Out]array<double>^% bErr);
   #pragma endregion
+  #pragma region symmetric positive-definite, tridiagonal
+    static __int64 spttrf(int n, array<float>^ d, array<float>^ e);
+    static __int64 dpttrf(int n, array<double>^ d, array<double>^ e);
+  #pragma endregion
   };
 }

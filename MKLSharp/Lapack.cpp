@@ -1510,4 +1510,22 @@ namespace MKLSharp {
     return res;
   }
   #pragma endregion
+  #pragma region symmetric positive-definite, tridiagonal
+  __int64 Lapack::spttrf(int n, array<float>^ d, array<float>^ e) {
+    pin_ptr<float> ptr_d = &d[0];
+    pin_ptr<float> ptr_e = &e[0];
+    auto res = LAPACKE_spttrf(n, ptr_d, ptr_e);
+    ptr_d = nullptr;
+    ptr_e = nullptr;
+    return res;
+  }
+  __int64 Lapack::dpttrf(int n, array<double>^ d, array<double>^ e) {
+    pin_ptr<double> ptr_d = &d[0];
+    pin_ptr<double> ptr_e = &e[0];
+    auto res = LAPACKE_dpttrf(n, ptr_d, ptr_e);
+    ptr_d = nullptr;
+    ptr_e = nullptr;
+    return res;
+  }
+  #pragma endregion
 }
