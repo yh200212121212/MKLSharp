@@ -158,6 +158,15 @@ namespace MKLSharp {
                           [Out]array<float>^% du2, [Out]array<__int64>^% ipiv);
     static __int64 dgttrf(int n, array<double>^ dl, array<double>^ d, array<double>^ du,
                           [Out]array<double>^% du2, [Out]array<__int64>^% ipiv);
+
+    static __int64 sgttrs(LapackLayout Layout, char Trans, int n, int nrhs,
+                          array<float>^ dl, array<float>^ d, array<float>^ du,
+                          array<float>^ du2, array<__int64>^ ipiv,
+                          array<float>^ b, int ldb);
+    static __int64 dgttrs(LapackLayout Layout, char Trans, int n, int nrhs,
+                          array<double>^ dl, array<double>^ d, array<double>^ du,
+                          array<double>^ du2, array<__int64>^ ipiv,
+                          array<double>^ b, int ldb);
   #pragma endregion
   };
 }
