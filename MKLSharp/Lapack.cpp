@@ -2299,4 +2299,113 @@ namespace MKLSharp {
     return res;
   }
   #pragma endregion
+  #pragma region triangular, packed storage
+  __int64 Lapack::stptrs(LapackLayout Layout, LapackUpLo UpLo,
+                         LapackTranspose Trans, LapackDiag Diag,
+                         int n, int nrhs, array<float>^ ap,
+                         array<float>^ b, int ldb) {
+    pin_ptr<float> ptr_a = &ap[0];
+    pin_ptr<float> ptr_b = &b[0];
+    auto res = LAPACKE_stptrs((int)Layout, (char)UpLo, (char)Trans, (char)Diag,
+                              n, nrhs, ptr_a, ptr_b, ldb);
+    ptr_a = nullptr;
+    ptr_b = nullptr;
+    return res;
+  }
+  __int64 Lapack::dtptrs(LapackLayout Layout, LapackUpLo UpLo,
+                         LapackTranspose Trans, LapackDiag Diag,
+                         int n, int nrhs, array<double>^ ap,
+                         array<double>^ b, int ldb) {
+    pin_ptr<double> ptr_a = &ap[0];
+    pin_ptr<double> ptr_b = &b[0];
+    auto res = LAPACKE_dtptrs((int)Layout, (char)UpLo, (char)Trans, (char)Diag,
+                              n, nrhs, ptr_a, ptr_b, ldb);
+    ptr_a = nullptr;
+    ptr_b = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::stpcon(LapackLayout Layout, LapackNorm Norm,
+                         LapackUpLo UpLo, LapackDiag Diag,
+                         int n, array<float>^ ap, [Out]float% rCond) {
+    pin_ptr<float> ptr_a = &ap[0];
+    pin_ptr<float> ptr_rc = &rCond;
+    auto res = LAPACKE_stpcon((int)Layout, (char)Norm, (char)UpLo, (char)Diag,
+                              n, ptr_a, ptr_rc);
+    ptr_a = nullptr;
+    ptr_rc = nullptr;
+    return res;
+  }
+  __int64 Lapack::dtpcon(LapackLayout Layout, LapackNorm Norm,
+                         LapackUpLo UpLo, LapackDiag Diag,
+                         int n, array<double>^ ap, [Out]double% rCond) {
+    pin_ptr<double> ptr_a = &ap[0];
+    pin_ptr<double> ptr_rc = &rCond;
+    auto res = LAPACKE_dtpcon((int)Layout, (char)Norm, (char)UpLo, (char)Diag,
+                              n, ptr_a, ptr_rc);
+    ptr_a = nullptr;
+    ptr_rc = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::stprfs(LapackLayout Layout, LapackUpLo UpLo,
+                         LapackTranspose Trans, LapackDiag Diag, 
+                         int n, int nrhs, array<float>^ ap,
+                         array<float>^ b, int ldb, 
+                         array<float>^ x, int ldx, 
+                         [Out]array<float>^% fErr, [Out]array<float>^% bErr) {
+    pin_ptr<float> ptr_a = &ap[0];
+    pin_ptr<float> ptr_b = &b[0];
+    pin_ptr<float> ptr_x = &x[0];
+    fErr = gcnew array<float>(nrhs > 1 ? nrhs : 1);
+    pin_ptr<float> ptr_fe = &fErr[0];
+    bErr = gcnew array<float>(nrhs > 1 ? nrhs : 1);
+    pin_ptr<float> ptr_be = &bErr[0];
+    auto res = LAPACKE_stprfs((int)Layout, (char)UpLo, (char)Trans, (char)Diag,
+                              n, nrhs, ptr_a, ptr_b, ldb, ptr_x, ldx, ptr_fe, ptr_be);
+    ptr_a = nullptr;
+    ptr_b = nullptr;
+    ptr_x = nullptr;
+    ptr_fe = nullptr;
+    ptr_be = nullptr;
+    return res;
+  }
+  __int64 Lapack::dtprfs(LapackLayout Layout, LapackUpLo UpLo,
+                         LapackTranspose Trans, LapackDiag Diag, 
+                         int n, int nrhs, array<double>^ ap,
+                         array<double>^ b, int ldb, 
+                         array<double>^ x, int ldx, 
+                         [Out]array<double>^% fErr, [Out]array<double>^% bErr) {
+    pin_ptr<double> ptr_a = &ap[0];
+    pin_ptr<double> ptr_b = &b[0];
+    pin_ptr<double> ptr_x = &x[0];
+    fErr = gcnew array<double>(nrhs > 1 ? nrhs : 1);
+    pin_ptr<double> ptr_fe = &fErr[0];
+    bErr = gcnew array<double>(nrhs > 1 ? nrhs : 1);
+    pin_ptr<double> ptr_be = &bErr[0];
+    auto res = LAPACKE_dtprfs((int)Layout, (char)UpLo, (char)Trans, (char)Diag,
+                              n, nrhs, ptr_a, ptr_b, ldb, ptr_x, ldx, ptr_fe, ptr_be);
+    ptr_a = nullptr;
+    ptr_b = nullptr;
+    ptr_x = nullptr;
+    ptr_fe = nullptr;
+    ptr_be = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::stptri(LapackLayout Layout, LapackUpLo UpLo, LapackDiag Diag,
+                         int n, array<float>^ ap) {
+    pin_ptr<float> ptr_a = &ap[0];
+    auto res = LAPACKE_stptri((int)Layout, (char)UpLo, (char)Diag, n, ptr_a);
+    ptr_a = nullptr;
+    return res;
+  }
+  __int64 Lapack::dtptri(LapackLayout Layout, LapackUpLo UpLo, LapackDiag Diag,
+                         int n, array<double>^ ap) {
+    pin_ptr<double> ptr_a = &ap[0];
+    auto res = LAPACKE_dtptri((int)Layout, (char)UpLo, (char)Diag, n, ptr_a);
+    ptr_a = nullptr;
+    return res;
+  }
+  #pragma endregion
 }
