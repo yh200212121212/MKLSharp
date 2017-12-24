@@ -476,6 +476,11 @@ namespace MKLSharp {
                           int n, array<float>^ a, int lda, array<__int64>^ ipiv);
     static __int64 dsytri(LapackLayout Layout, LapackUpLo UpLo,
                           int n, array<double>^ a, int lda, array<__int64>^ ipiv);
+
+    static __int64 ssytri2(LapackLayout Layout, LapackUpLo UpLo,
+                           int n, array<float>^ a, int lda, array<__int64>^ ipiv);
+    static __int64 dsytri2(LapackLayout Layout, LapackUpLo UpLo,
+                           int n, array<double>^ a, int lda, array<__int64>^ ipiv);
   #pragma endregion
   };
 }
