@@ -2426,4 +2426,30 @@ namespace MKLSharp {
     return res;
   }
   #pragma endregion
+  #pragma region triangular band
+  __int64 Lapack::stbtrs(LapackLayout Layout, LapackUpLo UpLo,
+                         LapackTranspose Trans, LapackDiag Diag,
+                         int n, int kd, int nrhs, array<float>^ ab, int ldab,
+                         array<float>^ b, int ldb) {
+    pin_ptr<float> ptr_a = &ab[0];
+    pin_ptr<float> ptr_b = &b[0];
+    auto res = LAPACKE_stbtrs((int)Layout, (char)UpLo, (char)Trans, (char)Diag,
+                              n, kd, nrhs, ptr_a, ldab, ptr_b, ldb);
+    ptr_a = nullptr;
+    ptr_b = nullptr;
+    return res;
+  }
+  __int64 Lapack::dtbtrs(LapackLayout Layout, LapackUpLo UpLo,
+                         LapackTranspose Trans, LapackDiag Diag,
+                         int n, int kd, int nrhs, array<double>^ ab, int ldab,
+                         array<double>^ b, int ldb) {
+    pin_ptr<double> ptr_a = &ab[0];
+    pin_ptr<double> ptr_b = &b[0];
+    auto res = LAPACKE_dtbtrs((int)Layout, (char)UpLo, (char)Trans, (char)Diag,
+                              n, kd, nrhs, ptr_a, ldab, ptr_b, ldb);
+    ptr_a = nullptr;
+    ptr_b = nullptr;
+    return res;
+  }
+  #pragma endregion
 }

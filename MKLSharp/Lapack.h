@@ -609,5 +609,15 @@ namespace MKLSharp {
                           LapackUpLo UpLo, LapackDiag Diag,
                           int n, array<double>^ a);
   #pragma endregion
+  #pragma region triangular band
+    static __int64 stbtrs(LapackLayout Layout, LapackUpLo UpLo,
+                          LapackTranspose Trans, LapackDiag Diag,
+                          int n, int kd, int nrhs, array<float>^ ab, int ldab,
+                          array<float>^ b, int ldb);
+    static __int64 dtbtrs(LapackLayout Layout, LapackUpLo UpLo,
+                          LapackTranspose Trans, LapackDiag Diag,
+                          int n, int kd, int nrhs, array<double>^ ab, int ldab,
+                          array<double>^ b, int ldb);
+  #pragma endregion
   };
 }
