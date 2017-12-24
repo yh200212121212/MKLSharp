@@ -532,5 +532,15 @@ namespace MKLSharp {
                           int n, array<double>^ ap, array<__int64>^ ipiv);
     static __int64 dsptri();
   #pragma endregion
+  #pragma region triangular
+    static __int64 strtrs(LapackLayout Layout, LapackUpLo UpLo,
+                          LapackTranspose Trans, LapackDiag Diag,
+                          int n, int nrhs, array<float>^ a, int lda,
+                          array<float>^ b, int ldb);
+    static __int64 dtrtrs(LapackLayout Layout, LapackUpLo UpLo,
+                          LapackTranspose Trans, LapackDiag Diag,
+                          int n, int nrhs, array<double>^ a, int lda,
+                          array<double>^ b, int ldb);
+  #pragma endregion
   };
 }

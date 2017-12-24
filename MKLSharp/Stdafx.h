@@ -49,4 +49,8 @@ namespace MKLSharp {
     U = 'U',
     L = 'L'
   };
+  public enum class LapackDiag {
+    N = 'N',
+    U = 'U'
+  };
 }
