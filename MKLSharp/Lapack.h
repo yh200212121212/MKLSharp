@@ -582,6 +582,19 @@ namespace MKLSharp {
     static __int64 dtpcon(LapackLayout Layout, LapackNorm Norm,
                           LapackUpLo UpLo, LapackDiag Diag,
                           int n, array<double>^ ap, [Out]double% rCond);
+
+    static __int64 stprfs(LapackLayout Layout, LapackUpLo UpLo,
+                          LapackTranspose Trans, LapackDiag Diag, 
+                          int n, int nrhs, array<float>^ ap,
+                          array<float>^ b, int ldb, 
+                          array<float>^ x, int ldx, 
+                          [Out]array<float>^% fErr, [Out]array<float>^% bErr);
+    static __int64 dtprfs(LapackLayout Layout, LapackUpLo UpLo,
+                          LapackTranspose Trans, LapackDiag Diag, 
+                          int n, int nrhs, array<double>^ ap,
+                          array<double>^ b, int ldb, 
+                          array<double>^ x, int ldx, 
+                          [Out]array<double>^% fErr, [Out]array<double>^% bErr);
   #pragma endregion
   };
 }
