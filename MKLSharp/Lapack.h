@@ -487,5 +487,50 @@ namespace MKLSharp {
     static __int64 dsytri2x(LapackLayout Layout, LapackUpLo UpLo,
                             int n, array<double>^ a, int lda, array<__int64>^ ipiv, int nb);
   #pragma endregion
+  #pragma region symmetric indefinite, packed storage
+    static __int64 ssptrf(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<float>^ ap, [Out]array<__int64>^ ipiv);
+    static __int64 dsptrf(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<double>^ ap, [Out]array<__int64>^ ipiv);
+
+    static void sspffrt2(int n, int nColumn, array<float>^ ap);
+    static void dspffrt2(int n, int nColumn, array<double>^ ap);
+
+    static void sspffrtx(int n, int nColumn, array<float>^ ap);
+    static void dspffrtx(int n, int nColumn, array<double>^ ap);
+
+    static __int64 ssptrs(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int nrhs, array<float>^ ap, array<__int64>^ ipiv,
+                          array<float>^ b, int ldb);
+    static __int64 dsptrs(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int nrhs, array<double>^ ap, array<__int64>^ ipiv,
+                          array<double>^ b, int ldb);
+
+    static __int64 sspcon(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<float>^ ap, array<__int64>^ ipiv,
+                          float aNorm, [Out]float% rCond);
+    static __int64 dspcon(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<double>^ ap, array<__int64>^ ipiv,
+                          double aNorm, [Out]double% rCond);
+
+    static __int64 ssprfs(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int nrhs, array<float>^ ap,
+                          array<float>^ afp, array<__int64>^ ipiv,
+                          array<float>^ b, int ldb,
+                          array<float>^ x, int ldx,
+                          [Out]array<float>^% fErr, [Out]array<float>^% bErr);
+    static __int64 dsprfs(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int nrhs, array<double>^ ap,
+                          array<double>^ afp, array<__int64>^ ipiv,
+                          array<double>^ b, int ldb,
+                          array<double>^ x, int ldx,
+                          [Out]array<double>^% fErr, [Out]array<double>^% bErr);
+
+    static __int64 ssptri(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<float>^ ap, array<__int64>^ ipiv);
+    static __int64 dsptri(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<double>^ ap, array<__int64>^ ipiv);
+    static __int64 dsptri();
+  #pragma endregion
   };
 }
