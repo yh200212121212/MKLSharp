@@ -2065,5 +2065,30 @@ namespace MKLSharp {
     delete work2;
     ptr_a = nullptr;
   }
+
+  __int64 Lapack::ssptrs(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, int nrhs, array<float>^ ap, array<__int64>^ ipiv,
+                         array<float>^ b, int ldb) {
+    pin_ptr<float> ptr_a = &ap[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<float> ptr_b = &b[0];
+    auto res = LAPACKE_ssptrs((int)Layout, (char)UpLo, n, nrhs, ptr_a, ptr_i, ptr_b, ldb);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    ptr_b = nullptr;
+    return res;
+  }
+  __int64 Lapack::dsptrs(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, int nrhs, array<double>^ ap, array<__int64>^ ipiv,
+                         array<double>^ b, int ldb) {
+    pin_ptr<double> ptr_a = &ap[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<double> ptr_b = &b[0];
+    auto res = LAPACKE_dsptrs((int)Layout, (char)UpLo, n, nrhs, ptr_a, ptr_i, ptr_b, ldb);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    ptr_b = nullptr;
+    return res;
+  }
   #pragma endregion
 }

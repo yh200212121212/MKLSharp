@@ -498,6 +498,13 @@ namespace MKLSharp {
 
     static void sspffrtx(int n, int nColumn, array<float>^ ap);
     static void dspffrtx(int n, int nColumn, array<double>^ ap);
+
+    static __int64 ssptrs(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int nrhs, array<float>^ ap, array<__int64>^ ipiv,
+                          array<float>^ b, int ldb);
+    static __int64 dsptrs(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int nrhs, array<double>^ ap, array<__int64>^ ipiv,
+                          array<double>^ b, int ldb);
   #pragma endregion
   };
 }
