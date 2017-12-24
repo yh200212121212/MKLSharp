@@ -368,6 +368,13 @@ namespace MKLSharp {
   #pragma region symmetric positive-definite, tridiagonal
     static __int64 spttrf(int n, array<float>^ d, array<float>^ e);
     static __int64 dpttrf(int n, array<double>^ d, array<double>^ e);
+
+    static __int64 spttrs(LapackLayout Layout, int n, int nrhs,
+                          array<float>^ d, array<float>^ e,
+                          array<float>^ b, int ldb);
+    static __int64 dpttrs(LapackLayout Layout, int n, int nrhs,
+                          array<double>^ d, array<double>^ e,
+                          array<double>^ b, int ldb);
   #pragma endregion
   };
 }
