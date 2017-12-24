@@ -618,6 +618,13 @@ namespace MKLSharp {
                           LapackTranspose Trans, LapackDiag Diag,
                           int n, int kd, int nrhs, array<double>^ ab, int ldab,
                           array<double>^ b, int ldb);
+
+    static __int64 stbcon(LapackLayout Layout, LapackNorm Norm,
+                          LapackUpLo UpLo, LapackDiag Diag,
+                          int n, int kd, array<float>^ ab, int ldab, [Out]float% rCond);
+    static __int64 dtbcon(LapackLayout Layout, LapackNorm Norm,
+                          LapackUpLo UpLo, LapackDiag Diag,
+                          int n, int kd, array<double>^ ab, int ldab, [Out]double% rCond);
   #pragma endregion
   };
 }
