@@ -505,6 +505,13 @@ namespace MKLSharp {
     static __int64 dsptrs(LapackLayout Layout, LapackUpLo UpLo,
                           int n, int nrhs, array<double>^ ap, array<__int64>^ ipiv,
                           array<double>^ b, int ldb);
+
+    static __int64 sspcon(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<float>^ ap, array<__int64>^ ipiv,
+                          float aNorm, [Out]float% rCond);
+    static __int64 dspcon(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<double>^ ap, array<__int64>^ ipiv,
+                          double aNorm, [Out]double% rCond);
   #pragma endregion
   };
 }

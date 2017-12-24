@@ -2090,5 +2090,30 @@ namespace MKLSharp {
     ptr_b = nullptr;
     return res;
   }
+
+  __int64 Lapack::sspcon(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, array<float>^ ap, array<__int64>^ ipiv,
+                         float aNorm, [Out]float% rCond) {
+    pin_ptr<float> ptr_a = &ap[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<float> ptr_rc = &rCond;
+    auto res = LAPACKE_sspcon((int)Layout, (char)UpLo, n, ptr_a, ptr_i, aNorm, ptr_rc);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    ptr_rc = nullptr;
+    return res;
+  }
+  __int64 Lapack::dspcon(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, array<double>^ ap, array<__int64>^ ipiv,
+                         double aNorm, [Out]double% rCond) {
+    pin_ptr<double> ptr_a = &ap[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<double> ptr_rc = &rCond;
+    auto res = LAPACKE_dspcon((int)Layout, (char)UpLo, n, ptr_a, ptr_i, aNorm, ptr_rc);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    ptr_rc = nullptr;
+    return res;
+  }
   #pragma endregion
 }
