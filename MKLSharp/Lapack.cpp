@@ -2408,4 +2408,22 @@ namespace MKLSharp {
     return res;
   }
   #pragma endregion
+  #pragma region triangular, RFP storage
+  __int64 Lapack::stftri(LapackLayout Layout, LapackTranspose Trans,
+                         LapackUpLo UpLo, LapackDiag Diag,
+                         int n, array<float>^ a) {
+    pin_ptr<float> ptr_a = &a[0];
+    auto res = LAPACKE_stftri((int)Layout, (char)Trans, (char)UpLo, (char)Diag, n, ptr_a);
+    ptr_a = nullptr;
+    return res;
+  }
+  __int64 Lapack::dtftri(LapackLayout Layout, LapackTranspose Trans,
+                         LapackUpLo UpLo, LapackDiag Diag,
+                         int n, array<double>^ a) {
+    pin_ptr<double> ptr_a = &a[0];
+    auto res = LAPACKE_dtftri((int)Layout, (char)Trans, (char)UpLo, (char)Diag, n, ptr_a);
+    ptr_a = nullptr;
+    return res;
+  }
+  #pragma endregion
 }
