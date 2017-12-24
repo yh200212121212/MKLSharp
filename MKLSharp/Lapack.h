@@ -487,5 +487,11 @@ namespace MKLSharp {
     static __int64 dsytri2x(LapackLayout Layout, LapackUpLo UpLo,
                             int n, array<double>^ a, int lda, array<__int64>^ ipiv, int nb);
   #pragma endregion
+  #pragma region symmetric indefinite, packed storage
+    static __int64 ssptrf(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<float>^ ap, [Out]array<__int64>^ ipiv);
+    static __int64 dsptrf(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<double>^ ap, [Out]array<__int64>^ ipiv);
+  #pragma endregion
   };
 }

@@ -1998,4 +1998,26 @@ namespace MKLSharp {
     return res;
   }
   #pragma endregion
+  #pragma region symmetric indefinite, packed storage
+  __int64 Lapack::ssptrf(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, array<float>^ ap, [Out]array<__int64>^ ipiv) {
+    pin_ptr<float> ptr_a = &ap[0];
+    ipiv = gcnew array<__int64>(n);
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    auto res = LAPACKE_ssptrf((int)Layout, (char)UpLo, n, ptr_a, ptr_i);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    return res;
+  }
+  __int64 Lapack::dsptrf(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, array<double>^ ap, [Out]array<__int64>^ ipiv) {
+    pin_ptr<double> ptr_a = &ap[0];
+    ipiv = gcnew array<__int64>(n);
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    auto res = LAPACKE_dsptrf((int)Layout, (char)UpLo, n, ptr_a, ptr_i);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    return res;
+  }
+  #pragma endregion
 }
