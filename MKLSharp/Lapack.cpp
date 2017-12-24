@@ -2299,4 +2299,30 @@ namespace MKLSharp {
     return res;
   }
   #pragma endregion
+  #pragma region triangular, packed storage
+  __int64 Lapack::stptrs(LapackLayout Layout, LapackUpLo UpLo,
+                         LapackTranspose Trans, LapackDiag Diag,
+                         int n, int nrhs, array<float>^ ap,
+                         array<float>^ b, int ldb) {
+    pin_ptr<float> ptr_a = &ap[0];
+    pin_ptr<float> ptr_b = &b[0];
+    auto res = LAPACKE_stptrs((int)Layout, (char)UpLo, (char)Trans, (char)Diag,
+                              n, nrhs, ptr_a, ptr_b, ldb);
+    ptr_a = nullptr;
+    ptr_b = nullptr;
+    return res;
+  }
+  __int64 Lapack::dtptrs(LapackLayout Layout, LapackUpLo UpLo,
+                         LapackTranspose Trans, LapackDiag Diag,
+                         int n, int nrhs, array<double>^ ap,
+                         array<double>^ b, int ldb) {
+    pin_ptr<double> ptr_a = &ap[0];
+    pin_ptr<double> ptr_b = &b[0];
+    auto res = LAPACKE_dtptrs((int)Layout, (char)UpLo, (char)Trans, (char)Diag,
+                              n, nrhs, ptr_a, ptr_b, ldb);
+    ptr_a = nullptr;
+    ptr_b = nullptr;
+    return res;
+  }
+  #pragma endregion
 }

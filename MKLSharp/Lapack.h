@@ -566,5 +566,15 @@ namespace MKLSharp {
     static __int64 dtrtri(LapackLayout Layout, LapackUpLo UpLo, LapackDiag Diag,
                           int n, array<double>^ a, int lda);
   #pragma endregion
+  #pragma region triangular, packed storage
+    static __int64 stptrs(LapackLayout Layout, LapackUpLo UpLo,
+                          LapackTranspose Trans, LapackDiag Diag,
+                          int n, int nrhs, array<float>^ ap,
+                          array<float>^ b, int ldb);
+    static __int64 dtptrs(LapackLayout Layout, LapackUpLo UpLo,
+                          LapackTranspose Trans, LapackDiag Diag,
+                          int n, int nrhs, array<double>^ ap,
+                          array<double>^ b, int ldb);
+  #pragma endregion
   };
 }
