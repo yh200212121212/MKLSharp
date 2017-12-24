@@ -1633,4 +1633,26 @@ namespace MKLSharp {
     return res;
   }
   #pragma endregion
+  #pragma region symmetric indefinite
+  __int64 Lapack::ssytrf(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, array<float>^ a, int lda, [Out]array<__int64>^ ipiv) {
+    pin_ptr<float> ptr_a = &a[0];
+    ipiv = gcnew array<__int64>(Math::Max(1, n));
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    auto res = LAPACKE_ssytrf((int)Layout, (char)UpLo, n, ptr_a, lda, ptr_i);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    return res;
+  }
+  __int64 Lapack::dsytrf(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, array<double>^ a, int lda, [Out]array<__int64>^ ipiv) {
+    pin_ptr<double> ptr_a = &a[0];
+    ipiv = gcnew array<__int64>(Math::Max(1, n));
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    auto res = LAPACKE_dsytrf((int)Layout, (char)UpLo, n, ptr_a, lda, ptr_i);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    return res;
+  }
+  #pragma endregion
 }

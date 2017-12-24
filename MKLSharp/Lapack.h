@@ -394,5 +394,11 @@ namespace MKLSharp {
                           array<double>^ x, int ldx,
                           [Out]array<double>^% fErr, [Out]array<double>^% bErr);
   #pragma endregion
+  #pragma region symmetric indefinite
+    static __int64 ssytrf(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<float>^ a, int lda, [Out]array<__int64>^ ipiv);
+    static __int64 dsytrf(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<double>^ a, int lda, [Out]array<__int64>^ ipiv);
+  #pragma endregion
   };
 }
