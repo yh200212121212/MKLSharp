@@ -2283,5 +2283,20 @@ namespace MKLSharp {
     ptr_be = nullptr;
     return res;
   }
+
+  __int64 Lapack::strtri(LapackLayout Layout, LapackUpLo UpLo, LapackDiag Diag,
+                         int n, array<float>^ a, int lda) {
+    pin_ptr<float> ptr_a = &a[0];
+    auto res = LAPACKE_strtri((int)Layout, (char)UpLo, (char)Diag, n, ptr_a, lda);
+    ptr_a = nullptr;
+    return res;
+  }
+  __int64 Lapack::dtrtri(LapackLayout Layout, LapackUpLo UpLo, LapackDiag Diag,
+                         int n, array<double>^ a, int lda) {
+    pin_ptr<double> ptr_a = &a[0];
+    auto res = LAPACKE_dtrtri((int)Layout, (char)UpLo, (char)Diag, n, ptr_a, lda);
+    ptr_a = nullptr;
+    return res;
+  }
   #pragma endregion
 }

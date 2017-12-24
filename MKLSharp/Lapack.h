@@ -530,7 +530,6 @@ namespace MKLSharp {
                           int n, array<float>^ ap, array<__int64>^ ipiv);
     static __int64 dsptri(LapackLayout Layout, LapackUpLo UpLo,
                           int n, array<double>^ ap, array<__int64>^ ipiv);
-    static __int64 dsptri();
   #pragma endregion
   #pragma region triangular
     static __int64 strtrs(LapackLayout Layout, LapackUpLo UpLo,
@@ -561,6 +560,11 @@ namespace MKLSharp {
                           array<double>^ b, int ldb,
                           array<double>^ x, int ldx, 
                           [Out]array<double>^% fErr, [Out]array<double>^% bErr);
+
+    static __int64 strtri(LapackLayout Layout, LapackUpLo UpLo, LapackDiag Diag,
+                          int n, array<float>^ a, int lda);
+    static __int64 dtrtri(LapackLayout Layout, LapackUpLo UpLo, LapackDiag Diag,
+                          int n, array<double>^ a, int lda);
   #pragma endregion
   };
 }
