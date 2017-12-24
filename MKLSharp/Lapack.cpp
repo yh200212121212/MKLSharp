@@ -2474,5 +2474,52 @@ namespace MKLSharp {
     ptr_rc = nullptr;
     return res;
   }
+
+  __int64 Lapack::stbrfs(LapackLayout Layout, LapackUpLo UpLo,
+                         LapackTranspose Trans, LapackDiag Diag, 
+                         int n, int kd, int nrhs, array<float>^ ab, int ldab,
+                         array<float>^ b, int ldb,
+                         array<float>^ x, int ldx,
+                         [Out]array<float>^% fErr, [Out]array<float>^% bErr) {
+    pin_ptr<float> ptr_a = &ab[0];
+    pin_ptr<float> ptr_b = &b[0];
+    pin_ptr<float> ptr_x = &b[0];
+    fErr = gcnew array<float>(nrhs > 1 ? nrhs : 1);
+    pin_ptr<float> ptr_fe = &fErr[0];
+    bErr = gcnew array<float>(nrhs > 1 ? nrhs : 1);
+    pin_ptr<float> ptr_be = &bErr[0];
+    auto res = LAPACKE_stbrfs((int)Layout, (char)UpLo, (char)Trans, (char)Diag,
+                              n, kd, nrhs, ptr_a, ldab, ptr_b, ldb, ptr_x, ldx,
+                              ptr_fe, ptr_be);
+    ptr_a = nullptr;
+    ptr_b = nullptr;
+    ptr_x = nullptr;
+    ptr_fe = nullptr;
+    ptr_be = nullptr;
+    return res;
+  }
+  __int64 Lapack::dtbrfs(LapackLayout Layout, LapackUpLo UpLo,
+                         LapackTranspose Trans, LapackDiag Diag, 
+                         int n, int kd, int nrhs, array<double>^ ab, int ldab,
+                         array<double>^ b, int ldb,
+                         array<double>^ x, int ldx,
+                         [Out]array<double>^% fErr, [Out]array<double>^% bErr) {
+    pin_ptr<double> ptr_a = &ab[0];
+    pin_ptr<double> ptr_b = &b[0];
+    pin_ptr<double> ptr_x = &b[0];
+    fErr = gcnew array<double>(nrhs > 1 ? nrhs : 1);
+    pin_ptr<double> ptr_fe = &fErr[0];
+    bErr = gcnew array<double>(nrhs > 1 ? nrhs : 1);
+    pin_ptr<double> ptr_be = &bErr[0];
+    auto res = LAPACKE_dtbrfs((int)Layout, (char)UpLo, (char)Trans, (char)Diag,
+                              n, kd, nrhs, ptr_a, ldab, ptr_b, ldb, ptr_x, ldx,
+                              ptr_fe, ptr_be);
+    ptr_a = nullptr;
+    ptr_b = nullptr;
+    ptr_x = nullptr;
+    ptr_fe = nullptr;
+    ptr_be = nullptr;
+    return res;
+  }
   #pragma endregion
 }
