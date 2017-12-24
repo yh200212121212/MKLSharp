@@ -24,4 +24,33 @@ namespace MKLSharp {
     Left = CblasLeft,
     Right = CblasRight
   };
+  public enum class LapackLayout {
+    RowMajor = LAPACK_ROW_MAJOR,
+    ColMajor = LAPACK_COL_MAJOR
+  };
+  public enum class LapackTranspose {
+    N = 'N',
+    T = 'T',
+    C = 'C'
+  };
+  public enum class LapackNorm {
+    One = '1',
+    O = 'O',
+    I = 'I'
+  };
+  public enum class LapackEquil {
+    N = 'N',
+    Y = 'Y',
+    R = 'R',
+    C = 'C',
+    B = 'B'
+  };
+  public enum class LapackUpLo {
+    U = 'U',
+    L = 'L'
+  };
+  public enum class LapackDiag {
+    N = 'N',
+    U = 'U'
+  };
 }
