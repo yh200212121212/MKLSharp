@@ -365,5 +365,34 @@ namespace MKLSharp {
                           array<double>^ x, int ldx,
                           [Out]array<double>^% fErr, [Out]array<double>^% bErr);
   #pragma endregion
+  #pragma region symmetric positive-definite, tridiagonal
+    static __int64 spttrf(int n, array<float>^ d, array<float>^ e);
+    static __int64 dpttrf(int n, array<double>^ d, array<double>^ e);
+
+    static __int64 spttrs(LapackLayout Layout, int n, int nrhs,
+                          array<float>^ d, array<float>^ e,
+                          array<float>^ b, int ldb);
+    static __int64 dpttrs(LapackLayout Layout, int n, int nrhs,
+                          array<double>^ d, array<double>^ e,
+                          array<double>^ b, int ldb);
+
+    static __int64 sptcon(int n, array<float>^ d, array<float>^ e,
+                          float aNorm, [Out]float% rCond);
+    static __int64 dptcon(int n, array<double>^ d, array<double>^ e,
+                          double aNorm, [Out]double% rCond);
+
+    static __int64 sptrfs(LapackLayout Layout, int n, int nrhs,
+                          array<float>^ d, array<float>^ e,
+                          array<float>^ df, array<float>^ ef,
+                          array<float>^ b, int ldb,
+                          array<float>^ x, int ldx,
+                          [Out]array<float>^% fErr, [Out]array<float>^% bErr);
+    static __int64 dptrfs(LapackLayout Layout, int n, int nrhs,
+                          array<double>^ d, array<double>^ e,
+                          array<double>^ df, array<double>^ ef,
+                          array<double>^ b, int ldb,
+                          array<double>^ x, int ldx,
+                          [Out]array<double>^% fErr, [Out]array<double>^% bErr);
+  #pragma endregion
   };
 }

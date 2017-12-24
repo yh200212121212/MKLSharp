@@ -1510,4 +1510,127 @@ namespace MKLSharp {
     return res;
   }
   #pragma endregion
+  #pragma region symmetric positive-definite, tridiagonal
+  __int64 Lapack::spttrf(int n, array<float>^ d, array<float>^ e) {
+    pin_ptr<float> ptr_d = &d[0];
+    pin_ptr<float> ptr_e = &e[0];
+    auto res = LAPACKE_spttrf(n, ptr_d, ptr_e);
+    ptr_d = nullptr;
+    ptr_e = nullptr;
+    return res;
+  }
+  __int64 Lapack::dpttrf(int n, array<double>^ d, array<double>^ e) {
+    pin_ptr<double> ptr_d = &d[0];
+    pin_ptr<double> ptr_e = &e[0];
+    auto res = LAPACKE_dpttrf(n, ptr_d, ptr_e);
+    ptr_d = nullptr;
+    ptr_e = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::spttrs(LapackLayout Layout, int n, int nrhs,
+                         array<float>^ d, array<float>^ e,
+                         array<float>^ b, int ldb) {
+    pin_ptr<float> ptr_d = &d[0];
+    pin_ptr<float> ptr_e = &e[0];
+    pin_ptr<float> ptr_b = &b[0];
+    auto res = LAPACKE_spttrs((int)Layout, n, nrhs, ptr_d, ptr_e, ptr_b, ldb);
+    ptr_d = nullptr;
+    ptr_e = nullptr;
+    ptr_b = nullptr;
+    return res;
+  }
+  __int64 Lapack::dpttrs(LapackLayout Layout, int n, int nrhs,
+                         array<double>^ d, array<double>^ e,
+                         array<double>^ b, int ldb) {
+    pin_ptr<double> ptr_d = &d[0];
+    pin_ptr<double> ptr_e = &e[0];
+    pin_ptr<double> ptr_b = &b[0];
+    auto res = LAPACKE_dpttrs((int)Layout, n, nrhs, ptr_d, ptr_e, ptr_b, ldb);
+    ptr_d = nullptr;
+    ptr_e = nullptr;
+    ptr_b = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::sptcon(int n, array<float>^ d, array<float>^ e,
+                         float aNorm, [Out]float% rCond) {
+    pin_ptr<float> ptr_d = &d[0];
+    pin_ptr<float> ptr_e = &e[0];
+    pin_ptr<float> ptr_rc = &rCond;
+    auto res = LAPACKE_sptcon(n, ptr_d, ptr_e, aNorm, ptr_rc);
+    ptr_d = nullptr;
+    ptr_e = nullptr;
+    ptr_rc = nullptr;
+    return res;
+  }
+  __int64 Lapack::dptcon(int n, array<double>^ d, array<double>^ e,
+                         double aNorm, [Out]double% rCond) {
+    pin_ptr<double> ptr_d = &d[0];
+    pin_ptr<double> ptr_e = &e[0];
+    pin_ptr<double> ptr_rc = &rCond;
+    auto res = LAPACKE_dptcon(n, ptr_d, ptr_e, aNorm, ptr_rc);
+    ptr_d = nullptr;
+    ptr_e = nullptr;
+    ptr_rc = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::sptrfs(LapackLayout Layout, int n, int nrhs,
+                         array<float>^ d, array<float>^ e,
+                         array<float>^ df, array<float>^ ef,
+                         array<float>^ b, int ldb,
+                         array<float>^ x, int ldx,
+                         [Out]array<float>^% fErr, [Out]array<float>^% bErr) {
+    pin_ptr<float> ptr_d = &d[0];
+    pin_ptr<float> ptr_e = &e[0];
+    pin_ptr<float> ptr_df = &df[0];
+    pin_ptr<float> ptr_ef = &ef[0];
+    pin_ptr<float> ptr_b = &b[0];
+    pin_ptr<float> ptr_x = &x[0];
+    fErr = gcnew array<float>(Math::Max(1, nrhs));
+    pin_ptr<float> ptr_fe = &fErr[0];
+    bErr = gcnew array<float>(Math::Max(1, nrhs));
+    pin_ptr<float> ptr_be = &bErr[0];
+    auto res = LAPACKE_sptrfs((int)Layout, n, nrhs, ptr_d, ptr_e, ptr_df, ptr_ef,
+                              ptr_b, ldb, ptr_x, ldx, ptr_fe, ptr_be);
+    ptr_d = nullptr;
+    ptr_e = nullptr;
+    ptr_df = nullptr;
+    ptr_ef = nullptr;
+    ptr_b = nullptr;
+    ptr_x = nullptr;
+    ptr_fe = nullptr;
+    ptr_be = nullptr;
+    return res;
+  }
+  __int64 Lapack::dptrfs(LapackLayout Layout, int n, int nrhs,
+                         array<double>^ d, array<double>^ e,
+                         array<double>^ df, array<double>^ ef,
+                         array<double>^ b, int ldb,
+                         array<double>^ x, int ldx,
+                         [Out]array<double>^% fErr, [Out]array<double>^% bErr) {
+    pin_ptr<double> ptr_d = &d[0];
+    pin_ptr<double> ptr_e = &e[0];
+    pin_ptr<double> ptr_df = &df[0];
+    pin_ptr<double> ptr_ef = &ef[0];
+    pin_ptr<double> ptr_b = &b[0];
+    pin_ptr<double> ptr_x = &x[0];
+    fErr = gcnew array<double>(Math::Max(1, nrhs));
+    pin_ptr<double> ptr_fe = &fErr[0];
+    bErr = gcnew array<double>(Math::Max(1, nrhs));
+    pin_ptr<double> ptr_be = &bErr[0];
+    auto res = LAPACKE_dptrfs((int)Layout, n, nrhs, ptr_d, ptr_e, ptr_df, ptr_ef,
+                              ptr_b, ldb, ptr_x, ldx, ptr_fe, ptr_be);
+    ptr_d = nullptr;
+    ptr_e = nullptr;
+    ptr_df = nullptr;
+    ptr_ef = nullptr;
+    ptr_b = nullptr;
+    ptr_x = nullptr;
+    ptr_fe = nullptr;
+    ptr_be = nullptr;
+    return res;
+  }
+  #pragma endregion
 }
