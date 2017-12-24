@@ -2213,5 +2213,90 @@ namespace MKLSharp {
     ptr_b = nullptr;
     return res;
   }
+
+  __int64 Lapack::strcon(LapackLayout Layout, LapackNorm Norm,
+                         LapackUpLo UpLo, LapackDiag Diag, 
+                         int n, array<float>^ a, int lda, [Out]float% rCond) {
+    pin_ptr<float> ptr_a = &a[0];
+    pin_ptr<float> ptr_rc = &rCond;
+    auto res = LAPACKE_strcon((int)Layout, (char)Norm, (char)UpLo, (char)Diag,
+                              n, ptr_a, lda, ptr_rc);
+    ptr_a = nullptr;
+    ptr_rc = nullptr;
+    return res;
+  }
+  __int64 Lapack::dtrcon(LapackLayout Layout, LapackNorm Norm,
+                         LapackUpLo UpLo, LapackDiag Diag, 
+                         int n, array<double>^ a, int lda, [Out]double% rCond) {
+    pin_ptr<double> ptr_a = &a[0];
+    pin_ptr<double> ptr_rc = &rCond;
+    auto res = LAPACKE_dtrcon((int)Layout, (char)Norm, (char)UpLo, (char)Diag,
+                              n, ptr_a, lda, ptr_rc);
+    ptr_a = nullptr;
+    ptr_rc = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::strrfs(LapackLayout Layout, LapackUpLo UpLo,
+                         LapackTranspose Trans, LapackDiag Diag, 
+                         int n, int nrhs, array<float>^ a, int lda,
+                         array<float>^ b, int ldb,
+                         array<float>^ x, int ldx, 
+                         [Out]array<float>^% fErr, [Out]array<float>^% bErr) {
+    pin_ptr<float> ptr_a = &a[0];
+    pin_ptr<float> ptr_b = &b[0];
+    pin_ptr<float> ptr_x = &x[0];
+    fErr = gcnew array<float>(nrhs > 1 ? nrhs : 1);
+    pin_ptr<float> ptr_fe = &fErr[0];
+    bErr = gcnew array<float>(nrhs > 1 ? nrhs : 1);
+    pin_ptr<float> ptr_be = &bErr[0];
+    auto res = LAPACKE_strrfs((int)Layout, (char)UpLo, (char)Trans, (char)Diag,
+                              n, nrhs, ptr_a, lda, ptr_b, ldb, ptr_x, ldx,
+                              ptr_fe, ptr_be);
+    ptr_a = nullptr;
+    ptr_b = nullptr;
+    ptr_x = nullptr;
+    ptr_fe = nullptr;
+    ptr_be = nullptr;
+    return res;
+  }
+  __int64 Lapack::dtrrfs(LapackLayout Layout, LapackUpLo UpLo,
+                         LapackTranspose Trans, LapackDiag Diag, 
+                         int n, int nrhs, array<double>^ a, int lda,
+                         array<double>^ b, int ldb,
+                         array<double>^ x, int ldx, 
+                         [Out]array<double>^% fErr, [Out]array<double>^% bErr) {
+    pin_ptr<double> ptr_a = &a[0];
+    pin_ptr<double> ptr_b = &b[0];
+    pin_ptr<double> ptr_x = &x[0];
+    fErr = gcnew array<double>(nrhs > 1 ? nrhs : 1);
+    pin_ptr<double> ptr_fe = &fErr[0];
+    bErr = gcnew array<double>(nrhs > 1 ? nrhs : 1);
+    pin_ptr<double> ptr_be = &bErr[0];
+    auto res = LAPACKE_dtrrfs((int)Layout, (char)UpLo, (char)Trans, (char)Diag,
+                              n, nrhs, ptr_a, lda, ptr_b, ldb, ptr_x, ldx,
+                              ptr_fe, ptr_be);
+    ptr_a = nullptr;
+    ptr_b = nullptr;
+    ptr_x = nullptr;
+    ptr_fe = nullptr;
+    ptr_be = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::strtri(LapackLayout Layout, LapackUpLo UpLo, LapackDiag Diag,
+                         int n, array<float>^ a, int lda) {
+    pin_ptr<float> ptr_a = &a[0];
+    auto res = LAPACKE_strtri((int)Layout, (char)UpLo, (char)Diag, n, ptr_a, lda);
+    ptr_a = nullptr;
+    return res;
+  }
+  __int64 Lapack::dtrtri(LapackLayout Layout, LapackUpLo UpLo, LapackDiag Diag,
+                         int n, array<double>^ a, int lda) {
+    pin_ptr<double> ptr_a = &a[0];
+    auto res = LAPACKE_dtrtri((int)Layout, (char)UpLo, (char)Diag, n, ptr_a, lda);
+    ptr_a = nullptr;
+    return res;
+  }
   #pragma endregion
 }
