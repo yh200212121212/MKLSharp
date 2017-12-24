@@ -432,6 +432,13 @@ namespace MKLSharp {
     static __int64 dsyequb(LapackLayout Layout, LapackUpLo UpLo,
                            int n, array<double>^ a, int lda,
                            [Out]array<double>^% s, [Out]double% sCond, [Out]double% aMax);
+
+    static __int64 ssycon(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<float>^ a, int lda, array<__int64>^ ipiv,
+                          float aNorm, [Out]float% rCond);
+    static __int64 dsycon(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<double>^ a, int lda, array<__int64>^ ipiv,
+                          double aNorm, [Out]double% rCond);
   #pragma endregion
   };
 }
