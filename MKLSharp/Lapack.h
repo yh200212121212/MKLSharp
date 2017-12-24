@@ -492,6 +492,12 @@ namespace MKLSharp {
                           int n, array<float>^ ap, [Out]array<__int64>^ ipiv);
     static __int64 dsptrf(LapackLayout Layout, LapackUpLo UpLo,
                           int n, array<double>^ ap, [Out]array<__int64>^ ipiv);
+
+    static void sspffrt2(int n, int nColumn, array<float>^ ap);
+    static void dspffrt2(int n, int nColumn, array<double>^ ap);
+
+    static void sspffrtx(int n, int nColumn, array<float>^ ap);
+    static void dspffrtx(int n, int nColumn, array<double>^ ap);
   #pragma endregion
   };
 }

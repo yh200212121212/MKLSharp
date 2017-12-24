@@ -2019,5 +2019,51 @@ namespace MKLSharp {
     ptr_i = nullptr;
     return res;
   }
+
+  void Lapack::sspffrt2(int n, int nColumn, array<float>^ ap) {
+    pin_ptr<float> ptr_a = &ap[0];
+    __int64 ln = n;
+    __int64 lnc = nColumn;
+    auto work = new float[n];
+    auto work2 = new float[n];
+    mkl_sspffrt2(ptr_a, &ln, &lnc, work, work2);
+    delete work;
+    delete work2;
+    ptr_a = nullptr;
+  }
+  void Lapack::dspffrt2(int n, int nColumn, array<double>^ ap) {
+    pin_ptr<double> ptr_a = &ap[0];
+    __int64 ln = n;
+    __int64 lnc = nColumn;
+    auto work = new double[n];
+    auto work2 = new double[n];
+    mkl_dspffrt2(ptr_a, &ln, &lnc, work, work2);
+    delete work;
+    delete work2;
+    ptr_a = nullptr;
+  }
+
+  void Lapack::sspffrtx(int n, int nColumn, array<float>^ ap) {
+    pin_ptr<float> ptr_a = &ap[0];
+    __int64 ln = n;
+    __int64 lnc = nColumn;
+    auto work = new float[n];
+    auto work2 = new float[n];
+    mkl_sspffrtx(ptr_a, &ln, &lnc, work, work2);
+    delete work;
+    delete work2;
+    ptr_a = nullptr;
+  }
+  void Lapack::dspffrtx(int n, int nColumn, array<double>^ ap) {
+    pin_ptr<double> ptr_a = &ap[0];
+    __int64 ln = n;
+    __int64 lnc = nColumn;
+    auto work = new double[n];
+    auto work2 = new double[n];
+    mkl_dspffrtx(ptr_a, &ln, &lnc, work, work2);
+    delete work;
+    delete work2;
+    ptr_a = nullptr;
+  }
   #pragma endregion
 }
