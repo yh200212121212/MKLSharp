@@ -1978,5 +1978,24 @@ namespace MKLSharp {
     ptr_i = nullptr;
     return res;
   }
+
+  __int64 Lapack::ssytri2x(LapackLayout Layout, LapackUpLo UpLo,
+                           int n, array<float>^ a, int lda, array<__int64>^ ipiv, int nb) {
+    pin_ptr<float> ptr_a = &a[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    auto res = LAPACKE_ssytri2x((int)Layout, (char)UpLo, n, ptr_a, lda, ptr_i, nb);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    return res;
+  }
+  __int64 Lapack::dsytri2x(LapackLayout Layout, LapackUpLo UpLo,
+                           int n, array<double>^ a, int lda, array<__int64>^ ipiv, int nb) {
+    pin_ptr<double> ptr_a = &a[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    auto res = LAPACKE_dsytri2x((int)Layout, (char)UpLo, n, ptr_a, lda, ptr_i, nb);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    return res;
+  }
   #pragma endregion
 }
