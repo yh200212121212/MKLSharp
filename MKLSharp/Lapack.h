@@ -394,5 +394,98 @@ namespace MKLSharp {
                           array<double>^ x, int ldx,
                           [Out]array<double>^% fErr, [Out]array<double>^% bErr);
   #pragma endregion
+  #pragma region symmetric indefinite
+    static __int64 ssytrf(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<float>^ a, int lda, [Out]array<__int64>^ ipiv);
+    static __int64 dsytrf(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<double>^ a, int lda, [Out]array<__int64>^ ipiv);
+
+    static __int64 ssytrf_aa(LapackLayout Layout, LapackUpLo UpLo,
+                             int n, array<float>^ a, int lda, [Out]array<__int64>^ ipiv);
+    static __int64 dsytrf_aa(LapackLayout Layout, LapackUpLo UpLo,
+                             int n, array<double>^ a, int lda, [Out]array<__int64>^ ipiv);
+
+    static __int64 ssytrs(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int nrhs, array<float>^ a, int lda, array<__int64>^ ipiv,
+                          array<float>^ b, int ldb);
+    static __int64 dsytrs(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int nrhs, array<double>^ a, int lda, array<__int64>^ ipiv,
+                          array<double>^ b, int ldb);
+
+    static __int64 ssytrs2(LapackLayout Layout, LapackUpLo UpLo,
+                           int n, int nrhs, array<float>^ a, int lda, array<__int64>^ ipiv,
+                           array<float>^ b, int ldb);
+    static __int64 dsytrs2(LapackLayout Layout, LapackUpLo UpLo,
+                           int n, int nrhs, array<double>^ a, int lda, array<__int64>^ ipiv,
+                           array<double>^ b, int ldb);
+
+    static __int64 ssytrs_aa(LapackLayout Layout, LapackUpLo UpLo,
+                             int n, int nrhs, array<float>^ a, int lda, array<__int64>^ ipiv,
+                             array<float>^ b, int ldb);
+    static __int64 dsytrs_aa(LapackLayout Layout, LapackUpLo UpLo,
+                             int n, int nrhs, array<double>^ a, int lda, array<__int64>^ ipiv,
+                             array<double>^ b, int ldb);
+
+    static __int64 ssyequb(LapackLayout Layout, LapackUpLo UpLo,
+                           int n, array<float>^ a, int lda,
+                           [Out]array<float>^% s, [Out]float% sCond, [Out]float% aMax);
+    static __int64 dsyequb(LapackLayout Layout, LapackUpLo UpLo,
+                           int n, array<double>^ a, int lda,
+                           [Out]array<double>^% s, [Out]double% sCond, [Out]double% aMax);
+
+    static __int64 ssycon(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<float>^ a, int lda, array<__int64>^ ipiv,
+                          float aNorm, [Out]float% rCond);
+    static __int64 dsycon(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<double>^ a, int lda, array<__int64>^ ipiv,
+                          double aNorm, [Out]double% rCond);
+
+    static __int64 ssyrfs(LapackLayout Layout, LapackUpLo UpLo, 
+                          int n, int nrhs, array<float>^ a, int lda,
+                          array<float>^ af, int ldaf, array<__int64>^ ipiv,
+                          array<float>^ b, int ldb,
+                          array<float>^ x, int ldx, 
+                          [Out]array<float>^% fErr, [Out]array<float>^% bErr);
+    static __int64 dsyrfs(LapackLayout Layout, LapackUpLo UpLo, 
+                          int n, int nrhs, array<double>^ a, int lda,
+                          array<double>^ af, int ldaf, array<__int64>^ ipiv,
+                          array<double>^ b, int ldb,
+                          array<double>^ x, int ldx, 
+                          [Out]array<double>^% fErr, [Out]array<double>^% bErr);
+
+    static __int64 ssyrfsx(LapackLayout Layout, LapackUpLo UpLo, LapackEquil Equed,
+                           int n, int nrhs, array<float>^ a, int lda,
+                           array<float>^ af, int ldaf, array<__int64>^ ipiv,
+                           array<float>^ s, array<float>^ b, int ldb,
+                           array<float>^ x, int ldx,
+                           [Out]float% rCond, [Out]array<float>^% bErr, 
+                           int nErrBnds, [Out]array<float>^% errBndsNorm, 
+                           [Out]array<float>^% errBndsComp,
+                           int nParams, array<float>^ params);
+    static __int64 dsyrfsx(LapackLayout Layout, LapackUpLo UpLo, LapackEquil Equed,
+                           int n, int nrhs, array<double>^ a, int lda,
+                           array<double>^ af, int ldaf, array<__int64>^ ipiv,
+                           array<double>^ s, array<double>^ b, int ldb,
+                           array<double>^ x, int ldx,
+                           [Out]double% rCond, [Out]array<double>^% bErr, 
+                           int nErrBnds, [Out]array<double>^% errBndsNorm, 
+                           [Out]array<double>^% errBndsComp,
+                           int nParams, array<double>^ params);
+
+    static __int64 ssytri(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<float>^ a, int lda, array<__int64>^ ipiv);
+    static __int64 dsytri(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<double>^ a, int lda, array<__int64>^ ipiv);
+
+    static __int64 ssytri2(LapackLayout Layout, LapackUpLo UpLo,
+                           int n, array<float>^ a, int lda, array<__int64>^ ipiv);
+    static __int64 dsytri2(LapackLayout Layout, LapackUpLo UpLo,
+                           int n, array<double>^ a, int lda, array<__int64>^ ipiv);
+
+    static __int64 ssytri2x(LapackLayout Layout, LapackUpLo UpLo,
+                            int n, array<float>^ a, int lda, array<__int64>^ ipiv, int nb);
+    static __int64 dsytri2x(LapackLayout Layout, LapackUpLo UpLo,
+                            int n, array<double>^ a, int lda, array<__int64>^ ipiv, int nb);
+  #pragma endregion
   };
 }

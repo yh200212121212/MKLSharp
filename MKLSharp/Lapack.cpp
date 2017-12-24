@@ -1633,4 +1633,369 @@ namespace MKLSharp {
     return res;
   }
   #pragma endregion
+  #pragma region symmetric indefinite
+  __int64 Lapack::ssytrf(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, array<float>^ a, int lda, [Out]array<__int64>^ ipiv) {
+    pin_ptr<float> ptr_a = &a[0];
+    ipiv = gcnew array<__int64>(Math::Max(1, n));
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    auto res = LAPACKE_ssytrf((int)Layout, (char)UpLo, n, ptr_a, lda, ptr_i);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    return res;
+  }
+  __int64 Lapack::dsytrf(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, array<double>^ a, int lda, [Out]array<__int64>^ ipiv) {
+    pin_ptr<double> ptr_a = &a[0];
+    ipiv = gcnew array<__int64>(Math::Max(1, n));
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    auto res = LAPACKE_dsytrf((int)Layout, (char)UpLo, n, ptr_a, lda, ptr_i);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::ssytrf_aa(LapackLayout Layout, LapackUpLo UpLo,
+                            int n, array<float>^ a, int lda, [Out]array<__int64>^ ipiv) {
+    pin_ptr<float> ptr_a = &a[0];
+    ipiv = gcnew array<__int64>(Math::Max(1, n));
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    auto res = LAPACKE_ssytrf_aa((int)Layout, (char)UpLo, n, ptr_a, lda, ptr_i);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    return res;
+  }
+  __int64 Lapack::dsytrf_aa(LapackLayout Layout, LapackUpLo UpLo,
+                            int n, array<double>^ a, int lda, [Out]array<__int64>^ ipiv) {
+    pin_ptr<double> ptr_a = &a[0];
+    ipiv = gcnew array<__int64>(Math::Max(1, n));
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    auto res = LAPACKE_dsytrf_aa((int)Layout, (char)UpLo, n, ptr_a, lda, ptr_i);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::ssytrs(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, int nrhs, array<float>^ a, int lda, array<__int64>^ ipiv,
+                         array<float>^ b, int ldb) {
+    pin_ptr<float> ptr_a = &a[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<float> ptr_b = &b[0];
+    auto res = LAPACKE_ssytrs((int)Layout, (char)UpLo, n, nrhs, ptr_a, lda, ptr_i, ptr_b, ldb);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    ptr_b = nullptr;
+    return res;
+  }
+  __int64 Lapack::dsytrs(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, int nrhs, array<double>^ a, int lda, array<__int64>^ ipiv,
+                         array<double>^ b, int ldb) {
+    pin_ptr<double> ptr_a = &a[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<double> ptr_b = &b[0];
+    auto res = LAPACKE_dsytrs((int)Layout, (char)UpLo, n, nrhs, ptr_a, lda, ptr_i, ptr_b, ldb);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    ptr_b = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::ssytrs2(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int nrhs, array<float>^ a, int lda, array<__int64>^ ipiv,
+                          array<float>^ b, int ldb) {
+    pin_ptr<float> ptr_a = &a[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<float> ptr_b = &b[0];
+    auto res = LAPACKE_ssytrs2((int)Layout, (char)UpLo, n, nrhs, ptr_a, lda, ptr_i, ptr_b, ldb);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    ptr_b = nullptr;
+    return res;
+  }
+  __int64 Lapack::dsytrs2(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, int nrhs, array<double>^ a, int lda, array<__int64>^ ipiv,
+                          array<double>^ b, int ldb) {
+    pin_ptr<double> ptr_a = &a[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<double> ptr_b = &b[0];
+    auto res = LAPACKE_dsytrs2((int)Layout, (char)UpLo, n, nrhs, ptr_a, lda, ptr_i, ptr_b, ldb);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    ptr_b = nullptr;
+    return res;
+  }
+ 
+  __int64 Lapack::ssytrs_aa(LapackLayout Layout, LapackUpLo UpLo,
+                            int n, int nrhs, array<float>^ a, int lda, array<__int64>^ ipiv,
+                            array<float>^ b, int ldb) {
+    pin_ptr<float> ptr_a = &a[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<float> ptr_b = &b[0];
+    auto res = LAPACKE_ssytrs_aa((int)Layout, (char)UpLo, n, nrhs, ptr_a, lda, ptr_i, ptr_b, ldb);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    ptr_b = nullptr;
+    return res;
+  }
+  __int64 Lapack::dsytrs_aa(LapackLayout Layout, LapackUpLo UpLo,
+                            int n, int nrhs, array<double>^ a, int lda, array<__int64>^ ipiv,
+                            array<double>^ b, int ldb) {
+    pin_ptr<double> ptr_a = &a[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<double> ptr_b = &b[0];
+    auto res = LAPACKE_dsytrs_aa((int)Layout, (char)UpLo, n, nrhs, ptr_a, lda, ptr_i, ptr_b, ldb);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    ptr_b = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::ssyequb(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<float>^ a, int lda,
+                          [Out]array<float>^% s, [Out]float% sCond, [Out]float% aMax) {
+    pin_ptr<float> ptr_a = &a[0];
+    s = gcnew array<float>(n);
+    pin_ptr<float> ptr_s = &s[0];
+    pin_ptr<float> ptr_sc = &sCond;
+    pin_ptr<float> ptr_am = &aMax;
+    auto res = LAPACKE_ssyequb((int)Layout, (char)UpLo, n, ptr_a, lda, ptr_s, ptr_sc, ptr_am);
+    ptr_a = nullptr;
+    ptr_s = nullptr;
+    ptr_sc = nullptr;
+    ptr_am = nullptr;
+    return res;
+  }
+  __int64 Lapack::dsyequb(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<double>^ a, int lda,
+                          [Out]array<double>^% s, [Out]double% sCond, [Out]double% aMax) {
+    pin_ptr<double> ptr_a = &a[0];
+    s = gcnew array<double>(n);
+    pin_ptr<double> ptr_s = &s[0];
+    pin_ptr<double> ptr_sc = &sCond;
+    pin_ptr<double> ptr_am = &aMax;
+    auto res = LAPACKE_dsyequb((int)Layout, (char)UpLo, n, ptr_a, lda, ptr_s, ptr_sc, ptr_am);
+    ptr_a = nullptr;
+    ptr_s = nullptr;
+    ptr_sc = nullptr;
+    ptr_am = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::ssycon(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, array<float>^ a, int lda, array<__int64>^ ipiv,
+                         float aNorm, [Out]float% rCond) {
+    pin_ptr<float> ptr_a = &a[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<float> ptr_rc = &rCond;
+    auto res = LAPACKE_ssycon((int)Layout, (char)UpLo, n, ptr_a, lda, ptr_i, aNorm, ptr_rc);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    ptr_rc = nullptr;
+    return res;
+  }
+  __int64 Lapack::dsycon(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, array<double>^ a, int lda, array<__int64>^ ipiv,
+                         double aNorm, [Out]double% rCond) {
+    pin_ptr<double> ptr_a = &a[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<double> ptr_rc = &rCond;
+    auto res = LAPACKE_dsycon((int)Layout, (char)UpLo, n, ptr_a, lda, ptr_i, aNorm, ptr_rc);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    ptr_rc = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::ssyrfs(LapackLayout Layout, LapackUpLo UpLo, 
+                         int n, int nrhs, array<float>^ a, int lda,
+                         array<float>^ af, int ldaf, array<__int64>^ ipiv,
+                         array<float>^ b, int ldb,
+                         array<float>^ x, int ldx, 
+                         [Out]array<float>^% fErr, [Out]array<float>^% bErr) {
+    pin_ptr<float> ptr_a = &a[0];
+    pin_ptr<float> ptr_af = &af[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<float> ptr_b = &b[0];
+    pin_ptr<float> ptr_x = &x[0];
+    fErr = gcnew array<float>(Math::Max(1, nrhs));
+    pin_ptr<float> ptr_fe = &fErr[0];
+    bErr = gcnew array<float>(Math::Max(1, nrhs));
+    pin_ptr<float> ptr_be = &bErr[0];
+    auto res = LAPACKE_ssyrfs((int)Layout, (char)UpLo, n, nrhs, ptr_a, lda, ptr_af, ldaf, ptr_i,
+                              ptr_b, ldb, ptr_x, ldx, ptr_fe, ptr_be);
+    ptr_a = nullptr;
+    ptr_af = nullptr;
+    ptr_i = nullptr;
+    ptr_b = nullptr;
+    ptr_x = nullptr;
+    ptr_fe = nullptr;
+    ptr_be = nullptr;
+    return res;
+  }
+  __int64 Lapack::dsyrfs(LapackLayout Layout, LapackUpLo UpLo, 
+                         int n, int nrhs, array<double>^ a, int lda,
+                         array<double>^ af, int ldaf, array<__int64>^ ipiv,
+                         array<double>^ b, int ldb,
+                         array<double>^ x, int ldx, 
+                         [Out]array<double>^% fErr, [Out]array<double>^% bErr) {
+    pin_ptr<double> ptr_a = &a[0];
+    pin_ptr<double> ptr_af = &af[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<double> ptr_b = &b[0];
+    pin_ptr<double> ptr_x = &x[0];
+    fErr = gcnew array<double>(Math::Max(1, nrhs));
+    pin_ptr<double> ptr_fe = &fErr[0];
+    bErr = gcnew array<double>(Math::Max(1, nrhs));
+    pin_ptr<double> ptr_be = &bErr[0];
+    auto res = LAPACKE_dsyrfs((int)Layout, (char)UpLo, n, nrhs, ptr_a, lda, ptr_af, ldaf, ptr_i,
+                              ptr_b, ldb, ptr_x, ldx, ptr_fe, ptr_be);
+    ptr_a = nullptr;
+    ptr_af = nullptr;
+    ptr_i = nullptr;
+    ptr_b = nullptr;
+    ptr_x = nullptr;
+    ptr_fe = nullptr;
+    ptr_be = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::ssyrfsx(LapackLayout Layout, LapackUpLo UpLo, LapackEquil Equed,
+                          int n, int nrhs, array<float>^ a, int lda,
+                          array<float>^ af, int ldaf, array<__int64>^ ipiv,
+                          array<float>^ s, array<float>^ b, int ldb,
+                          array<float>^ x, int ldx,
+                          [Out]float% rCond, [Out]array<float>^% bErr, 
+                          int nErrBnds, [Out]array<float>^% errBndsNorm, 
+                          [Out]array<float>^% errBndsComp,
+                          int nParams, array<float>^ params) {
+    pin_ptr<float> ptr_a = &a[0];
+    pin_ptr<float> ptr_af = &af[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<float> ptr_s = &s[0];
+    pin_ptr<float> ptr_b = &b[0];
+    pin_ptr<float> ptr_x = &x[0];
+    pin_ptr<float> ptr_rc = &rCond;
+    bErr = gcnew array<float>(Math::Max(1, nrhs));
+    pin_ptr<float> ptr_be = &bErr[0];
+    errBndsNorm = gcnew array<float>(nrhs * nErrBnds);
+    pin_ptr<float> ptr_ebn = &errBndsNorm[0];
+    errBndsComp = gcnew array<float>(nrhs * nErrBnds);
+    pin_ptr<float> ptr_ebc = &errBndsComp[0];
+    pin_ptr<float> ptr_p = &params[0];
+    auto res = LAPACKE_ssyrfsx((int)Layout, (char)UpLo, (char)Equed,
+                               n, nrhs, ptr_a, lda, ptr_af, ldaf, ptr_i,
+                               ptr_s, ptr_b, ldb, ptr_x, ldx, ptr_rc, ptr_be,
+                               nErrBnds, ptr_ebn, ptr_ebc, nParams, ptr_p);
+    ptr_a = nullptr;
+    ptr_af = nullptr;
+    ptr_i = nullptr;
+    ptr_s = nullptr;
+    ptr_b = nullptr;
+    ptr_x = nullptr;
+    ptr_rc = nullptr;
+    ptr_be = nullptr;
+    ptr_ebn = nullptr;
+    ptr_ebc = nullptr;
+    ptr_p = nullptr;
+    return res;
+  }
+  __int64 Lapack::dsyrfsx(LapackLayout Layout, LapackUpLo UpLo, LapackEquil Equed,
+                          int n, int nrhs, array<double>^ a, int lda,
+                          array<double>^ af, int ldaf, array<__int64>^ ipiv,
+                          array<double>^ s, array<double>^ b, int ldb,
+                          array<double>^ x, int ldx,
+                          [Out]double% rCond, [Out]array<double>^% bErr, 
+                          int nErrBnds, [Out]array<double>^% errBndsNorm, 
+                          [Out]array<double>^% errBndsComp,
+                          int nParams, array<double>^ params) {
+    pin_ptr<double> ptr_a = &a[0];
+    pin_ptr<double> ptr_af = &af[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    pin_ptr<double> ptr_s = &s[0];
+    pin_ptr<double> ptr_b = &b[0];
+    pin_ptr<double> ptr_x = &x[0];
+    pin_ptr<double> ptr_rc = &rCond;
+    bErr = gcnew array<double>(Math::Max(1, nrhs));
+    pin_ptr<double> ptr_be = &bErr[0];
+    errBndsNorm = gcnew array<double>(nrhs * nErrBnds);
+    pin_ptr<double> ptr_ebn = &errBndsNorm[0];
+    errBndsComp = gcnew array<double>(nrhs * nErrBnds);
+    pin_ptr<double> ptr_ebc = &errBndsComp[0];
+    pin_ptr<double> ptr_p = &params[0];
+    auto res = LAPACKE_dsyrfsx((int)Layout, (char)UpLo, (char)Equed,
+                               n, nrhs, ptr_a, lda, ptr_af, ldaf, ptr_i,
+                               ptr_s, ptr_b, ldb, ptr_x, ldx, ptr_rc, ptr_be,
+                               nErrBnds, ptr_ebn, ptr_ebc, nParams, ptr_p);
+    ptr_a = nullptr;
+    ptr_af = nullptr;
+    ptr_i = nullptr;
+    ptr_s = nullptr;
+    ptr_b = nullptr;
+    ptr_x = nullptr;
+    ptr_rc = nullptr;
+    ptr_be = nullptr;
+    ptr_ebn = nullptr;
+    ptr_ebc = nullptr;
+    ptr_p = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::ssytri(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, array<float>^ a, int lda, array<__int64>^ ipiv) {
+    pin_ptr<float> ptr_a = &a[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    auto res = LAPACKE_ssytri((int)Layout, (char)UpLo, n, ptr_a, lda, ptr_i);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    return res;
+  }
+  __int64 Lapack::dsytri(LapackLayout Layout, LapackUpLo UpLo,
+                         int n, array<double>^ a, int lda, array<__int64>^ ipiv) {
+    pin_ptr<double> ptr_a = &a[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    auto res = LAPACKE_dsytri((int)Layout, (char)UpLo, n, ptr_a, lda, ptr_i);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::ssytri2(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<float>^ a, int lda, array<__int64>^ ipiv) {
+    pin_ptr<float> ptr_a = &a[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    auto res = LAPACKE_ssytri2((int)Layout, (char)UpLo, n, ptr_a, lda, ptr_i);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    return res;
+  }
+  __int64 Lapack::dsytri2(LapackLayout Layout, LapackUpLo UpLo,
+                          int n, array<double>^ a, int lda, array<__int64>^ ipiv) {
+    pin_ptr<double> ptr_a = &a[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    auto res = LAPACKE_dsytri2((int)Layout, (char)UpLo, n, ptr_a, lda, ptr_i);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    return res;
+  }
+
+  __int64 Lapack::ssytri2x(LapackLayout Layout, LapackUpLo UpLo,
+                           int n, array<float>^ a, int lda, array<__int64>^ ipiv, int nb) {
+    pin_ptr<float> ptr_a = &a[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    auto res = LAPACKE_ssytri2x((int)Layout, (char)UpLo, n, ptr_a, lda, ptr_i, nb);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    return res;
+  }
+  __int64 Lapack::dsytri2x(LapackLayout Layout, LapackUpLo UpLo,
+                           int n, array<double>^ a, int lda, array<__int64>^ ipiv, int nb) {
+    pin_ptr<double> ptr_a = &a[0];
+    pin_ptr<__int64> ptr_i = &ipiv[0];
+    auto res = LAPACKE_dsytri2x((int)Layout, (char)UpLo, n, ptr_a, lda, ptr_i, nb);
+    ptr_a = nullptr;
+    ptr_i = nullptr;
+    return res;
+  }
+  #pragma endregion
 }

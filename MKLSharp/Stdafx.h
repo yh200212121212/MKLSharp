@@ -40,6 +40,7 @@ namespace MKLSharp {
   };
   public enum class LapackEquil {
     N = 'N',
+    Y = 'Y',
     R = 'R',
     C = 'C',
     B = 'B'
