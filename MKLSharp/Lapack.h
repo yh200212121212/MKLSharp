@@ -124,22 +124,22 @@ namespace MKLSharp {
     static __int64 sgbrfs(LapackLayout Layout, LapackTranspose Trans,
                           int n, int kl, int ku, int nrhs, array<float>^ ab, int ldab,
                           array<float>^ afb, int ldafb, array<__int64>^ ipiv,
-                          array<float>^ b, int ldb, 
-                          array<float>^ x, int ldx, 
+                          array<float>^ b, int ldb,
+                          array<float>^ x, int ldx,
                           [Out]array<float>^% fErr, [Out]array<float>^% bErr);
     static __int64 dgbrfs(LapackLayout Layout, LapackTranspose Trans,
                           int n, int kl, int ku, int nrhs, array<double>^ ab, int ldab,
                           array<double>^ afb, int ldafb, array<__int64>^ ipiv,
-                          array<double>^ b, int ldb, 
-                          array<double>^ x, int ldx, 
+                          array<double>^ b, int ldb,
+                          array<double>^ x, int ldx,
                           [Out]array<double>^% fErr, [Out]array<double>^% bErr);
 
     static __int64 sgbrfsx(LapackLayout Layout, LapackTranspose Trans, LapackEquil Equed,
                            int n, int kl, int ku, int nrhs, array<float>^ ab, int ldab,
                            array<float>^ afb, int ldafb, array<__int64>^ ipiv,
                            array<float>^ r, array<float>^ c,
-                           array<float>^ b, int ldb, 
-                           array<float>^ x, int ldx, 
+                           array<float>^ b, int ldb,
+                           array<float>^ x, int ldx,
                            [Out]float% rCond, [Out]array<float>^% bErr,
                            int nErrBnds, [Out]array<float>^% errBndsNorm,
                            [Out]array<float>^% errBndsComp, int nParams, array<float>^ params);
@@ -147,8 +147,8 @@ namespace MKLSharp {
                            int n, int kl, int ku, int nrhs, array<double>^ ab, int ldab,
                            array<double>^ afb, int ldafb, array<__int64>^ ipiv,
                            array<double>^ r, array<double>^ c,
-                           array<double>^ b, int ldb, 
-                           array<double>^ x, int ldx, 
+                           array<double>^ b, int ldb,
+                           array<double>^ x, int ldx,
                            [Out]double% rCond, [Out]array<double>^% bErr,
                            int nErrBnds, [Out]array<double>^% errBndsNorm,
                            [Out]array<double>^% errBndsComp, int nParams, array<double>^ params);
@@ -295,12 +295,12 @@ namespace MKLSharp {
     static __int64 dppcon(LapackLayout Layout, LapackUpLo UpLo,
                           int n, array<double>^ ap, double aNorm, [Out]double% rCond);
 
-    static __int64 spprfs(LapackLayout Layout, LapackUpLo UpLo, 
+    static __int64 spprfs(LapackLayout Layout, LapackUpLo UpLo,
                           int n, int nrhs, array<float>^ ap, array<float>^ afp,
                           array<float>^ b, int ldb,
                           array<float>^ x, int ldx,
                           [Out]array<float>^% fErr, [Out]array<float>^% bErr);
-    static __int64 dpprfs(LapackLayout Layout, LapackUpLo UpLo, 
+    static __int64 dpprfs(LapackLayout Layout, LapackUpLo UpLo,
                           int n, int nrhs, array<double>^ ap, array<double>^ afp,
                           array<double>^ b, int ldb,
                           array<double>^ x, int ldx,
@@ -354,13 +354,13 @@ namespace MKLSharp {
 
     static __int64 spbrfs(LapackLayout Layout, LapackUpLo UpLo,
                           int n, int kd, int nrhs, array<float>^ ab, int ldab,
-                          array<float>^ afb, int ldafb, 
+                          array<float>^ afb, int ldafb,
                           array<float>^ b, int ldb,
                           array<float>^ x, int ldx,
                           [Out]array<float>^% fErr, [Out]array<float>^% bErr);
     static __int64 dpbrfs(LapackLayout Layout, LapackUpLo UpLo,
                           int n, int kd, int nrhs, array<double>^ ab, int ldab,
-                          array<double>^ afb, int ldafb, 
+                          array<double>^ afb, int ldafb,
                           array<double>^ b, int ldb,
                           array<double>^ x, int ldx,
                           [Out]array<double>^% fErr, [Out]array<double>^% bErr);
@@ -440,17 +440,17 @@ namespace MKLSharp {
                           int n, array<double>^ a, int lda, array<__int64>^ ipiv,
                           double aNorm, [Out]double% rCond);
 
-    static __int64 ssyrfs(LapackLayout Layout, LapackUpLo UpLo, 
+    static __int64 ssyrfs(LapackLayout Layout, LapackUpLo UpLo,
                           int n, int nrhs, array<float>^ a, int lda,
                           array<float>^ af, int ldaf, array<__int64>^ ipiv,
                           array<float>^ b, int ldb,
-                          array<float>^ x, int ldx, 
+                          array<float>^ x, int ldx,
                           [Out]array<float>^% fErr, [Out]array<float>^% bErr);
-    static __int64 dsyrfs(LapackLayout Layout, LapackUpLo UpLo, 
+    static __int64 dsyrfs(LapackLayout Layout, LapackUpLo UpLo,
                           int n, int nrhs, array<double>^ a, int lda,
                           array<double>^ af, int ldaf, array<__int64>^ ipiv,
                           array<double>^ b, int ldb,
-                          array<double>^ x, int ldx, 
+                          array<double>^ x, int ldx,
                           [Out]array<double>^% fErr, [Out]array<double>^% bErr);
 
     static __int64 ssyrfsx(LapackLayout Layout, LapackUpLo UpLo, LapackEquil Equed,
@@ -458,8 +458,8 @@ namespace MKLSharp {
                            array<float>^ af, int ldaf, array<__int64>^ ipiv,
                            array<float>^ s, array<float>^ b, int ldb,
                            array<float>^ x, int ldx,
-                           [Out]float% rCond, [Out]array<float>^% bErr, 
-                           int nErrBnds, [Out]array<float>^% errBndsNorm, 
+                           [Out]float% rCond, [Out]array<float>^% bErr,
+                           int nErrBnds, [Out]array<float>^% errBndsNorm,
                            [Out]array<float>^% errBndsComp,
                            int nParams, array<float>^ params);
     static __int64 dsyrfsx(LapackLayout Layout, LapackUpLo UpLo, LapackEquil Equed,
@@ -467,8 +467,8 @@ namespace MKLSharp {
                            array<double>^ af, int ldaf, array<__int64>^ ipiv,
                            array<double>^ s, array<double>^ b, int ldb,
                            array<double>^ x, int ldx,
-                           [Out]double% rCond, [Out]array<double>^% bErr, 
-                           int nErrBnds, [Out]array<double>^% errBndsNorm, 
+                           [Out]double% rCond, [Out]array<double>^% bErr,
+                           int nErrBnds, [Out]array<double>^% errBndsNorm,
                            [Out]array<double>^% errBndsComp,
                            int nParams, array<double>^ params);
 
@@ -542,23 +542,23 @@ namespace MKLSharp {
                           array<double>^ b, int ldb);
 
     static __int64 strcon(LapackLayout Layout, LapackNorm Norm,
-                          LapackUpLo UpLo, LapackDiag Diag, 
+                          LapackUpLo UpLo, LapackDiag Diag,
                           int n, array<float>^ a, int lda, [Out]float% rCond);
     static __int64 dtrcon(LapackLayout Layout, LapackNorm Norm,
-                          LapackUpLo UpLo, LapackDiag Diag, 
+                          LapackUpLo UpLo, LapackDiag Diag,
                           int n, array<double>^ a, int lda, [Out]double% rCond);
 
     static __int64 strrfs(LapackLayout Layout, LapackUpLo UpLo,
-                          LapackTranspose Trans, LapackDiag Diag, 
+                          LapackTranspose Trans, LapackDiag Diag,
                           int n, int nrhs, array<float>^ a, int lda,
                           array<float>^ b, int ldb,
-                          array<float>^ x, int ldx, 
+                          array<float>^ x, int ldx,
                           [Out]array<float>^% fErr, [Out]array<float>^% bErr);
     static __int64 dtrrfs(LapackLayout Layout, LapackUpLo UpLo,
-                          LapackTranspose Trans, LapackDiag Diag, 
+                          LapackTranspose Trans, LapackDiag Diag,
                           int n, int nrhs, array<double>^ a, int lda,
                           array<double>^ b, int ldb,
-                          array<double>^ x, int ldx, 
+                          array<double>^ x, int ldx,
                           [Out]array<double>^% fErr, [Out]array<double>^% bErr);
 
     static __int64 strtri(LapackLayout Layout, LapackUpLo UpLo, LapackDiag Diag,
@@ -584,16 +584,16 @@ namespace MKLSharp {
                           int n, array<double>^ ap, [Out]double% rCond);
 
     static __int64 stprfs(LapackLayout Layout, LapackUpLo UpLo,
-                          LapackTranspose Trans, LapackDiag Diag, 
+                          LapackTranspose Trans, LapackDiag Diag,
                           int n, int nrhs, array<float>^ ap,
-                          array<float>^ b, int ldb, 
-                          array<float>^ x, int ldx, 
+                          array<float>^ b, int ldb,
+                          array<float>^ x, int ldx,
                           [Out]array<float>^% fErr, [Out]array<float>^% bErr);
     static __int64 dtprfs(LapackLayout Layout, LapackUpLo UpLo,
-                          LapackTranspose Trans, LapackDiag Diag, 
+                          LapackTranspose Trans, LapackDiag Diag,
                           int n, int nrhs, array<double>^ ap,
-                          array<double>^ b, int ldb, 
-                          array<double>^ x, int ldx, 
+                          array<double>^ b, int ldb,
+                          array<double>^ x, int ldx,
                           [Out]array<double>^% fErr, [Out]array<double>^% bErr);
 
     static __int64 stptri(LapackLayout Layout, LapackUpLo UpLo, LapackDiag Diag,
@@ -627,13 +627,13 @@ namespace MKLSharp {
                           int n, int kd, array<double>^ ab, int ldab, [Out]double% rCond);
 
     static __int64 stbrfs(LapackLayout Layout, LapackUpLo UpLo,
-                          LapackTranspose Trans, LapackDiag Diag, 
+                          LapackTranspose Trans, LapackDiag Diag,
                           int n, int kd, int nrhs, array<float>^ ab, int ldab,
                           array<float>^ b, int ldb,
                           array<float>^ x, int ldx,
                           [Out]array<float>^% fErr, [Out]array<float>^% bErr);
     static __int64 dtbrfs(LapackLayout Layout, LapackUpLo UpLo,
-                          LapackTranspose Trans, LapackDiag Diag, 
+                          LapackTranspose Trans, LapackDiag Diag,
                           int n, int kd, int nrhs, array<double>^ ab, int ldab,
                           array<double>^ b, int ldb,
                           array<double>^ x, int ldx,

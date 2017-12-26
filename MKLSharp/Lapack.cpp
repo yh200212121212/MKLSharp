@@ -503,8 +503,8 @@ namespace MKLSharp {
   __int64 Lapack::sgbrfs(LapackLayout Layout, LapackTranspose Trans,
                          int n, int kl, int ku, int nrhs, array<float>^ ab, int ldab,
                          array<float>^ afb, int ldafb, array<__int64>^ ipiv,
-                         array<float>^ b, int ldb, 
-                         array<float>^ x, int ldx, 
+                         array<float>^ b, int ldb,
+                         array<float>^ x, int ldx,
                          [Out]array<float>^% fErr, [Out]array<float>^% bErr) {
     pin_ptr<float> ptr_a = &ab[0];
     pin_ptr<float> ptr_af = &afb[0];
@@ -530,8 +530,8 @@ namespace MKLSharp {
   __int64 Lapack::dgbrfs(LapackLayout Layout, LapackTranspose Trans,
                          int n, int kl, int ku, int nrhs, array<double>^ ab, int ldab,
                          array<double>^ afb, int ldafb, array<__int64>^ ipiv,
-                         array<double>^ b, int ldb, 
-                         array<double>^ x, int ldx, 
+                         array<double>^ b, int ldb,
+                         array<double>^ x, int ldx,
                          [Out]array<double>^% fErr, [Out]array<double>^% bErr) {
     pin_ptr<double> ptr_a = &ab[0];
     pin_ptr<double> ptr_af = &afb[0];
@@ -559,8 +559,8 @@ namespace MKLSharp {
                           int n, int kl, int ku, int nrhs, array<float>^ ab, int ldab,
                           array<float>^ afb, int ldafb, array<__int64>^ ipiv,
                           array<float>^ r, array<float>^ c,
-                          array<float>^ b, int ldb, 
-                          array<float>^ x, int ldx, 
+                          array<float>^ b, int ldb,
+                          array<float>^ x, int ldx,
                           [Out]float% rCond, [Out]array<float>^% bErr,
                           int nErrBnds, [Out]array<float>^% errBndsNorm,
                           [Out]array<float>^% errBndsComp, int nParams, array<float>^ params) {
@@ -579,7 +579,7 @@ namespace MKLSharp {
     errBndsComp = gcnew array<float>(nrhs * nErrBnds);
     pin_ptr<float> ptr_ebc = &errBndsComp[0];
     pin_ptr<float> ptr_p = &params[0];
-    auto res = LAPACKE_sgbrfsx((int)Layout, (char)Trans, (char)Equed, 
+    auto res = LAPACKE_sgbrfsx((int)Layout, (char)Trans, (char)Equed,
                                n, kl, ku, nrhs, ptr_a, ldab,
                                ptr_af, ldafb, ptr_i,
                                ptr_r, ptr_c,
@@ -606,8 +606,8 @@ namespace MKLSharp {
                           int n, int kl, int ku, int nrhs, array<double>^ ab, int ldab,
                           array<double>^ afb, int ldafb, array<__int64>^ ipiv,
                           array<double>^ r, array<double>^ c,
-                          array<double>^ b, int ldb, 
-                          array<double>^ x, int ldx, 
+                          array<double>^ b, int ldb,
+                          array<double>^ x, int ldx,
                           [Out]double% rCond, [Out]array<double>^% bErr,
                           int nErrBnds, [Out]array<double>^% errBndsNorm,
                           [Out]array<double>^% errBndsComp, int nParams, array<double>^ params) {
@@ -626,7 +626,7 @@ namespace MKLSharp {
     errBndsComp = gcnew array<double>(nrhs * nErrBnds);
     pin_ptr<double> ptr_ebc = &errBndsComp[0];
     pin_ptr<double> ptr_p = &params[0];
-    auto res = LAPACKE_dgbrfsx((int)Layout, (char)Trans, (char)Equed, 
+    auto res = LAPACKE_dgbrfsx((int)Layout, (char)Trans, (char)Equed,
                                n, kl, ku, nrhs, ptr_a, ldab,
                                ptr_af, ldafb, ptr_i,
                                ptr_r, ptr_c,
@@ -1256,7 +1256,7 @@ namespace MKLSharp {
     return res;
   }
 
-  __int64 Lapack::spprfs(LapackLayout Layout, LapackUpLo UpLo, 
+  __int64 Lapack::spprfs(LapackLayout Layout, LapackUpLo UpLo,
                          int n, int nrhs, array<float>^ ap, array<float>^ afp,
                          array<float>^ b, int ldb,
                          array<float>^ x, int ldx,
@@ -1280,7 +1280,7 @@ namespace MKLSharp {
     ptr_be = nullptr;
     return res;
   }
-  __int64 Lapack::dpprfs(LapackLayout Layout, LapackUpLo UpLo, 
+  __int64 Lapack::dpprfs(LapackLayout Layout, LapackUpLo UpLo,
                          int n, int nrhs, array<double>^ ap, array<double>^ afp,
                          array<double>^ b, int ldb,
                          array<double>^ x, int ldx,
@@ -1463,7 +1463,7 @@ namespace MKLSharp {
 
   __int64 Lapack::spbrfs(LapackLayout Layout, LapackUpLo UpLo,
                          int n, int kd, int nrhs, array<float>^ ab, int ldab,
-                         array<float>^ afb, int ldafb, 
+                         array<float>^ afb, int ldafb,
                          array<float>^ b, int ldb,
                          array<float>^ x, int ldx,
                          [Out]array<float>^% fErr, [Out]array<float>^% bErr) {
@@ -1487,7 +1487,7 @@ namespace MKLSharp {
   }
   __int64 Lapack::dpbrfs(LapackLayout Layout, LapackUpLo UpLo,
                          int n, int kd, int nrhs, array<double>^ ab, int ldab,
-                         array<double>^ afb, int ldafb, 
+                         array<double>^ afb, int ldafb,
                          array<double>^ b, int ldb,
                          array<double>^ x, int ldx,
                          [Out]array<double>^% fErr, [Out]array<double>^% bErr) {
@@ -1725,7 +1725,7 @@ namespace MKLSharp {
     ptr_b = nullptr;
     return res;
   }
- 
+
   __int64 Lapack::ssytrs_aa(LapackLayout Layout, LapackUpLo UpLo,
                             int n, int nrhs, array<float>^ a, int lda, array<__int64>^ ipiv,
                             array<float>^ b, int ldb) {
@@ -1807,11 +1807,11 @@ namespace MKLSharp {
     return res;
   }
 
-  __int64 Lapack::ssyrfs(LapackLayout Layout, LapackUpLo UpLo, 
+  __int64 Lapack::ssyrfs(LapackLayout Layout, LapackUpLo UpLo,
                          int n, int nrhs, array<float>^ a, int lda,
                          array<float>^ af, int ldaf, array<__int64>^ ipiv,
                          array<float>^ b, int ldb,
-                         array<float>^ x, int ldx, 
+                         array<float>^ x, int ldx,
                          [Out]array<float>^% fErr, [Out]array<float>^% bErr) {
     pin_ptr<float> ptr_a = &a[0];
     pin_ptr<float> ptr_af = &af[0];
@@ -1833,11 +1833,11 @@ namespace MKLSharp {
     ptr_be = nullptr;
     return res;
   }
-  __int64 Lapack::dsyrfs(LapackLayout Layout, LapackUpLo UpLo, 
+  __int64 Lapack::dsyrfs(LapackLayout Layout, LapackUpLo UpLo,
                          int n, int nrhs, array<double>^ a, int lda,
                          array<double>^ af, int ldaf, array<__int64>^ ipiv,
                          array<double>^ b, int ldb,
-                         array<double>^ x, int ldx, 
+                         array<double>^ x, int ldx,
                          [Out]array<double>^% fErr, [Out]array<double>^% bErr) {
     pin_ptr<double> ptr_a = &a[0];
     pin_ptr<double> ptr_af = &af[0];
@@ -1865,8 +1865,8 @@ namespace MKLSharp {
                           array<float>^ af, int ldaf, array<__int64>^ ipiv,
                           array<float>^ s, array<float>^ b, int ldb,
                           array<float>^ x, int ldx,
-                          [Out]float% rCond, [Out]array<float>^% bErr, 
-                          int nErrBnds, [Out]array<float>^% errBndsNorm, 
+                          [Out]float% rCond, [Out]array<float>^% bErr,
+                          int nErrBnds, [Out]array<float>^% errBndsNorm,
                           [Out]array<float>^% errBndsComp,
                           int nParams, array<float>^ params) {
     pin_ptr<float> ptr_a = &a[0];
@@ -1905,8 +1905,8 @@ namespace MKLSharp {
                           array<double>^ af, int ldaf, array<__int64>^ ipiv,
                           array<double>^ s, array<double>^ b, int ldb,
                           array<double>^ x, int ldx,
-                          [Out]double% rCond, [Out]array<double>^% bErr, 
-                          int nErrBnds, [Out]array<double>^% errBndsNorm, 
+                          [Out]double% rCond, [Out]array<double>^% bErr,
+                          int nErrBnds, [Out]array<double>^% errBndsNorm,
                           [Out]array<double>^% errBndsComp,
                           int nParams, array<double>^ params) {
     pin_ptr<double> ptr_a = &a[0];
@@ -2215,7 +2215,7 @@ namespace MKLSharp {
   }
 
   __int64 Lapack::strcon(LapackLayout Layout, LapackNorm Norm,
-                         LapackUpLo UpLo, LapackDiag Diag, 
+                         LapackUpLo UpLo, LapackDiag Diag,
                          int n, array<float>^ a, int lda, [Out]float% rCond) {
     pin_ptr<float> ptr_a = &a[0];
     pin_ptr<float> ptr_rc = &rCond;
@@ -2226,7 +2226,7 @@ namespace MKLSharp {
     return res;
   }
   __int64 Lapack::dtrcon(LapackLayout Layout, LapackNorm Norm,
-                         LapackUpLo UpLo, LapackDiag Diag, 
+                         LapackUpLo UpLo, LapackDiag Diag,
                          int n, array<double>^ a, int lda, [Out]double% rCond) {
     pin_ptr<double> ptr_a = &a[0];
     pin_ptr<double> ptr_rc = &rCond;
@@ -2238,10 +2238,10 @@ namespace MKLSharp {
   }
 
   __int64 Lapack::strrfs(LapackLayout Layout, LapackUpLo UpLo,
-                         LapackTranspose Trans, LapackDiag Diag, 
+                         LapackTranspose Trans, LapackDiag Diag,
                          int n, int nrhs, array<float>^ a, int lda,
                          array<float>^ b, int ldb,
-                         array<float>^ x, int ldx, 
+                         array<float>^ x, int ldx,
                          [Out]array<float>^% fErr, [Out]array<float>^% bErr) {
     pin_ptr<float> ptr_a = &a[0];
     pin_ptr<float> ptr_b = &b[0];
@@ -2261,10 +2261,10 @@ namespace MKLSharp {
     return res;
   }
   __int64 Lapack::dtrrfs(LapackLayout Layout, LapackUpLo UpLo,
-                         LapackTranspose Trans, LapackDiag Diag, 
+                         LapackTranspose Trans, LapackDiag Diag,
                          int n, int nrhs, array<double>^ a, int lda,
                          array<double>^ b, int ldb,
-                         array<double>^ x, int ldx, 
+                         array<double>^ x, int ldx,
                          [Out]array<double>^% fErr, [Out]array<double>^% bErr) {
     pin_ptr<double> ptr_a = &a[0];
     pin_ptr<double> ptr_b = &b[0];
@@ -2349,10 +2349,10 @@ namespace MKLSharp {
   }
 
   __int64 Lapack::stprfs(LapackLayout Layout, LapackUpLo UpLo,
-                         LapackTranspose Trans, LapackDiag Diag, 
+                         LapackTranspose Trans, LapackDiag Diag,
                          int n, int nrhs, array<float>^ ap,
-                         array<float>^ b, int ldb, 
-                         array<float>^ x, int ldx, 
+                         array<float>^ b, int ldb,
+                         array<float>^ x, int ldx,
                          [Out]array<float>^% fErr, [Out]array<float>^% bErr) {
     pin_ptr<float> ptr_a = &ap[0];
     pin_ptr<float> ptr_b = &b[0];
@@ -2371,10 +2371,10 @@ namespace MKLSharp {
     return res;
   }
   __int64 Lapack::dtprfs(LapackLayout Layout, LapackUpLo UpLo,
-                         LapackTranspose Trans, LapackDiag Diag, 
+                         LapackTranspose Trans, LapackDiag Diag,
                          int n, int nrhs, array<double>^ ap,
-                         array<double>^ b, int ldb, 
-                         array<double>^ x, int ldx, 
+                         array<double>^ b, int ldb,
+                         array<double>^ x, int ldx,
                          [Out]array<double>^% fErr, [Out]array<double>^% bErr) {
     pin_ptr<double> ptr_a = &ap[0];
     pin_ptr<double> ptr_b = &b[0];
@@ -2476,7 +2476,7 @@ namespace MKLSharp {
   }
 
   __int64 Lapack::stbrfs(LapackLayout Layout, LapackUpLo UpLo,
-                         LapackTranspose Trans, LapackDiag Diag, 
+                         LapackTranspose Trans, LapackDiag Diag,
                          int n, int kd, int nrhs, array<float>^ ab, int ldab,
                          array<float>^ b, int ldb,
                          array<float>^ x, int ldx,
@@ -2499,7 +2499,7 @@ namespace MKLSharp {
     return res;
   }
   __int64 Lapack::dtbrfs(LapackLayout Layout, LapackUpLo UpLo,
-                         LapackTranspose Trans, LapackDiag Diag, 
+                         LapackTranspose Trans, LapackDiag Diag,
                          int n, int kd, int nrhs, array<double>^ ab, int ldab,
                          array<double>^ b, int ldb,
                          array<double>^ x, int ldx,
